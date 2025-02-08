@@ -1,0 +1,328 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+}
+
+.homecontainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.avilaHome{
+    display:flex;
+    position:relative;
+    width: 100%;
+    height: auto;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.imgAvilaHome{
+    width: 100vw;
+    height: auto;
+    opacity: 0.85;
+}
+
+.textoImgHome {
+    position: absolute;
+    color: white;
+    font-size: 80px;
+    font-weight: bold;
+    margin-top: 80px;
+    margin-left: 30px;
+}
+
+.botonReservaYa{
+    position: absolute;
+    margin-top: 250px;
+    margin-left: 50px;
+    background-repeat: no-repeat;
+    border: none;
+    transition-duration: 0.4s;
+    color: white;
+    background-color: green;
+    border-radius: 8px;
+    outline: none;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 8px 18px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    display:flex;
+    align-items: center;  
+    justify-content: center;
+
+}
+
+.botonReservaYa:hover{
+        background-color: rgb(114, 194, 114); 
+        color: white;
+}
+
+.imgFlecha {
+    width: 30px;
+    margin-left: 10px;
+}
+
+.fraseHome{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.fraseHome1{
+    font-size: 40px;
+    font-weight: bold;
+    color: #4B4949;
+    margin-top: 10px;
+}
+.fraseHome2{
+    font-size: 40px;
+    font-weight: bold;
+    color: #4B4949;
+    margin-top: 10px;
+
+}
+
+.containerDivisor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divisor{
+    width: 1400px;
+    height: 2px;
+    background-color: rgba(192, 192, 192, 0.514);
+    margin-bottom: 70px;
+    margin-top: 38px;
+}
+
+.containerMVO{
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.mision, .vision, .objetivo{
+    width:359px;
+    height:314px;
+    background-color: #82a84662;
+    display:flex;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(82, 82, 82, 0.315);
+}
+
+.tituloMision, .tituloVision, .tituloObjetivo{
+    position:absolute;
+    margin-top: 120px;
+    font-weight: bolder;
+    font-size:30px;
+    color: #4b4949;
+    margin-left: 15px;
+}
+
+.descripcionMision, .descripcionVision, .descripcionObjetivo{
+    position:absolute;
+    margin-top: 170px;
+    color: #4b4949;
+    width:330px;
+    margin-left:15px;
+    line-height: 1.25;
+}
+
+.imgMision, .imgVision, .imgObjetivo{
+    position:absolute;
+    width: 80px;
+    height: 80px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.actividadesOfrecemos{
+    font-size: 40px;
+    color: #4B4949;
+    font-weight: bold;
+    margin-left: 230px;
+    margin-top: 20px;
+}
+
+.divisor2{
+    width: 1400px;
+    height: 2px;
+    background-color: rgba(192, 192, 192, 0.514);
+    margin-bottom: 40px;
+    margin-top: 70px;
+}
+
+.containerDescripcionActividades{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fondoDescrip{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 1100px;
+    height: 450px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.excursiones, .paseos, .rappel{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+}
+
+.imgExcursionesHome, .imgPaseosHome, .imgRappelHome{
+    width: 315px;
+    height: 373px;
+    border-radius: 10px;
+}
+
+.sombra{
+    position: absolute;
+    width: 315px;
+    height: 373px;
+    background-color: #1F2238;
+    opacity:0.5;
+    border-radius: 10px;
+}
+
+.tituloExcursiones, .tituloPaseos, .tituloRappel{
+    position: absolute;
+    color:white;
+    margin-left: 10px;
+    margin-top: 80px;
+    font-weight:bolder;
+    font-size: 30px;
+}
+
+.excursionesDescrip1, .paseosDescrip1, .rappelDescrip1{
+    width: 290px;
+    margin-left: 10px;
+    position: absolute;
+    color:white;
+    margin-top: 170px;
+    line-height: 1.25;
+}
+
+.excursionesDescrip2{
+    width: 290px;
+    margin-left: 10px;
+    position: absolute;
+    color:white;
+    margin-top: 275px;
+    line-height: 1.25;
+}
+
+.paseosDescrip2, .rappelDescrip2{
+    width: 290px;
+    margin-left: 10px;
+    position: absolute;
+    color:white;
+    margin-top: 250px;
+    line-height: 1.25;
+}
+
+.actividadesHome, .foroHome{
+    margin:50px;
+    display:flex;
+    justify-content: space-evenly;
+    margin-top: 100px;
+}
+
+.imgRutas{
+    width: 600px;
+    height: 270px;
+    border-radius: 10px;
+}
+
+.textoActividades, .textoForo{
+    display:flex;
+    flex-direction: column;
+}
+
+.textoActividades1{
+    margin:20px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #4B4949;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.textoActividades2{
+    margin:10px;
+    color: #4B4949;
+    line-height: 1.5;
+    margin-left: 10px;
+    width: 400px;
+}
+
+.botonVerActividades{
+    background-color: transparent;
+    color: #4B4949;
+    font-weight: bold;
+    border: 2px solid #4B4949;
+    border-radius: 20px;
+    width:165px;
+    height:40px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.botonVerActividades:hover{
+    background-color: #4b4949;
+    color: white;
+}
+
+.imgForoHome{
+    width: 500px;
+    height: 319px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.textoForo1{
+    margin-bottom:20px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #4B4949;
+    margin-left: 50px;
+    width:440px;
+    line-height: 1.5;
+}
+
+.textoForo2{
+    margin:10px;
+    color: #4B4949;
+    line-height: 1.5;
+    margin-left: 50px;
+    width: 500px;
+}
+
+.botonIrAlForo{
+    background-color: transparent;
+    color: #4B4949;
+    font-weight: bold;
+    border: 2px solid #4B4949;
+    border-radius: 20px;
+    width:130px;
+    height:40px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.botonIrAlForo:hover{
+    background-color: #4b4949;
+    color: white;
+}
