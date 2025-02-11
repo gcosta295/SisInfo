@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Layout from "./components/ui/layout/Layout";
 import Home from "./pages/home/Home";
+import Actividades from "./pages/actividades/Actividades";
 // import Informacion from "./pages/informacion/Informacion";
 // import Foro from "./pages/foro/Foro";
 // import Actividades from "./pages/actividades/Actividades";
@@ -13,6 +14,7 @@ export default function App() {
       <Routes>     
         <Route element={<Layout/>}> 
           <Route index element={<Home/>} />  
+          <Route path="actividades" element={<Actividades/>} />
           {/* <Route path="contactanos" element={<Contacto />} /> */}
         </Route>
       </Routes>
