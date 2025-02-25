@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 export default function Home() {
   
-  const navigate = useNavigate(); // solo se importa 1 vez aqui
+  const navigate = useNavigate();
 
     const gotocontact1 = (event) => {
         navigate("/actividades")

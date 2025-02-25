@@ -17,7 +17,9 @@ export default function Navbar(){
                 <NavLink className="foro" to={"foro"}>Foro</NavLink>
                 <NavLink className="informacion" to={"informacion"}>Información</NavLink>
                 <NavLink className="contacto" to={"contacto"}>Contáctanos</NavLink>
-                <NavLink className="miPerfil" to={"mi-perfil"}><img src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" className="miperfil"/></NavLink>
+                {/* <NavLink className="miPerfil" to={"mi-perfil"}><img src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" className="miperfil"/></NavLink> */}
+
+                <NavLink className="miPerfil" to={"signup"}><img src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" className="miperfil"/></NavLink>
             </div>
         </div>
     </div>
