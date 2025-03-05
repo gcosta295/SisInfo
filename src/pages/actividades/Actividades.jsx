@@ -1,5 +1,9 @@
 import "./Actividades";
 import "./Actividades.css";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass, faCalendarDays, faArrowPointer } from "@fortawesome/free-solid-svg-icons";
+
 
 import { useNavigate } from "react-router";
 
@@ -23,14 +27,20 @@ return(
         </div>  {/* fin de div containerDivisor */}
 
 <div className='multi-button'>
-    <button className="menu-button"></button>
-    <button className="menu-button"></button>
-    <button className="menu-button"></button>
-    <button className="menu-button2"></button>
+    <button className="menu-button"><FontAwesomeIcon icon={faMagnifyingGlass} />
+    <span> Buscar excursión</span></button>
+    <button className="menu-button"><FontAwesomeIcon icon={faCalendarDays} />
+    <span> Insertar fecha</span></button>
+    <button className="menu-button"><FontAwesomeIcon icon={faArrowPointer} />
+    <span> Elegir Actividad </span></button>
+    <button className="menu-button2"><span>Buscar</span></button>
+        
     </div> {/* fin de div */}
-
 
 </div>
 // cierro div container
 )
 }   
+
+
+  
