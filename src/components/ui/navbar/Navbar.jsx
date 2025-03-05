@@ -10,7 +10,7 @@ export default function Navbar(){
                 <div className='fotoTitulo'>
                     <img src="src/assets/fotos/AvilaTreklogo.png" alt="Logo Avila Trek" className="logo"/>
                 </div>
-                <NavLink className="inicio" to={"inicio"}>Inicio</NavLink>
+                <NavLink className="inicio" to={"/"}>Inicio</NavLink>
             </div>
             <div className='botones'>
                 <NavLink className="actividades" to={"actividades"}>Actividades</NavLink>
