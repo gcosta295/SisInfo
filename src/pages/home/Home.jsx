@@ -16,16 +16,22 @@ export default function Home() {
 
   return (
     <div className='homeContainer'>
+
       <div className="avilaHome">
         <img src="src/assets/fotos/elAvilaHome.jpg" alt="Avila" className="imgAvilaHome"/>
           <p className="textoImgHome">Tu aventura empieza aquí</p>
           <button className='botonReservaYa' onClick={gotocontact1}>Reserva ya<img src="src/assets/fotos/flecha.png" className="imgFlecha"/></button>
       </div>
+
       <div className="fraseHome">
         <p className="fraseHome1">Excursiones, paseos y rappel en el parque nacional</p>
-        <p className="fraseHome2">El Ávila con guías certificados</p>
+        <p className="fraseHome1">El Ávila con guías certificados</p>
       </div>
-      <div className="containerDivisor"><div className="divisor"></div></div>
+
+      <div className="containerDivisor">
+        <div className="divisor"></div>
+      </div>  {/* fin de div containerDivisor */}
+
       <div className="containerMVO">
         <div className="mision">
           <img src="src/assets/fotos/mision.svg" className="imgMision"/>
