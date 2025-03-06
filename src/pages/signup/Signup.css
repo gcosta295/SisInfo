@@ -49,6 +49,7 @@ hr.dividerPunteado{
 }
 
 .name, .lastname, .correo, .contrasena, .tipoUser, .numTelefono{
+    padding: 5px;
     width: 380px;
     height:40px;
     border-radius: 6px;
