@@ -64,8 +64,6 @@ export default function Signup() {
     return(
         <>
 
-        
-
         <div className="contenedor1">
             <div className="datos">
                 <p className="titulosignup">Comienza la aventura</p>
