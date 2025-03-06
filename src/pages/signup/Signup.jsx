@@ -14,6 +14,7 @@ export default function Signup() {
     const [tipoUser, setTipoUser] = useState("");
     const [isSignUpActive, setIsSignUpActive ] = useState(true); //sign up (registro) es el default, sale de primero
 
+    
     const handleMethodChange = () => {
         setIsSignUpActive(!isSignUpActive);
     }
