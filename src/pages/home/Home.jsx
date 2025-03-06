@@ -1,40 +1,9 @@
 import "./Home.css";
 import { useNavigate } from "react-router";
-import React, { useEffect, useState } from "react";
-import { db } from "../../firebase/firebase"; 
-import { collection, getDocs } from "firebase/firestore";
-
 
 
 export default function Home() {
-
-
-
-  const [users, setUsers] = useState([]);
-
-  //Prueba para ver si esta la bd de prueba que hice
   
-    useEffect(() => {
-      const obtenerUsuarios = async () => {
-        try {
-          const querySnapshot = await getDocs(collection(db, "users"));
-          const usersArray = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-
-          console.log(usersArray);
-          setUsers(usersArray); // Guardamos los usuarios en el estado
-        } catch (error) {
-          console.error("❌ Error obteniendo los usuarios:", error);
-        }
-      };
-
-      obtenerUsuarios();
-      }, []);
-
-      
-
   const navigate = useNavigate();
 
     const gotocontact1 = (event) => {
