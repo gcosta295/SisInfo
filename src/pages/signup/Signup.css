@@ -35,11 +35,6 @@ hr {
     margin:0 auto;
 }
 
-hr.dividerPunteado{
-    margin-top: 50px;
-    border-top: 3px dotted #bbb;
-}
-
 .forms{
     margin-top: 50px;
     display:flex;
@@ -86,4 +81,39 @@ hr.dividerPunteado{
     flex-direction: column;
     color:#4E4E4E;
     gap:7px;
+}
+
+.tab1, .tab2 {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.react-tabs__tab-list {
+    list-style: none; /* Quitar bullets */
+    display: flex; /* Poner en línea */
+    font-size: 18px; /* Aumenta el tamaño de la letra */
+    justify-content: center; /* Centrar las pestañas */
+    padding: 0;
+    margin: 0;
+    border-bottom: 2px solid #ddd; /* Línea sutil debajo */
+}
+
+.react-tabs__tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: gray;
+    border: none;
+    background: none; /* Elimina el fondo */
+    transition: color 0.3s;
+}
+
+.react-tabs__tab--selected {
+    color: black; /* Color al estar seleccionado */
+    font-weight: bold;
+    border-bottom: 3px solid black; /* Línea inferior resaltada */
+    outline: none; /* Elimina el borde al seleccionar */
 }

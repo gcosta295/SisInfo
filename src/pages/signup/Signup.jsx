@@ -3,6 +3,8 @@ import "./Signup.css";
 import { useState } from "react";
 import { auth } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 export default function Signup() {
 
@@ -14,6 +16,7 @@ export default function Signup() {
     const [tipoUser, setTipoUser] = useState("");
     const [isSignUpActive, setIsSignUpActive ] = useState(true); //sign up (registro) es el default, sale de primero
 
+   
     //NO se va a usar ahorita
     const handleMethodChange = () => {
         setIsSignUpActive(!isSignUpActive);
@@ -55,6 +58,7 @@ export default function Signup() {
         });
     };
 
+    const [tabIndex, setTabIndex] = useState(0);
 
     // const navigate = useNavigate();
     // const gotocontact1 = (event) => {
@@ -66,43 +70,57 @@ export default function Signup() {
 
         <div className="contenedor1">
             <div className="datos">
-                <p className="titulosignup">Comienza la aventura</p>
-                <p className="titulosignup">Bienvenido de vuelta</p>
-                <hr className="dividerPunteado"></hr>
-                <form className="forms">
-                    <div className="formNombre">
-                        <input value={name} type="text" className="name" placeholder="Nombre(s)" onChange={(e) => setName(e.target.value)} /><br />
-                    </div>
-                    <div className="formApellido">
-                        <input value={lastname} type="text" className="lastname" placeholder="Apellido(s)"  onChange={(e) => setLastname(e.target.value)}/><br />
-                    </div>
-                    <div className="formCorreo">
-                        <input value={email} type="email" className="correo" placeholder="Correo electrónico" onChange={(e) => setEmail(e.target.value)} /><br />
-                    </div>
-                    <div className="formContrasena">
-                        <input value={password} type="password" className="contrasena" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} /><br />
-                    </div>
-                    <div className="telefono">
-                        <form>
-                            <input value={phoneNumber} type="text" className="numTelefono" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/><br />
-                        </form>
-                    </div>
-                    {isSignUpActive &&<select className="tipoUser" onChange={(e) => setTipoUser(e.target.value)}>
-                        <option value="" disabled selected>Tipo de usuario</option>
-                        <option value="trekker">Trekker</option>
-                        <option value="guia">Guía</option>
-                    </select>}
-                </form>
-                <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>
-                <button className='botonIrHome' onClick={handleSignIn}>Iniciar sesión</button>
+                <p className="titulosignup">{tabIndex===0 ? "Bienvenido de vuelta" : "Comienza la aventura"}</p>
 
-                <a className="opcion" onClick={handleMethodChange}>Inicia sesión</a>
-                <a className="opcion" onClick={handleMethodChange}>Regístrate</a>
+                <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+                    <TabList>
+                        <Tab className="tab1">Iniciar sesión</Tab>
+                        <Tab className="tab2">Registrarse</Tab>
+                    </TabList>
+
+                    <TabPanel>
+                        <form className="forms">
+                            <div className="formCorreo">
+                                <input value={email} type="email" className="correo" placeholder="Correo electrónico" onChange={(e) => setEmail(e.target.value)} /><br />
+                            </div>
+                            <div className="formContrasena">
+                                <input value={password} type="password" className="contrasena" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} /><br />
+                            </div>
+                        </form>
+                        <button className='botonIrHome' onClick={handleSignIn}>Iniciar sesión</button>
+                    </TabPanel>
+                    <TabPanel>
+                        <form className="forms">
+                            <div className="formNombre">
+                                <input value={name} type="text" className="name" placeholder="Nombre(s)" onChange={(e) => setName(e.target.value)} /><br />
+                            </div>
+                            <div className="formApellido">
+                                <input value={lastname} type="text" className="lastname" placeholder="Apellido(s)"  onChange={(e) => setLastname(e.target.value)}/><br />
+                            </div>
+                            <div className="formCorreo">
+                                <input value={email} type="email" className="correo" placeholder="Correo electrónico" onChange={(e) => setEmail(e.target.value)} /><br />
+                            </div>
+                            <div className="formContrasena">
+                                <input value={password} type="password" className="contrasena" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} /><br />
+                            </div>
+                            <div className="telefono">
+                                <form>
+                                    <input value={phoneNumber} type="text" className="numTelefono" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/><br />
+                                </form>
+                            </div>
+                            <select className="tipoUser" onChange={(e) => setTipoUser(e.target.value)}>
+                                <option value="" disabled selected>Tipo de usuario</option>
+                                <option value="trekker">Trekker</option>
+                                <option value="guia">Guía</option>
+                            </select>
+                        </form>
+                        <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>
+                    </TabPanel>
+                </Tabs>
             </div>
             <div className="foto">
                 <img src="src/assets/fotos/fotologin.jpg" className="imglogin"/>
             </div>
-
         </div>
         <div className="copyright">
             <p>© Copyright 2025</p>
