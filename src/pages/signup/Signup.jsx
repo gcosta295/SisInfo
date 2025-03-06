@@ -14,6 +14,7 @@ export default function Signup() {
     const [tipoUser, setTipoUser] = useState("");
     const [isSignUpActive, setIsSignUpActive ] = useState(true); //sign up (registro) es el default, sale de primero
 
+    //NO se va a usar ahorita
     const handleMethodChange = () => {
         setIsSignUpActive(!isSignUpActive);
     }
@@ -62,17 +63,20 @@ export default function Signup() {
 
     return(
         <>
+
+        
+
         <div className="contenedor1">
             <div className="datos">
-                {isSignUpActive && <p className="titulosignup">Comienza la aventura</p>}
-                {!isSignUpActive && <p className="titulosignup">Bienvenido de vuelta</p>}
+                <p className="titulosignup">Comienza la aventura</p>
+                <p className="titulosignup">Bienvenido de vuelta</p>
                 <hr className="dividerPunteado"></hr>
                 <form className="forms">
                     <div className="formNombre">
-                        {isSignUpActive && <input value={name} type="text" className="name" placeholder="Nombre(s)" onChange={(e) => setName(e.target.value)} />}<br />
+                        <input value={name} type="text" className="name" placeholder="Nombre(s)" onChange={(e) => setName(e.target.value)} /><br />
                     </div>
                     <div className="formApellido">
-                        {isSignUpActive && <input value={lastname} type="text" className="lastname" placeholder="Apellido(s)"  onChange={(e) => setLastname(e.target.value)}/>}<br />
+                        <input value={lastname} type="text" className="lastname" placeholder="Apellido(s)"  onChange={(e) => setLastname(e.target.value)}/><br />
                     </div>
                     <div className="formCorreo">
                         <input value={email} type="email" className="correo" placeholder="Correo electrónico" onChange={(e) => setEmail(e.target.value)} /><br />
@@ -82,7 +86,7 @@ export default function Signup() {
                     </div>
                     <div className="telefono">
                         <form>
-                            {isSignUpActive && <input value={phoneNumber} type="text" className="numTelefono" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/>}<br />
+                            <input value={phoneNumber} type="text" className="numTelefono" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/><br />
                         </form>
                     </div>
                     {isSignUpActive &&<select className="tipoUser" onChange={(e) => setTipoUser(e.target.value)}>
@@ -91,11 +95,11 @@ export default function Signup() {
                         <option value="guia">Guía</option>
                     </select>}
                 </form>
-                {isSignUpActive && <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>}
-                {!isSignUpActive && <button className='botonIrHome' onClick={handleSignIn}>Iniciar sesión</button>}
+                <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>
+                <button className='botonIrHome' onClick={handleSignIn}>Iniciar sesión</button>
 
-                {isSignUpActive && <a className="opcion" onClick={handleMethodChange}>Inicia sesión</a>}
-                {!isSignUpActive && <a className="opcion" onClick={handleMethodChange}>Regístrate</a>}
+                <a className="opcion" onClick={handleMethodChange}>Inicia sesión</a>
+                <a className="opcion" onClick={handleMethodChange}>Regístrate</a>
             </div>
             <div className="foto">
                 <img src="src/assets/fotos/fotologin.jpg" className="imglogin"/>
