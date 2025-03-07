@@ -78,13 +78,13 @@ export default function Home() {
         <ul>
             <li>
             <h1>Activities</h1>
-          {activities.map((activity) => (
-            <h1 key={activity.id}>{activity.name}</h1>
-          ))}
+            {activities.map((activity) => (
+                <h1 key={activity.id}>{activity.name}</h1>
+            ))}
             </li>
         </ul>
-        </div>
     </div>
+</div>
 // cierro div container2
 )
 }   
