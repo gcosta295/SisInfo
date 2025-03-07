@@ -37,7 +37,7 @@ export default function Signup() {
             const errorMessage = error.message;  //explicacion
             console.log(errorCode, errorMessage); //si hay error, aparece mensaje automatico con el motivo y explicacion
           });
-      };
+    };
 
     const handleSignIn = () => {
     if (!email || !password) return;

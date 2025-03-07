@@ -42,7 +42,7 @@ export default function Home() {
     }
 
     const gotocontact2 = (event) => {
-      navigate("/foro")
+      navigate("/foro") 
   }
 
   return (
