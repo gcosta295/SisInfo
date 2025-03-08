@@ -120,3 +120,28 @@
     width: 250px;
 
 }
+
+.Acs{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.ac{
+    background-color: #F5F5F5;
+    margin: 30px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(82, 82, 82, 0.315);
+    display: flex;
+
+}
+
+.acl{
+    margin-left: 50px;
+}
+
+.ImageA{
+    width: 300px;
+    height: 200px;
+}

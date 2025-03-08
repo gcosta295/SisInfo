@@ -75,13 +75,19 @@ export default function Home() {
     </div>
 
     <div className="container">
-        <ul>
-            <li>
-            <h1>Activities</h1>
+        <ul className="Acs">
+            
             {activities.map((activity) => (
-                <h1 key={activity.id}>{activity.name}</h1>
+      
+                <RenderA
+                key={activity.id}
+                tipo={activity.type}
+                name={activity.name}
+                info={activity.info}
+                />
+          
             ))}
-            </li>
+           
         </ul>
     </div>
 </div>
@@ -105,4 +111,18 @@ function Serch(tSerch){
         console.log("normal");
     }
     tSerch = "normal";
+}
+
+function RenderA({name, info, tipo}){
+  return(
+    <li className="ac">
+      <img src="src\assets\fotos\excursionesHome.jpg" className="ImageA" alt="" />
+    <div className="acl"> 
+    <h1>{tipo}</h1>
+    <h3>{name}</h3>
+    <p>{info}</p>
+    </div>
+    
+    </li>
+  )
 }
