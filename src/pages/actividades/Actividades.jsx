@@ -16,7 +16,6 @@ console.log(doc.id, " => ", doc.data());
 console.log(doc.data().name)
 });
 
-
 export default function Home() {
 
     const [activities, setActivities] = useState([]);
@@ -69,7 +68,7 @@ export default function Home() {
             <span> Insertar fecha</span></button>
             <button className="menu-button" onClick={() => setTSearch("Elegir Actividad")}><FontAwesomeIcon icon={faArrowPointer} />
             <span> Elegir Actividad </span></button>
-            <button className="menu-button2" onClick={Serch(tSerch)}><span>Buscar</span></button>
+            <button className="menu-button2" onClick={Serch(tSerch,activities)}><span>Buscar</span></button>
         </div> {/* fin de div */}
 
     </div>
@@ -95,11 +94,15 @@ export default function Home() {
 )
 }   
 
-function Serch(tSerch){
-    console.log("qwertyu");
+function Serch(tSerch, activities){
+    const list = new Array();
     if (tSerch != "normal"){
         if (tSerch == "Buscar excursión"){
-            console.log("Buscar excursión");
+            for(const x of activities.entries()) {
+                if (x[1].type == "Rappel"){                 //modificar por tipo input
+                    list.push(x[1]);
+                }
+            }
         }
         if (tSerch == "Insertar fecha"){
             console.log("Insertar fecha");
@@ -107,10 +110,7 @@ function Serch(tSerch){
         if (tSerch == "Elegir Actividad"){
             console.log("Elegir Actividad");
         }
-    }else{
-        console.log("normal");
     }
-    tSerch = "normal";
 }
 
 function RenderA({name, info, tipo}){
