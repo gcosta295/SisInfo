@@ -84,6 +84,11 @@ hr {
     border-color: #A9A9A9;
 }
 
+.instrucContrasena{
+    font-size: 12px;
+    font-style: italic;
+}
+
 .botonIrHome{
     border: none;
     transition-duration: 0.1s;

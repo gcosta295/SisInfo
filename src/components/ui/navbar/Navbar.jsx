@@ -21,7 +21,10 @@ export default function Navbar(){
                 <NavLink className="informacion" to={"informacion"}>Información</NavLink>
                 <NavLink className="contacto" to={"contacto"}>Contáctanos</NavLink>
 
-                <div className="dropdownPerfil" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+                <div className="dropdownPerfil" 
+                    onMouseEnter={() => {clearTimeout(window.dropdownTimeout); setIsOpen(true)}} 
+                    onMouseLeave={() => {window.dropdownTimeout = setTimeout(() => setIsOpen(false), 500)}}>
+
                     <img className="imgMiPerfil" src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" onClick={() =>setIsOpen((prevState)=>!prevState)} />
                     {isOpen &&(
                         <div className="dropdownMenu">

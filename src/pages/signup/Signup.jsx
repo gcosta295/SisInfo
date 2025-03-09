@@ -1,12 +1,13 @@
 import "./Signup.css";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import { auth, provider } from "../../firebase/firebase";
+import { auth, provider, db } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'react-tabs/style/react-tabs.css';
 import toast, { Toaster } from 'react-hot-toast';
+import { setDoc, doc } from "firebase/firestore";
 
 
 export default function Signup() {
@@ -17,7 +18,6 @@ export default function Signup() {
     const [lastname, setLastname] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [tipoUser, setTipoUser] = useState("");
-    const [isSignUpActive, setIsSignUpActive ] = useState(true); //sign up (registro) es el default, sale de primero
 
     const handleSignUp = () => {
         if (!email || !password) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
@@ -25,12 +25,22 @@ export default function Signup() {
           .then((userCredential) => {
             const user = userCredential.user;
             console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
+            if (user) {
+                setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
+                  email: user.email,
+                  firstName: name,
+                  lastName: lastname,
+                  phoneNumber: phoneNumber,
+                  tipoUsuario: tipoUser
+                });
+              }
             setEmail("");
             setPassword("");
             setName("");
             setLastname("");
             setPhoneNumber("");
             setTipoUser("");
+            toast.success('Registro exitoso')
             navigate("/");
           })
           .catch((error) => {
@@ -48,8 +58,8 @@ export default function Signup() {
         console.log(user);
         setEmail("");
         setPassword("");
-        navigate("/");
         toast.success('Sesión iniciada')
+        setTimeout(() => {navigate("/");}, 2000);
         })
         .catch((error) => {
         const errorCode = error.code;
@@ -70,7 +80,7 @@ export default function Signup() {
         signInWithPopup(auth,provider).then((data)=>{
             // setValue(data.user.email)
             navigate("/");
-            console.log(data);
+            console.log(data.user);
         })
     };
 
@@ -127,6 +137,7 @@ export default function Signup() {
                                 <div className="formContrasena">
                                     <label>Contraseña</label>
                                     <input value={password} type="password" className="contrasena" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)}  />
+                                    <p className="instrucContrasena">*La contraseña debe tener mínimo 6 caracteres.</p>
                                 </div>
                                 <div className="formTelefono">
                                     <label>Número telefónico</label>
