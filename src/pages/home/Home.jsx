@@ -37,7 +37,7 @@ export default function Home() {
 
   const navigate = useNavigate();
 
-    const gotocontact1 = (event) => {
+    const gotocontact1 = (event) => {  
         navigate("/actividades")
     }
 

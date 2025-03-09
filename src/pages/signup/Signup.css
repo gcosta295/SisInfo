@@ -1,6 +1,6 @@
 *{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 18px;
+    font-family: sans-serif;
+    font-size: 14px;
 }
 
 .contenedor1{
@@ -8,10 +8,27 @@
     justify-content: center;
     gap: 200px;
     margin: 20px;
-    align-items: center;
+    align-items: start; /* para que se se quede en el tope */
 }
 
 .datos{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 700px;
+    min-width:700px;
+}
+
+.tabsContenedor{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.tabsPanel2, .tabsPanel1{
     display:flex;
     justify-content: center;
     align-items: center;
@@ -25,9 +42,10 @@
 
 .titulosignup{
     margin-top: 20px;
-    font-size: 60px;
+    font-size: 58px;
     font-weight: bold;
     color: #4E4E4E;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 hr {
@@ -35,17 +53,19 @@ hr {
     margin:0 auto;
 }
 
-hr.dividerPunteado{
-    margin-top: 50px;
-    border-top: 3px dotted #bbb;
-}
-
 .forms{
-    margin-top: 50px;
+    margin-top: 30px;
     display:flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 25px;
+    border: none;
+}
+
+.formNombre, .formApellido, .formCorreo, .formContrasena, .formTelefono, .tipoUsuario{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
 }
 
 .name, .lastname, .correo, .contrasena, .tipoUser, .numTelefono{
@@ -55,10 +75,18 @@ hr.dividerPunteado{
     border-radius: 6px;
     border-color: #D2D2D2;
     color: #4E4E4E;
+    border: 1px solid #ccc;
+    outline: none;
+    box-shadow: none;
 }
 
-.telefono{
-    display: flex;
+.name:focus, .lastname:focus, .correo:focus, .contrasena:focus, .tipoUser:focus, .numTelefono:focus {
+    border-color: #A9A9A9;
+}
+
+.instrucContrasena{
+    font-size: 12px;
+    font-style: italic;
 }
 
 .botonIrHome{
@@ -66,11 +94,13 @@ hr.dividerPunteado{
     transition-duration: 0.1s;
     color: white;
     background-color: green;
-    border-radius: 18px;
+    border-radius: 15px;
     outline: none;
-    font-size: 25px;
+    font-size: 18px;
     padding: 11px 50px;
-    margin-top: 20px;
+    margin-top: 40px;
+    min-width: 240px;
+    cursor:pointer;
 }
 
 
@@ -86,4 +116,85 @@ hr.dividerPunteado{
     flex-direction: column;
     color:#4E4E4E;
     gap:7px;
+    margin-top: 40px;
 }
+
+.tab1, .tab2 {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color:#4E4E4E; 
+}
+
+.react-tabs__tab-list {
+    list-style: none; 
+    display: flex; 
+    font-size: 18px; 
+    justify-content: center; 
+    padding: 0;
+    margin: 0;
+    border-bottom: 2px solid #ddd; 
+    gap: 20px;
+}
+
+.react-tabs__tab {
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    color: gray;
+    border: none;
+    background: none; 
+    transition: color 0.3s;
+}
+
+.react-tabs__tab--selected {
+    color: rgba(80, 80, 80, 0.8);
+    font-weight: bold;
+    border-bottom: 3px solid rgba(155, 155, 155, 0.6);
+    outline: none; 
+}
+
+.google1, .google2{
+    margin-top: 30px;
+    display:flex;
+    align-items: center;  
+    justify-content: center;
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2), 0 6px 6px 0 rgba(0,0,0,0.19);
+    border-style: none;
+    min-width: 240px;
+    font-size: 14px;
+    color: #4E4E4E;
+    background-color:#f6f6f6; 
+    cursor:pointer;
+}
+
+.google1:hover, .google2.google2:hover{
+    background-color:#ffffff; 
+    color:#4E4E4E;
+}
+
+.imgGoogle{
+    width: 30px;
+    margin-top: 0px;
+}
+
+.divisorGoogle{
+    display: flex;
+    width: 65%;
+    align-items: center;
+    margin-top:30px;
+}
+
+.linea{
+    flex-grow: 1;
+    border-bottom: 1px solid rgb(184, 177, 177);
+    margin: 0 10px;
+}
+
+.letraDivider{
+    color: rgb(184, 177, 177);
+}
+
