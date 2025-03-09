@@ -1,7 +1,10 @@
 import { NavLink } from "react-router";
+import { useState } from 'react';
 import "./Navbar.css";  
 
 export default function Navbar(){
+
+    const [isOpen, setIsOpen] = useState(false);
     
     return<>
     <div className='papaflex'> 
@@ -17,9 +20,19 @@ export default function Navbar(){
                 <NavLink className="foro" to={"foro"}>Foro</NavLink>
                 <NavLink className="informacion" to={"informacion"}>Información</NavLink>
                 <NavLink className="contacto" to={"contacto"}>Contáctanos</NavLink>
-                {/* <NavLink className="miPerfil" to={"mi-perfil"}><img src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" className="miperfil"/></NavLink> */}
 
-                <NavLink className="miPerfil" to={"signup"}><img src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" className="miperfil"/></NavLink>
+                <div className="dropdownPerfil" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+                    <img className="imgMiPerfil" src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" onClick={() =>setIsOpen((prevState)=>!prevState)} />
+                    {isOpen &&(
+                        <div className="dropdownMenu">
+                            <NavLink to={"/mi-perfil"} className="opcionVerPerfil">Ver perfil</NavLink>
+                            <NavLink to={"/signup"} className="opcionLogout">Cerrar sesión</NavLink>
+                        </div>
+                    )}
+                </div>
+                {/* <NavLink className="miPerfil" to={"mi-perfil"}><img src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" className="miperfil"/></NavLink> */}
+                {/* <NavLink className="miPerfil" to={"signup"}><img src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" className="miperfil"/></NavLink> */}
+
             </div>
         </div>
     </div>
