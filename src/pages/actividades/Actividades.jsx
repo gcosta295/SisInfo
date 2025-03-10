@@ -128,7 +128,10 @@ function RenderA({name, info, tipo, images, rating}){
     return(
 
     <li className="ac">
-      <img src={images[0]} className="ImageA" alt="" />
+        <div className="imgs">
+        <img src={images[0]} className="ImageA" alt="" />
+
+        </div>
     <div className="acl"> 
     <h1 className="titleTipo titles">{tipo}</h1>
     <h2 className='titleName titles'>{name}</h2>

@@ -125,7 +125,10 @@
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
+
+
 
 .ac{
     background-color: #F5F5F5;
@@ -139,8 +142,13 @@
 
 .acl{
     margin-left: 50px;
+    
 }
 
+.imgs{
+    width: 300px;
+
+}
 .ImageA{
     width: 300px;
     height: 200px;
