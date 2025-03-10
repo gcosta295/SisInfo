@@ -54,7 +54,7 @@ export default function Home() {
 
         <div className="fraseMain">
             <p className="fraseM">Elige una de las actividades para una excursión</p>
-            <p className="fraseM">guiada según las 4 rutas que ofrecemos</p>
+            <p className="fraseM">guiada según las rutas que ofrecemos</p>
         </div>  {/* cierro div fraseMain */}
 
         <div className="containerDivisor">
