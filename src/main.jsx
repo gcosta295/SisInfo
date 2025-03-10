@@ -7,6 +7,7 @@ import Signup from "./pages/signup/Signup";
 import Informacion from "./pages/informacion/Informacion";
 import Foro from "./pages/foro/Foro";
 import Contacto from "./pages/contacto/Contacto";
+import Actividad from "./pages/actividad/Actividad"
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="foro" element={<Foro/>} />
           <Route path="informacion" element={<Informacion/>} />
           <Route path="contacto" element={<Contacto />} />
+          <Route path="actividad" element={<Actividad />} />
         </Route>
       </Routes>
     </BrowserRouter>

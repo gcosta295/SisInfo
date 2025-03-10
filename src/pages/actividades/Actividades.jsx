@@ -3,10 +3,11 @@ import "./Actividades.css";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faCalendarDays, faArrowPointer } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { db } from "../../firebase/firebase"; 
 import { collection, query, where, getDocs } from "firebase/firestore"; 
 import { useState, useEffect} from "react";
+import Navbar from "../../components/ui/navbar/Navbar";
 
 
 const querySnapshot = await getDocs(collection(db, "Activities")); 
@@ -16,13 +17,12 @@ console.log(doc.id, " => ", doc.data());
 console.log(doc.data().name)
 });
 
-
 export default function Home() {
 
     const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-  
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -55,7 +55,7 @@ export default function Home() {
 
         <div className="fraseMain">
             <p className="fraseM">Elige una de las actividades para una excursión</p>
-            <p className="fraseM">guiada según las 4 rutas que ofrecemos</p>
+            <p className="fraseM">guiada según las rutas que ofrecemos</p>
         </div>  {/* cierro div fraseMain */}
 
         <div className="containerDivisor">
@@ -69,19 +69,27 @@ export default function Home() {
             <span> Insertar fecha</span></button>
             <button className="menu-button" onClick={() => setTSearch("Elegir Actividad")}><FontAwesomeIcon icon={faArrowPointer} />
             <span> Elegir Actividad </span></button>
-            <button className="menu-button2" onClick={Serch(tSerch)}><span>Buscar</span></button>
+            <button className="menu-button2" onClick={Serch(tSerch,activities)}><span>Buscar</span></button>
         </div> {/* fin de div */}
 
     </div>
 
     <div className="container">
-        <ul>
-            <li>
-            <h1>Activities</h1>
+        <ul className="Acs">
+            
             {activities.map((activity) => (
-                <h1 key={activity.id}>{activity.name}</h1>
+      
+                <RenderA
+                key={activity.id}
+                tipo={activity.type}
+                name={activity.name}
+                info={activity.info}
+                images={activity.images}
+                rating={activity.rating}
+                />
+          
             ))}
-            </li>
+           
         </ul>
     </div>
 </div>
@@ -89,20 +97,67 @@ export default function Home() {
 )
 }   
 
-function Serch(tSerch){
-    console.log("qwertyu");
+function Serch(tSerch, activities){
+    var list = new Array();
     if (tSerch != "normal"){
         if (tSerch == "Buscar excursión"){
-            console.log("Buscar excursión");
+            for(const x of activities.entries()) {
+                if (x[1].type == "Rappel"){                 //modificar por tipo input
+                    list.push(x[1]);
+                }
+            }
         }
         if (tSerch == "Insertar fecha"){
-            console.log("Insertar fecha");
+            for(const x of activities.entries()) {
+                if (x[1].date.seconds == 1742529600 || x[1].date.nanoseconds == 365000000){                 //modificar por date input
+                    list.push(x[1]);
+                }
+            }
         }
         if (tSerch == "Elegir Actividad"){
-            console.log("Elegir Actividad");
+            for(const x of activities.entries()) {
+                if (x[1].name.includes("e")){                 //modificar por name input
+                    list.push(x[1]);
+                }
+            }
         }
-    }else{
-        console.log("normal");
     }
-    tSerch = "normal";
+}
+
+function RenderA({name, info, tipo, images, rating}){   
+    const mountainImages = [1, 2, 3, 4, 5];
+    const navigate1 = useNavigate();
+    const gotocontact3 = (event) => {  
+        navigate1("/actividad")
+    }
+
+    return(
+
+    <li className="ac">
+        <div className="imgs">
+        <img src={images[0]} className="ImageA" alt="" />
+
+        </div>
+    <div className="acl"> 
+    <h1 className="titleTipo titles">{tipo}</h1>
+    <h2 className='titleName titles'>{name}</h2>
+    <p className= "p titles">{info}</p>
+    <div className="simbolos">
+    
+    {mountainImages.map((index) => (
+            <img
+              key={index}
+              src="src/assets/fotos/mountaini.png"
+              className="mountain"
+              alt=""
+              style={{ opacity: index <= rating ? 0.8 : 0.3 }}
+            />
+          ))}
+    </div>
+    <button className="verInfo" onClick={gotocontact3}>Ver detalles</button>
+    
+    </div>
+
+    </li>
+  )
 }
