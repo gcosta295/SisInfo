@@ -10,6 +10,7 @@ import Contacto from "./pages/contacto/Contacto";
 
 export default function App() {
   return (
+    
     <BrowserRouter>
       <Routes>     
         <Route path= "signup" element={<Signup/>} /> 
