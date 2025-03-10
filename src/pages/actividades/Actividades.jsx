@@ -83,6 +83,8 @@ export default function Home() {
                 tipo={activity.type}
                 name={activity.name}
                 info={activity.info}
+                images={activity.images}
+                rating={activity.rating}
                 />
           
             ))}
@@ -121,16 +123,32 @@ function Serch(tSerch, activities){
     }
 }
 
-function RenderA({name, info, tipo}){
-  return(
+function RenderA({name, info, tipo, images, rating}){   
+    const mountainImages = [1, 2, 3, 4, 5];
+    return(
+
     <li className="ac">
-      <img src="src\assets\fotos\excursionesHome.jpg" className="ImageA" alt="" />
+      <img src={images[0]} className="ImageA" alt="" />
     <div className="acl"> 
-    <h1>{tipo}</h1>
-    <h3>{name}</h3>
-    <p>{info}</p>
-    </div>
+    <h1 className="titleTipo titles">{tipo}</h1>
+    <h2 className='titleName titles'>{name}</h2>
+    <p className= "p titles">{info}</p>
+    <div className="simbolos">
     
+    {mountainImages.map((index) => (
+            <img
+              key={index}
+              src="src/assets/fotos/mountaini.png"
+              className="mountain"
+              alt=""
+              style={{ opacity: index <= rating ? 0.8 : 0.3 }}
+            />
+          ))}
+    </div>
+    <button className="verInfo">Ver detalles</button>
+    
+    </div>
+
     </li>
   )
 }
