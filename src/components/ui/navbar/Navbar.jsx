@@ -28,8 +28,8 @@ export default function Navbar(){
                     <img className="imgMiPerfil" src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" onClick={() =>setIsOpen((prevState)=>!prevState)} />
                     {isOpen &&(
                         <div className="dropdownMenu">
-                            <NavLink to={"/mi-perfil"} className="opcionVerPerfil">Ver perfil</NavLink>
-                            <NavLink to={"/signup"} className="opcionLogout">Cerrar sesión</NavLink>
+                            {/* <NavLink to={"/mi-perfil"} className="opcionVerPerfil">Ver perfil</NavLink> */}
+                            <NavLink to={"/signup"} className="opcionLogout">Iniciar sesión</NavLink>
                         </div>
                     )}
                 </div>
