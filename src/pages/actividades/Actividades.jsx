@@ -3,10 +3,11 @@ import "./Actividades.css";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faCalendarDays, faArrowPointer } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { db } from "../../firebase/firebase"; 
 import { collection, query, where, getDocs } from "firebase/firestore"; 
 import { useState, useEffect} from "react";
+import Navbar from "../../components/ui/navbar/Navbar";
 
 
 const querySnapshot = await getDocs(collection(db, "Activities")); 
@@ -21,7 +22,7 @@ export default function Home() {
     const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-  
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -125,6 +126,11 @@ function Serch(tSerch, activities){
 
 function RenderA({name, info, tipo, images, rating}){   
     const mountainImages = [1, 2, 3, 4, 5];
+    const navigate1 = useNavigate();
+    const gotocontact3 = (event) => {  
+        navigate1("/actividad")
+    }
+
     return(
 
     <li className="ac">
@@ -148,7 +154,7 @@ function RenderA({name, info, tipo, images, rating}){
             />
           ))}
     </div>
-    <button className="verInfo">Ver detalles</button>
+    <button className="verInfo" onClick={gotocontact3}>Ver detalles</button>
     
     </div>
 
