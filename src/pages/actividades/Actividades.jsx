@@ -95,7 +95,7 @@ export default function Home() {
 }   
 
 function Serch(tSerch, activities){
-    const list = new Array();
+    var list = new Array();
     if (tSerch != "normal"){
         if (tSerch == "Buscar excursión"){
             for(const x of activities.entries()) {
@@ -105,10 +105,18 @@ function Serch(tSerch, activities){
             }
         }
         if (tSerch == "Insertar fecha"){
-            console.log("Insertar fecha");
+            for(const x of activities.entries()) {
+                if (x[1].date.seconds == 1742529600 || x[1].date.nanoseconds == 365000000){                 //modificar por date input
+                    list.push(x[1]);
+                }
+            }
         }
         if (tSerch == "Elegir Actividad"){
-            console.log("Elegir Actividad");
+            for(const x of activities.entries()) {
+                if (x[1].name.includes("e")){                 //modificar por name input
+                    list.push(x[1]);
+                }
+            }
         }
     }
 }
