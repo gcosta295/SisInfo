@@ -47,7 +47,7 @@ export default function Home() {
     <div className="container">
 
         <div className= "ActividadHome">
-            <img src="src\assets\fotos\caminoBosque.jpg" alt="Bosque" className="imgActividadHome"/>
+            <img src=".\caminoBosque.jpg" alt="Bosque" className="imgActividadHome"/>
         </div> {/* cierro div ActividadHome */}
     
 
