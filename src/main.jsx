@@ -7,22 +7,24 @@ import Signup from "./pages/signup/Signup";
 import Informacion from "./pages/informacion/Informacion";
 import Foro from "./pages/foro/Foro";
 import Contacto from "./pages/contacto/Contacto";
+import { UserProvider } from './context/UserContext.jsx';
 
 export default function App() {
   return (
-    
-    <BrowserRouter>
-      <Routes>     
-        <Route path= "signup" element={<Signup/>} /> 
-        <Route element={<Layout/>}> 
-          <Route index element={<Home/>} />  
-          <Route path="actividades" element={<Actividades/>} />
-          <Route path="foro" element={<Foro/>} />
-          <Route path="informacion" element={<Informacion/>} />
-          <Route path="contacto" element={<Contacto />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>     
+          <Route path= "signup" element={<Signup/>} /> 
+          <Route element={<Layout/>}> 
+            <Route index element={<Home/>} />  
+            <Route path="actividades" element={<Actividades/>} />
+            <Route path="foro" element={<Foro/>} />
+            <Route path="informacion" element={<Informacion/>} />
+            <Route path="contacto" element={<Contacto />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 
