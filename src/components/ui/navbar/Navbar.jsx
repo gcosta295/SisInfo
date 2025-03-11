@@ -11,7 +11,7 @@ export default function Navbar(){
         <div className='navbar'> 
             <div className="inicioNavbar">
                 <div className='fotoTitulo'>
-                    <img src="src/assets/fotos/AvilaTreklogo.png" alt="Logo Avila Trek" className="logo"/>
+                    <img src="\fotos\AvilaTreklogo.png" alt="Logo Avila Trek" className="logo"/>
                 </div>
                 <NavLink className="inicio" to={"/"}>Inicio</NavLink>
             </div>
@@ -25,7 +25,7 @@ export default function Navbar(){
                     onMouseEnter={() => {clearTimeout(window.dropdownTimeout); setIsOpen(true)}} 
                     onMouseLeave={() => {window.dropdownTimeout = setTimeout(() => setIsOpen(false), 500)}}>
 
-                    <img className="imgMiPerfil" src="src/assets/fotos/perfilLogo.png" alt="Mi perfil" onClick={() =>setIsOpen((prevState)=>!prevState)} />
+                    <img className="imgMiPerfil" src="\fotos\perfilLogo.png" alt="Mi perfil" onClick={() =>setIsOpen((prevState)=>!prevState)} />
                     {isOpen &&(
                         <div className="dropdownMenu">
                             {/* <NavLink to={"/mi-perfil"} className="opcionVerPerfil">Ver perfil</NavLink> */}

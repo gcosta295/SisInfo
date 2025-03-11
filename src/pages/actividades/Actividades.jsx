@@ -47,7 +47,7 @@ export default function Home() {
     <div className="container">
 
         <div className= "ActividadHome">
-            <img src="src\assets\fotos\caminoBosque.jpg" alt="Bosque" className="imgActividadHome"/>
+            <img src="\fotos\caminio.jpg" alt="Bosque" className="imgActividadHome"/>
         </div> {/* cierro div ActividadHome */}
     
 
@@ -147,7 +147,7 @@ function RenderA({name, info, tipo, images, rating}){
     {mountainImages.map((index) => (
             <img
               key={index}
-              src="src/assets/fotos/mountaini.png"
+              src="\fotos\mountaini.png"
               className="mountain"
               alt=""
               style={{ opacity: index <= rating ? 0.8 : 0.3 }}
