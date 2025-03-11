@@ -147,7 +147,7 @@ function RenderA({name, info, tipo, images, rating}){
     {mountainImages.map((index) => (
             <img
               key={index}
-              src="src/assets/fotos/mountaini.png"
+              src="./mountaini.png"
               className="mountain"
               alt=""
               style={{ opacity: index <= rating ? 0.8 : 0.3 }}
