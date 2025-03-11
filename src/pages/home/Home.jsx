@@ -49,7 +49,8 @@ export default function Home() {
     <div className='homeContainer'>
 
       <div className="avilaHome">
-        <img src="src/assets/fotos/elAvilaHome.jpg" alt="Avila" className="imgAvilaHome"/>
+        {/*<img src="src/assets/fotos/elAvilaHome.jpg" alt="Avila" className="imgAvilaHome"/>*/}
+        <img src="./elAvilaHome.jpg" alt="Avila" className="imgAvilaHome"/>
           <p className="textoImgHome">Tu aventura empieza aquí</p>
           <button className='botonReservaYa' onClick={gotocontact1}>Reserva ya<img src="src/assets/fotos/flecha.png" className="imgFlecha"/></button>
       </div>
