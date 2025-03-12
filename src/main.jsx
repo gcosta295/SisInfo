@@ -4,11 +4,10 @@ import Layout from "./components/ui/layout/Layout";
 import Home from "./pages/home/Home";
 import Actividades from "./pages/actividades/Actividades";
 import Signup from "./pages/signup/Signup";
+import Informacion from "./pages/informacion/Informacion";
+import Foro from "./pages/foro/Foro";
 import Contacto from "./pages/contacto/Contacto";
-// import Informacion from "./pages/informacion/Informacion";
-// import Foro from "./pages/foro/Foro";
-// import Actividades from "./pages/actividades/Actividades";
-// import Contacto from "./pages/contacto/Contacto";
+import Actividad from "./pages/actividad/Actividad"
 
 export default function App() {
   return (
@@ -18,8 +17,10 @@ export default function App() {
         <Route element={<Layout/>}> 
           <Route index element={<Home/>} />  
           <Route path="actividades" element={<Actividades/>} />
-          {/* <Route path="contactanos" element={<Contacto />} /> */}
-          <Route path="contacto" element={<Contacto/>} />
+          <Route path="foro" element={<Foro/>} />
+          <Route path="informacion" element={<Informacion/>} />
+          <Route path="contacto" element={<Contacto />} />
+          <Route path="actividad" element={<Actividad />} />
         </Route>
       </Routes>
     </BrowserRouter>
