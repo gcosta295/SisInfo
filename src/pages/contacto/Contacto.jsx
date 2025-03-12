@@ -5,24 +5,24 @@ export default function Contacto() {
     <div className="contactoContainer">
       <div className="contactoContent">
         <div className="contactoImage">
-          <img src="src/assets/fotos/fotologin.jpg" alt="Paisaje de senderismo" />
+          <img src="\fotos\fotologin.jpg" alt="Paisaje de senderismo" />
           <div className="contactoInfo">
             <div className="infoItem">
-              <img src="src\assets\fotos\Ubicacion.svg" alt="Ubicación" />
+              <img src="\fotos\Ubicacion.svg" alt="Ubicación" />
               <div>
                 <h3>Ubicación</h3>
                 <p>Avenida Universitaria, Universidad Metropolitana, Caracas, Venezuela</p>
               </div>
             </div>
             <div className="infoItem">
-              <img src="src\assets\fotos\Correo.svg" alt="Correo" />
+              <img src="\fotos\Correo.svg" alt="Correo" />
               <div>
                 <h3>Correo</h3>
                 <p>avila.trek@gmail.com</p>
               </div>
             </div>
             <div className="infoItem">
-              <img src="src\assets\fotos\Telefono.svg" alt="Teléfono" />
+              <img src="\fotos\Telefono.svg" alt="Teléfono" />
               <div>
                 <h3>Teléfono</h3>
                 <p>+58 123 456 7890</p>
