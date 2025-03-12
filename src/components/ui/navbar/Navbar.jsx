@@ -30,6 +30,8 @@ export default function Navbar(){
                         <div className="dropdownMenu">
                             {/* <NavLink to={"/mi-perfil"} className="opcionVerPerfil">Ver perfil</NavLink> */}
                             <NavLink to={"/signup"} className="opcionLogout">Iniciar sesión</NavLink>
+                            <NavLink to={"/admin"} className="opcionLogout">Prueba admin</NavLink>
+
                         </div>
                     )}
                 </div>
