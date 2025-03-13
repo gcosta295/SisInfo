@@ -19,14 +19,14 @@ export default function Signup() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [tipoUser, setTipoUser] = useState("");
 
-    const handleSignUp = () => {
+    const handleSignUp = async() => {
         if (!email || !password) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
         createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
+          .then(async(userCredential) => {
             const user = userCredential.user;
             console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
             if (user) {
-                setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
+                await setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
                   email: user.email,
                   firstName: name,
                   lastName: lastname,
