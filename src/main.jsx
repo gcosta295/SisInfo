@@ -6,6 +6,7 @@ import PerfilTrekker from "./pages/perfilTrekker/PerfilTrekker.jsx";
 import PerfilGuia from "./pages/perfilGuia/PerfilGuia.jsx";
 import ProtectedLogged from "./components/ui/protectedRoutes/ProtectedLogged.jsx"
 import Actividades from "./pages/actividades/Actividades";
+import Actividad from "./pages/actividad/Actividad";
 import Reserva from "./pages/reserva/Reserva";
 import ReservasTrekker from "./pages/reservasTrekker/ReservasTrekker";
 import ReservasGuia from "./pages/reservasGuia/ReservasGuia";
@@ -31,6 +32,7 @@ export default function App() {
               <Route element={<ProtectedUserType roles={["guia", "administrador"]}/>}>   {/* usuarios permitidos: trekker (solo users loggeados) */}
                 <Route path="mi-perfil-trekker" element={<PerfilTrekker/>} /> 
                 <Route path="editar-trekker" element={<EditarPerfilTrekker/>} />
+                <Route path="actividad" element={<Actividad/>} />
                 <Route path="reserva" element={<Reserva/>} />
                 <Route path="reservas-trekker" element={<ReservasTrekker/>} />
               </Route>

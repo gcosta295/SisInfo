@@ -130,6 +130,7 @@ function RenderA({name, info, tipo, images, rating}){
     const navigate1 = useNavigate();
     const gotocontact3 = (event) => {  
         navigate1("/actividad")
+        console.log(tipo);
     }
 
     return(
