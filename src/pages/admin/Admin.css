@@ -1,0 +1,38 @@
+
+*   {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+}
+
+.mainContainer{
+    margin: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.firstRow{
+    background-color: rgb(255, 255, 255);
+    border-color: #AEAEAE;
+    border-style: solid;
+    display: flex;
+    flex-direction: row;
+}
+
+.empt{
+    margin-right: 10%;
+    
+}
+
+.Nombre, .Precio{
+    width: 30%;
+
+    border-left: solid #AEAEAE;
+   text-align: center;
+
+
+}
+
+.empt2{
+    margin-right: 5%;
+    border-left: solid #AEAEAE;
+}
