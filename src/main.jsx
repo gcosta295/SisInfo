@@ -49,9 +49,9 @@ export default function App() {
               <Route path="detalle" element={<DetalleAct/>} />
             </Route>
 
-              <Route index element={<Home/>} />  
 
             <Route element={<ProtectedUserType roles={["administrador"]}/>}>   {/* usuarios permitidos: trekker y guia, y cualquiera sin estar loggeado */}
+              <Route index element={<Home/>} />  
               <Route path="foro" element={<Foro/>} />
               <Route path="informacion" element={<Informacion/>} />
               <Route path="contacto" element={<Contacto />} />
