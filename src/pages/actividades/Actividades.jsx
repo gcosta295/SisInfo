@@ -13,11 +13,12 @@ import Navbar from "../../components/ui/navbar/Navbar";
 const querySnapshot = await getDocs(collection(db, "Activities")); 
 querySnapshot.forEach((doc) => {
 // doc.data() is never undefined for query doc snapshots
-console.log(doc.id, " => ", doc.data());
-console.log(doc.data().name)
+// console.log(doc.id, " => ", doc.data());
+// console.log(doc.data().name)
 });
 
-export default function Home() {
+
+export default function Actividades() {
 
     const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -97,8 +98,8 @@ export default function Home() {
 )
 }   
 
-function Serch(tSerch, activities){
-    var list = new Array();
+function Serch(tSerch){
+    // console.log("qwertyu");
     if (tSerch != "normal"){
         if (tSerch == "Buscar excursión"){
             for(const x of activities.entries()) {
