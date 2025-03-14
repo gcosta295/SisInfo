@@ -8,6 +8,7 @@ import { db } from "../../firebase/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore"; 
 import { useState, useEffect} from "react";
 import Navbar from "../../components/ui/navbar/Navbar";
+import prueba1234 from "../actividad/Actividad";
 
 
 const querySnapshot = await getDocs(collection(db, "Activities")); 
@@ -70,7 +71,7 @@ export default function Actividades() {
             <span> Insertar fecha</span></button>
             <button className="menu-button" onClick={() => setTSearch("Elegir Actividad")}><FontAwesomeIcon icon={faArrowPointer} />
             <span> Elegir Actividad </span></button>
-            <button className="menu-button2" onClick={Serch(tSerch,activities)}><span>Buscar</span></button>
+            <button className="menu-button2" onClick={Serch(tSerch , activities)}><span>Buscar</span></button>
         </div> {/* fin de div */}
 
     </div>
@@ -87,6 +88,7 @@ export default function Actividades() {
                 info={activity.info}
                 images={activity.images}
                 rating={activity.rating}
+                list={activities}
                 />
           
             ))}
@@ -98,8 +100,9 @@ export default function Actividades() {
 )
 }   
 
-function Serch(tSerch){
-    // console.log("qwertyu");
+function Serch(tSerch,activities){
+    const list = [];
+    //console.log(activities);
     if (tSerch != "normal"){
         if (tSerch == "Buscar excursión"){
             for(const x of activities.entries()) {
@@ -123,14 +126,15 @@ function Serch(tSerch){
             }
         }
     }
+    console.log(list)
 }
 
 function RenderA({name, info, tipo, images, rating}){   
     const mountainImages = [1, 2, 3, 4, 5];
     const navigate1 = useNavigate();
     const gotocontact3 = (event) => {  
-        navigate1("/actividad")
-        console.log(tipo);
+        navigate1("/actividad");
+        prueba1234(name);
     }
 
     return(
