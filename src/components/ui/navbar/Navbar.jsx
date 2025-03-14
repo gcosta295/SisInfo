@@ -32,11 +32,7 @@ export default function Navbar(){
         <div className='navbar'> 
             <div className="inicioNavbar">
                 <div className='fotoTitulo'>
-<<<<<<< HEAD
                     <img src="./AvilaTreklogo.png" alt="Logo Avila Trek" className="logo"/>
-=======
-                    <img src="\fotos\AvilaTreklogo.png" alt="Logo Avila Trek" className="logo"/>
->>>>>>> 85b4b5f9d98886e1fefdc53a947296f18a2551bc
                 </div>
                 {profile.tipoUsuario !=="administrador" ? <NavLink className="inicio" to={"/"}>Inicio</NavLink>
                     :
@@ -52,11 +48,7 @@ export default function Navbar(){
                     onMouseEnter={() => {clearTimeout(window.dropdownTimeout); setIsOpen(true)}} 
                     onMouseLeave={() => {window.dropdownTimeout = setTimeout(() => setIsOpen(false), 500)}}>
 
-<<<<<<< HEAD
                     <img className="imgMiPerfil" src="./perfilLogo.png" alt="Mi perfil" onClick={() =>setIsOpen((prevState)=>!prevState)} />
-=======
-                    <img className="imgMiPerfil" src="\fotos\perfilLogo.png" alt="Mi perfil" onClick={() =>setIsOpen((prevState)=>!prevState)} />
->>>>>>> 85b4b5f9d98886e1fefdc53a947296f18a2551bc
                     {isOpen &&(
                         logged ?
                         <div className="dropdownMenu">

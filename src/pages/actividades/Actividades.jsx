@@ -48,11 +48,7 @@ export default function Actividades() {
     <div className="container">
 
         <div className= "ActividadHome">
-<<<<<<< HEAD
-            <img src=".\caminoBosque.jpg" alt="Bosque" className="imgActividadHome"/>
-=======
             <img src="\fotos\caminio.jpg" alt="Bosque" className="imgActividadHome"/>
->>>>>>> 85b4b5f9d98886e1fefdc53a947296f18a2551bc
         </div> {/* cierro div ActividadHome */}
     
 
@@ -153,11 +149,7 @@ function RenderA({name, info, tipo, images, rating, id}){
     {mountainImages.map((index) => (
             <img
               key={index}
-<<<<<<< HEAD
-              src="./mountaini.png"
-=======
               src="\fotos\mountaini.png"
->>>>>>> 85b4b5f9d98886e1fefdc53a947296f18a2551bc
               className="mountain"
               alt=""
               style={{ opacity: index <= rating ? 0.8 : 0.3 }}
