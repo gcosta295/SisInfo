@@ -29,43 +29,42 @@ export default function Informacion() {
   );
 }
 
-//  Sección del Parque Nacional
 function ParqueSection() {
-return (
-  <section className="parque">
-    <div className="parque-info">
-      <img src="public\fotos\inparques 1.png"/>
-      <div>
-        <h2>Parque Nacional El Ávila</h2>
-        <p>
-          El Parque Nacional El Ávila, conocido como Waraira Repano, es un 
-          importante parque montañoso ubicado en Caracas, Venezuela
-
-          Se extiende a lo largo de la cordillera de la Costa, que se encuentra al norte de la ciudad de Caracas.
-          Su acceso principal es a través de la carretera que conecta Caracas con la costa caribeña. Abarca aproximadamente 86,000 hectáreas
-          y se eleva desde el nivel del mar hasta los 2,765 metros en su punto más alto, el Pico El Ávila.
-        </p>
-      </div>
-    </div>
-    <div className="parque-info reverse">
-      <div>
-        <h2> Naturaleza </h2>
-        <p>
-        Desde un punto de vista ecológico, el Ávila alberga una gran diversidad de flora y fauna. Su vegetación varía desde bosques secos en 
-        las zonas más bajas hasta bosques montanos en las áreas más altas. También cuenta con una fauna variada, que incluye aves como el quetzal y el tucán,
-        así como mamíferos como zorros y venados.
-
-        El Parque Nacional El Ávila, que abarca gran parte de la montaña, es un espacio protegido donde se promueve la conservación de estos ecosistemas. Además de su valor ecológico,
-        el Ávila es también un atractivo turístico, con rutas de senderismo, el teleférico de Caracas, y miradores que ofrecen vistas espectaculares de la ciudad y la costa caribeña.
-
-        La montaña tiene un clima variable, que puede ir desde cálido en las zonas bajas hasta fresco y más templado en las alturas, lo que contribuye a la diversidad de su flora y fauna.
-        </p>
-      </div>
-      <img src= "public\fotos\FotoNaturaleza.png" />
-    </div>
-  </section>
-);
-}
+    return (
+      <section className="parque">
+        <div className="parque-info">
+          <img src="public\fotos\inparques 1.png" />
+          <div>
+            <h2>Parque Nacional El Ávila</h2>
+            <p>
+              El Parque Nacional El Ávila, conocido como Waraira Repano, es un
+              importante parque montañoso ubicado en Caracas, Venezuela.
+              <br /><br />
+              Se extiende a lo largo de la cordillera de la Costa, que se encuentra al norte de la ciudad de Caracas.
+              Su acceso principal es a través de la carretera que conecta Caracas con la costa caribeña. Abarca aproximadamente 86,000 hectáreas
+              y se eleva desde el nivel del mar hasta los 2,765 metros en su punto más alto, el Pico El Ávila.
+            </p>
+          </div>
+        </div>
+        <div className="parque-info reverse">
+          <div>
+            <h2> Naturaleza </h2>
+            <p>
+              Desde un punto de vista ecológico, el Ávila alberga una gran diversidad de flora y fauna. Su vegetación varía desde bosques secos en
+              las zonas más bajas hasta bosques montanos en las áreas más altas. También cuenta con una fauna variada, que incluye aves como el quetzal y el tucán,
+              así como mamíferos como zorros y venados.
+              <br /><br />
+              El Parque Nacional El Ávila, que abarca gran parte de la montaña, es un espacio protegido donde se promueve la conservación de estos ecosistemas. Además de su valor ecológico,
+              el Ávila es también un atractivo turístico, con rutas de senderismo, el teleférico de Caracas, y miradores que ofrecen vistas espectaculares de la ciudad y la costa caribeña.
+              <br /><br />
+              La montaña tiene un clima variable, que puede ir desde cálido en las zonas bajas hasta fresco y más templado en las alturas, lo que contribuye a la diversidad de su flora y fauna.
+            </p>
+          </div>
+          <img src="public\fotos\FotoNaturaleza.png" />
+        </div>
+      </section>
+    );
+  }
 
 function Carousel() {
     const news = [
