@@ -32,10 +32,11 @@ export default function Contacto() {
         </div>
         <div className="contactoTexto">
           <h2>Contáctanos</h2>
-          <p>
-            <strong>¡AvilaTrekker!</strong> Nos encantaría saber de ti. Si tienes preguntas, comentarios o necesitas más información sobre nuestras excursiones en el Parque Nacional El Ávila, no dudes en ponerte en contacto con nosotros.
-          </p>
-          <p>Estamos aquí para ayudarte a planificar una experiencia inolvidable en la naturaleza.</p>
+          <h4>
+            AvilaTrekker Nos encantaría saber de ti. Si tienes preguntas, comentarios o necesitas más información sobre nuestras excursiones en el Parque Nacional El Ávila, no dudes en ponerte en contacto con nosotros.
+          </h4>
+          <p></p>
+          <h4>Estamos aquí para ayudarte a planificar una experiencia inolvidable en la naturaleza.</h4>
         </div>
       </div>
     </div>
