@@ -162,7 +162,7 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.opcionLogout{
+.opcionLogout, .opcionInicioSes{
     padding: 10px;
     text-align: left;
     text-decoration: none;
@@ -176,4 +176,15 @@
 
 .opcionLogout:hover {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+.opcionInicioSes:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.tituloAdmin{
+    color:#ffffff;
+    font-size: 30px;
+    margin-left: 30px;
+    font-weight: bold;
 }
