@@ -40,17 +40,33 @@ export default function Home() {
         <div className="empt2"></div>
       </div>
       <div className="activities">
-        {activities.map((activity) => (
+        {activities.map((activity, i) => (
           <RenderA
             key={activity.id}
-            tipo={activity.type}
             name={activity.name}
-            info={activity.info}
-            images={activity.images}
-            rating={activity.rating}
+            price={activity.cost}
+            num={i+1}
           />
         ))}
       </div>
+    </div>
+  );
+}
+
+function RenderA({ name, price, num}) {
+    
+    const rowClass = num % 2 === 0 ? "light" : "dark";
+  return (
+    <div className={rowClass}>
+      <div className="empt">{num}</div>
+      <div className="Nombre">
+        <h2 className="n">{name}</h2>
+      </div>
+      <div className="Precio">
+        <h2 className="n">{price}</h2>
+      </div>
+      <div className="empt2"></div>
+      
     </div>
   );
 }
