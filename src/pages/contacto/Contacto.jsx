@@ -1,6 +1,16 @@
 import "./Contacto.css";
+import { use } from 'react'
+import { UserContext } from '../../context/UserContext.jsx';
 
 export default function Contacto() {
+    // const contextUser = use(UserContext);
+    // const {user, setUser} = contextUser;
+    // console.log(contextUser);
+
+    const contextProf = use(UserContext);
+    const {profile, logged} = contextProf;
+    console.log(contextProf);
+
   return (
     <div className="contactoContainer">
       <div className="contactoContent">

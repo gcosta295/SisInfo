@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+  }
+  
+  /* Sección del Parque */
+  .parque {
+    padding: 20px;
+  }
+  
+  .parque-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .parque-info img {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+  }
+  
+  .reverse {
+    flex-direction: row-reverse;
+  }
+
+  /* Sección de Noticias */
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Ajusta el ancho según sea necesario */
+    height: 300px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+  }
+  
+  .carousel-content {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 0 60px; /* Espacio para los botones */
+  }
+  
+  .carousel-item {
+    flex: 1;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: calc(33.33% - 20px); /* 3 elementos con espacio entre ellos */
+  }
+  
+  .carousel-item-background {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  .carousel-item-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6); /* Capa gris semi-transparente */
+    padding: 15px;
+    border-radius: 0 0 10px 10px; /* Bordes redondeados solo en la parte inferior */
+  }
+  
+  .carousel-item-text h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  .carousel-item-text h2 {
+    margin: 5px 0;
+    font-size: 18px;
+    color: #fff;
+  }
+  
+  .carousel-item-text p {
+    margin: 0;
+    font-size: 12px;
+    color: #fff;
+  }
+  
+  button {
+    background: #4CAF50; /* Color verde para los botones */
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px 15px;
+    color: white;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%; /* Botones redondos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background: #45a049; /* Color verde más oscuro al pasar el mouse */
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+  
+  /*  Consejos */
+  .tips {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .tips-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .tip-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+  }
