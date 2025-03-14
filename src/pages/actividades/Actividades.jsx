@@ -13,11 +13,12 @@ import Navbar from "../../components/ui/navbar/Navbar";
 const querySnapshot = await getDocs(collection(db, "Activities")); 
 querySnapshot.forEach((doc) => {
 // doc.data() is never undefined for query doc snapshots
-console.log(doc.id, " => ", doc.data());
-console.log(doc.data().name)
+// console.log(doc.id, " => ", doc.data());
+// console.log(doc.data().name)
 });
 
-export default function Home() {
+
+export default function Actividades() {
 
     const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -47,7 +48,11 @@ export default function Home() {
     <div className="container">
 
         <div className= "ActividadHome">
+<<<<<<< HEAD
             <img src=".\caminoBosque.jpg" alt="Bosque" className="imgActividadHome"/>
+=======
+            <img src="\fotos\caminio.jpg" alt="Bosque" className="imgActividadHome"/>
+>>>>>>> 85b4b5f9d98886e1fefdc53a947296f18a2551bc
         </div> {/* cierro div ActividadHome */}
     
 
@@ -81,6 +86,7 @@ export default function Home() {
       
                 <RenderA
                 key={activity.id}
+                id={activity.id}
                 tipo={activity.type}
                 name={activity.name}
                 info={activity.info}
@@ -97,8 +103,8 @@ export default function Home() {
 )
 }   
 
-function Serch(tSerch, activities){
-    var list = new Array();
+function Serch(tSerch){
+    // console.log("qwertyu");
     if (tSerch != "normal"){
         if (tSerch == "Buscar excursión"){
             for(const x of activities.entries()) {
@@ -124,14 +130,14 @@ function Serch(tSerch, activities){
     }
 }
 
-function RenderA({name, info, tipo, images, rating}){   
+function RenderA({name, info, tipo, images, rating, id}){   
     const mountainImages = [1, 2, 3, 4, 5];
     const navigate1 = useNavigate();
-    const gotocontact3 = (event) => {  
-        navigate1("/actividad")
-    }
 
-    return(
+    const gotocontact3 = (event) => {
+        navigate1(`/actividad/${encodeURIComponent(id)}`); // Include name as a URL parameter
+    };
+    return( 
 
     <li className="ac">
         <div className="imgs">
@@ -147,7 +153,11 @@ function RenderA({name, info, tipo, images, rating}){
     {mountainImages.map((index) => (
             <img
               key={index}
+<<<<<<< HEAD
               src="./mountaini.png"
+=======
+              src="\fotos\mountaini.png"
+>>>>>>> 85b4b5f9d98886e1fefdc53a947296f18a2551bc
               className="mountain"
               alt=""
               style={{ opacity: index <= rating ? 0.8 : 0.3 }}

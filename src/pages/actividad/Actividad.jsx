@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router-dom";
+
 import "./Actividad";
 
-export default function Home() {
+export default function Actividad() {
+  const fullUrl = window.location.href; // Get the full URL
+  const pathname = window.location.pathname; // Get the pathname
 
-return(
-<h1>"Prueba4"</h1>
-)
+  const targetString = pathname.replace("/actividad/", "");
+  
 
+  return <h1>Activity Details: {targetString}</h1>;
 }

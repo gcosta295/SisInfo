@@ -19,14 +19,14 @@ export default function Signup() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [tipoUser, setTipoUser] = useState("");
 
-    const handleSignUp = () => {
+    const handleSignUp = async() => {
         if (!email || !password) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
         createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
+          .then(async(userCredential) => {
             const user = userCredential.user;
             console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
             if (user) {
-                setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
+                await setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
                   email: user.email,
                   firstName: name,
                   lastName: lastname,
@@ -116,7 +116,11 @@ export default function Signup() {
                                 <p className="letraDivider"> o </p>
                                 <span className="linea"></span>
                             </div>
+<<<<<<< HEAD
                             <button className="google1" onClick={handleClick}><img src="./logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
+=======
+                            <button className="google1" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
+>>>>>>> 85b4b5f9d98886e1fefdc53a947296f18a2551bc
                         </div>
                     </TabPanel>
                     <TabPanel>
@@ -153,13 +157,21 @@ export default function Signup() {
                                 </div>
                             </form>
                             <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>
+<<<<<<< HEAD
                             <button className="google2" onClick={handleClick}><img src="./logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
+=======
+                            <button className="google2" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
+>>>>>>> 85b4b5f9d98886e1fefdc53a947296f18a2551bc
                         </div>
                     </TabPanel>
                 </Tabs>
             </div>
             <div className="foto">
+<<<<<<< HEAD
                 <img src="./fotologin.jpg" className="imglogin"/>
+=======
+                <img src="\fotos\fotologin.jpg" className="imglogin"/>
+>>>>>>> 85b4b5f9d98886e1fefdc53a947296f18a2551bc
             </div>
         </div>
         <div className="copyright">

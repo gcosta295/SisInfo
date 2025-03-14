@@ -1,10 +1,18 @@
 import "./Informacion";
-import { useNavigate } from "react-router";
+import { use } from 'react'
+import { UserContext } from '../../context/UserContext.jsx';
 
-export default function Home() {
+export default function Informacion() {
+    // const contextUser = use(UserContext);
+    // const {user, setUser} = contextUser;
+    // console.log(contextUser);
+
+    const contextProf = use(UserContext);
+    const {profile, logged} = contextProf;
+    console.log(contextProf);
 
 return(
-<h1>"Prueba2"</h1>
+<h1>informacion pagina </h1>
 )
 
 }
