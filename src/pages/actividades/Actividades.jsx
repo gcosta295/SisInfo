@@ -8,7 +8,7 @@ import { db } from "../../firebase/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore"; 
 import { useState, useEffect} from "react";
 import Navbar from "../../components/ui/navbar/Navbar";
-import prueba1234 from "../actividad/Actividad";
+
 
 
 const querySnapshot = await getDocs(collection(db, "Activities")); 
@@ -83,6 +83,7 @@ export default function Actividades() {
       
                 <RenderA
                 key={activity.id}
+                id={activity.id}
                 tipo={activity.type}
                 name={activity.name}
                 info={activity.info}
@@ -129,15 +130,14 @@ function Serch(tSerch,activities){
     console.log(list)
 }
 
-function RenderA({name, info, tipo, images, rating}){   
+function RenderA({name, info, tipo, images, rating, id}){   
     const mountainImages = [1, 2, 3, 4, 5];
     const navigate1 = useNavigate();
-    const gotocontact3 = (event) => {  
-        navigate1("/actividad");
-        prueba1234(name);
-    }
 
-    return(
+    const gotocontact3 = (event) => {
+        navigate1(`/actividad/${encodeURIComponent(id)}`); // Include name as a URL parameter
+    };
+    return( 
 
     <li className="ac">
         <div className="imgs">
