@@ -70,3 +70,4 @@ function RenderA({ name, price, num}) {
     </div>
   );
 }
+ 
