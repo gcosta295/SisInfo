@@ -37,7 +37,7 @@ function ParqueSection() {
     <section className="parque">
       {/* Primera sección: imagen a la izquierda, texto a la derecha */}
       <div className="parque-info">
-        <img src="/fotos/inparques 1.png" />
+        <img src="public\fotos\inparques 1.png" />
         <div>
           <h2>Parque Nacional El Ávila</h2>
           <p>
@@ -66,7 +66,7 @@ function ParqueSection() {
             La montaña tiene un clima variable, que puede ir desde cálido en las zonas bajas hasta fresco y más templado en las alturas, lo que contribuye a la diversidad de su flora y fauna.
           </p>
         </div>
-        <img src="/fotos/FotoNaturaleza.png" /> 
+        <img src="public\fotos\FotoNaturaleza.png" /> {/* Imagen a la derecha */}
       </div>
     </section>
   );
