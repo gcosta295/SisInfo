@@ -37,7 +37,7 @@ export default function Home() {
         <div className="empt"></div>
         <div className="Nombre">Nombre de Actividad</div>
         <div className="Precio">Precio</div>
-        <div className="empt2"></div>
+        <div className="empt2">Editar</div>
       </div>
       <div className="activities">
         {activities.map((activity, i) => (
@@ -56,6 +56,10 @@ export default function Home() {
 function RenderA({ name, price, num}) {
     
     const rowClass = num % 2 === 0 ? "light" : "dark";
+    const navigate2 = useNavigate();
+    const gotocontact4 = (event) => {
+        navigate2(`/actividad/:name/${encodeURIComponent(name)}`); // Include name as a URL parameter
+    };
   return (
     <div className={rowClass}>
       <div className="empt">{num}</div>
@@ -65,8 +69,11 @@ function RenderA({ name, price, num}) {
       <div className="Precio">
         <h2 className="n">{price}</h2>
       </div>
-      <div className="empt2"></div>
+      <div className="empt2">
+        <button className="edit" onClick={gotocontact4}>Edit</button>
+      </div>
       
     </div>
   );
 }
+ 

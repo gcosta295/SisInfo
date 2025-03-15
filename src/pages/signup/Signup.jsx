@@ -116,7 +116,7 @@ export default function Signup() {
                                 <p className="letraDivider"> o </p>
                                 <span className="linea"></span>
                             </div>
-                            <button className="google1" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
+                            <button className="google1" onClick={handleClick}><img src="./logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
                         </div>
                     </TabPanel>
                     <TabPanel>
@@ -153,13 +153,13 @@ export default function Signup() {
                                 </div>
                             </form>
                             <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>
-                            <button className="google2" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
+                            <button className="google2" onClick={handleClick}><img src="./logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
                         </div>
                     </TabPanel>
                 </Tabs>
             </div>
             <div className="foto">
-                <img src="\fotos\fotologin.jpg" className="imglogin"/>
+                <img src="./fotologin.jpg" className="imglogin"/>
             </div>
         </div>
         <div className="copyright">
