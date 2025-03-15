@@ -24,47 +24,53 @@ export default function Informacion() {
         <h2>Entérate de nuestras últimas noticias</h2>
         <Carousel />
       </section>
-      <TipsSection />
+      <section className="tips">
+    <h2>Consejos para nuestros AvilaTrekkers</h2>
+    <TipsCarousel />
+    </section>
     </div>
   );
 }
 
 function ParqueSection() {
-    return (
-      <section className="parque">
-        <div className="parque-info">
-          <img src="public\fotos\inparques 1.png" />
-          <div>
-            <h2>Parque Nacional El Ávila</h2>
-            <p>
-              El Parque Nacional El Ávila, conocido como Waraira Repano, es un
-              importante parque montañoso ubicado en Caracas, Venezuela.
-              <br /><br />
-              Se extiende a lo largo de la cordillera de la Costa, que se encuentra al norte de la ciudad de Caracas.
-              Su acceso principal es a través de la carretera que conecta Caracas con la costa caribeña. Abarca aproximadamente 86,000 hectáreas
-              y se eleva desde el nivel del mar hasta los 2,765 metros en su punto más alto, el Pico El Ávila.
-            </p>
-          </div>
+  return (
+    <section className="parque">
+      {/* Primera sección: imagen a la izquierda, texto a la derecha */}
+      <div className="parque-info">
+        <img src="public\fotos\inparques 1.png" />
+        <div>
+          <h2>Parque Nacional El Ávila</h2>
+          <p>
+            El Parque Nacional El Ávila, conocido como Waraira Repano, es un
+            importante parque montañoso ubicado en Caracas, Venezuela.
+            <br /><br />
+            Se extiende a lo largo de la cordillera de la Costa, que se encuentra al norte de la ciudad de Caracas.
+            Su acceso principal es a través de la carretera que conecta Caracas con la costa caribeña. Abarca aproximadamente 86,000 hectáreas
+            y se eleva desde el nivel del mar hasta los 2,765 metros en su punto más alto, el Pico El Ávila.
+          </p>
         </div>
-        <div className="parque-info reverse">
-          <div>
-            <h2> Naturaleza </h2>
-            <p>
-              Desde un punto de vista ecológico, el Ávila alberga una gran diversidad de flora y fauna. Su vegetación varía desde bosques secos en
-              las zonas más bajas hasta bosques montanos en las áreas más altas. También cuenta con una fauna variada, que incluye aves como el quetzal y el tucán,
-              así como mamíferos como zorros y venados.
-              <br /><br />
-              El Parque Nacional El Ávila, que abarca gran parte de la montaña, es un espacio protegido donde se promueve la conservación de estos ecosistemas. Además de su valor ecológico,
-              el Ávila es también un atractivo turístico, con rutas de senderismo, el teleférico de Caracas, y miradores que ofrecen vistas espectaculares de la ciudad y la costa caribeña.
-              <br /><br />
-              La montaña tiene un clima variable, que puede ir desde cálido en las zonas bajas hasta fresco y más templado en las alturas, lo que contribuye a la diversidad de su flora y fauna.
-            </p>
-          </div>
-          <img src="public\fotos\FotoNaturaleza.png" />
+      </div>
+
+      {/* Segunda sección: texto a la izquierda, imagen a la derecha */}
+      <div className="parque-info reverse"> 
+        <div>
+          <h2> Naturaleza </h2>
+          <p>
+            Desde un punto de vista ecológico, el Ávila alberga una gran diversidad de flora y fauna. Su vegetación varía desde bosques secos en
+            las zonas más bajas hasta bosques montanos en las áreas más altas. También cuenta con una fauna variada, que incluye aves como el quetzal y el tucán,
+            así como mamíferos como zorros y venados.
+            <br /><br />
+            El Parque Nacional El Ávila, que abarca gran parte de la montaña, es un espacio protegido donde se promueve la conservación de estos ecosistemas. Además de su valor ecológico,
+            el Ávila es también un atractivo turístico, con rutas de senderismo, el teleférico de Caracas, y miradores que ofrecen vistas espectaculares de la ciudad y la costa caribeña.
+            <br /><br />
+            La montaña tiene un clima variable, que puede ir desde cálido en las zonas bajas hasta fresco y más templado en las alturas, lo que contribuye a la diversidad de su flora y fauna.
+          </p>
         </div>
-      </section>
-    );
-  }
+        <img src="public\fotos\FotoNaturaleza.png" /> {/* Imagen a la derecha */}
+      </div>
+    </section>
+  );
+}
 
 function Carousel() {
     const news = [
@@ -88,8 +94,8 @@ function Carousel() {
       },
       {
         date: "15 de febrero, 2025",
-        title: "Nuevo horario de visitas",
-        description: "Consulta nuestro nuevo horario para planificar tu visita.",
+        title: "Nuevo horario de actividades",
+        description: "Consulta nuestro nuevo horario para planificar tus actividades.",
         image: rappel,
       },
       {
@@ -146,21 +152,63 @@ function Carousel() {
     );
   }
 
-//  Sección de Consejos
-function TipsSection() {
-return (
-  <section className="tips">
-    <h2>Consejos para nuestros AvilaTrekkers</h2>
-    <div className="tips-container">
-      <div className="tip-card">
-        <h3>Calzado adecuado 🥾</h3>
-        <p>Usa botas de trekking cómodas para evitar lesiones y mejorar tu rendimiento en los senderos.</p>
+  function TipsCarousel() {
+    const tips = [
+      {
+        title: "Calzado adecuado 🥾",
+        description: "Usa botas de trekking cómodas para evitar lesiones y mejorar tu rendimiento en los senderos.",
+      },
+      {
+        title: "Hidratación y alimentación 💧🍏",
+        description: "Lleva mínimo 1.5L de agua y snacks energéticos para mantenerte en óptimas condiciones.",
+      },
+      {
+        title: "Protección solar ☀️",
+        description: "Usa bloqueador solar y gafas para protegerte de los rayos UV durante tu caminata.",
+      },
+      {
+        title: "Ropa adecuada 🧥",
+        description: "Viste en capas para adaptarte a los cambios de temperatura en la montaña.",
+      },
+      {
+        title: "Planificación 🗺️",
+        description: "Estudia la ruta antes de salir y lleva un mapa o GPS.",
+      },
+      {
+        title: "Respeto por la naturaleza 🌿",
+        description: "No dejes basura y respeta la flora y fauna del parque.",
+      },
+    ];
+  
+    const [index, setIndex] = useState(0);
+  
+    const nextSlide = () => {
+      setIndex((prevIndex) => (prevIndex + 3) % tips.length);
+    };
+  
+    const prevSlide = () => {
+      setIndex((prevIndex) => (prevIndex - 3 + tips.length) % tips.length);
+    };
+  
+    // Obtener los 3 tips actuales
+    const currentTips = [
+      tips[index],
+      tips[(index + 1) % tips.length],
+      tips[(index + 2) % tips.length],
+    ];
+  
+    return (
+      <div className="tips-carousel">
+        <button className="prev" onClick={prevSlide}>‹</button>
+        <div className="tips-carousel-content">
+          {currentTips.map((tip, i) => (
+            <div key={i} className="tip-card">
+              <h3>{tip.title}</h3>
+              <p>{tip.description}</p>
+            </div>
+          ))}
+        </div>
+        <button className="next" onClick={nextSlide}>›</button>
       </div>
-      <div className="tip-card">
-        <h3>Hidratación y alimentación 💧🍏</h3>
-        <p>Lleva mínimo 1.5L de agua y snacks energéticos para mantenerte en óptimas condiciones.</p>
-      </div>
-    </div>
-  </section>
-);
-}
+    );
+  }

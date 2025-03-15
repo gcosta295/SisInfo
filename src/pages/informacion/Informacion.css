@@ -7,28 +7,61 @@ body {
   
   /* Sección del Parque */
   .parque {
-    padding: 20px;
+    padding: 25px;
   }
   
   .parque-info {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 0 auto 20px; /* Centra el contenedor y añade margen inferior */
     background: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 1200px; /* Ancho máximo */
+    width: 95%; /* Ancho relativo */
   }
   
   .parque-info img {
-    width: 150px;
-    height: auto;
-    margin-right: 20px;
-    border-radius: 10px;
+    width: 450px; /* Ancho de las imágenes */
+    height: 350px; /* Altura de las imágenes */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    margin-right: 40px; /* Aumenta la separación entre la imagen y el texto */
   }
   
-  .reverse {
-    flex-direction: row-reverse;
+  
+  .parque-info.reverse img {
+    width: 450px; /* Ancho de las imágenes */
+    height: 500px; /* Altura de las imágenes */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    margin-left: 40px; /* Aumenta la separación entre la imagen y el texto */
+  }
+  
+  .parque-info h2 {
+    margin-top: 0;
+    font-size: 34px; /* Tamaño de la letra para los títulos */
+  }
+  
+  .parque-info p {
+    white-space: pre-line; /* Respeta los saltos de línea */
+    font-size: 20px; /* Aumenta el tamaño de la letra de los párrafos */
+    line-height: 1.5; /* Aumenta el espacio entre líneas */
+  }
+  
+  /* Asegúrate de que otras secciones tengan el mismo ancho */
+  .news, .tips {
+    max-width: 1200px; /* Mismo ancho máximo que .parque-info */
+    width: 95%; /* Mismo ancho relativo */
+    margin: 0 auto; /* Centra las secciones */
+    padding: 20px; /* Añade un padding consistente */
+  }
+
+  .news h2{
+    margin-top: 0;
+    font-size: 34px; /* Tamaño de la letra para los títulos */
+    text-align: center;
   }
 
   /* Sección de Noticias */
@@ -96,6 +129,7 @@ body {
     margin: 5px 0;
     font-size: 18px;
     color: #fff;
+    text-align:left;
   }
   
   .carousel-item-text p {
@@ -138,16 +172,54 @@ body {
     text-align: center;
   }
   
-  .tips-container {
+  .tips-carousel {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Ajusta el ancho según sea necesario */
+    margin: 0 auto; /* Centra el carrusel */
+    padding: 20px 0; /* Añade un padding vertical */
+  }
+  
+  .tips-carousel-content {
+    display: flex;
     gap: 20px;
+    width: 100%;
+    padding: 0 60px; /* Espacio para los botones */
   }
   
   .tip-card {
+    flex: 1;
     background: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+    text-align: center;
+    width: 300px; /* Ancho fijo */
+    height: 200px; /* Alto fijo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+  }
+  
+  .tip-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .tip-card p {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    overflow: hidden; /* Evita que el texto desborde */
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita el texto a 3 líneas */
+    -webkit-box-orient: vertical;
   }
