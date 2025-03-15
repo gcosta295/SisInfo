@@ -24,7 +24,10 @@ export default function Informacion() {
         <h2>Entérate de nuestras últimas noticias</h2>
         <Carousel />
       </section>
-      <TipsSection />
+      <section className="tips">
+      <h2>Consejos para nuestros AvilaTrekkers</h2>
+      <TipsCarousel />
+      </section>
     </div>
   );
 }
@@ -33,7 +36,7 @@ function ParqueSection() {
     return (
       <section className="parque">
         <div className="parque-info">
-          <img src="public\fotos\inparques 1.png" />
+          <img src="/fotos/inparques 1.png" />
           <div>
             <h2>Parque Nacional El Ávila</h2>
             <p>
@@ -60,7 +63,7 @@ function ParqueSection() {
               La montaña tiene un clima variable, que puede ir desde cálido en las zonas bajas hasta fresco y más templado en las alturas, lo que contribuye a la diversidad de su flora y fauna.
             </p>
           </div>
-          <img src="public\fotos\FotoNaturaleza.png" />
+          <img src="/fotos/FotoNaturaleza.png" />
         </div>
       </section>
     );
@@ -147,20 +150,63 @@ function Carousel() {
   }
 
 //  Sección de Consejos
-function TipsSection() {
-return (
-  <section className="tips">
-    <h2>Consejos para nuestros AvilaTrekkers</h2>
-    <div className="tips-container">
-      <div className="tip-card">
-        <h3>Calzado adecuado 🥾</h3>
-        <p>Usa botas de trekking cómodas para evitar lesiones y mejorar tu rendimiento en los senderos.</p>
+function TipsCarousel() {
+  const tips = [
+    {
+      title: "Calzado adecuado 🥾",
+      description: "Usa botas de trekking cómodas para evitar lesiones y mejorar tu rendimiento en los senderos.",
+    },
+    {
+      title: "Hidratación y alimentación 💧🍏",
+      description: "Lleva mínimo 1.5L de agua y snacks energéticos para mantenerte en óptimas condiciones.",
+    },
+    {
+      title: "Protección solar ☀️",
+      description: "Usa bloqueador solar y gafas para protegerte de los rayos UV durante tu caminata.",
+    },
+    {
+      title: "Ropa adecuada 🧥",
+      description: "Viste en capas para adaptarte a los cambios de temperatura en la montaña.",
+    },
+    {
+      title: "Planificación 🗺️",
+      description: "Estudia la ruta antes de salir y lleva un mapa o GPS.",
+    },
+    {
+      title: "Respeto por la naturaleza 🌿",
+      description: "No dejes basura y respeta la flora y fauna del parque.",
+    },
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  const nextSlide = () => {
+    setIndex((prevIndex) => (prevIndex + 3) % tips.length);
+  };
+
+  const prevSlide = () => {
+    setIndex((prevIndex) => (prevIndex - 3 + tips.length) % tips.length);
+  };
+
+  // Obtener los 3 tips actuales
+  const currentTips = [
+    tips[index],
+    tips[(index + 1) % tips.length],
+    tips[(index + 2) % tips.length],
+  ];
+
+  return (
+    <div className="tips-carousel">
+      <button className="prev" onClick={prevSlide}>‹</button>
+      <div className="tips-carousel-content">
+        {currentTips.map((tip, i) => (
+          <div key={i} className="tip-card">
+            <h3>{tip.title}</h3>
+            <p>{tip.description}</p>
+          </div>
+        ))}
       </div>
-      <div className="tip-card">
-        <h3>Hidratación y alimentación 💧🍏</h3>
-        <p>Lleva mínimo 1.5L de agua y snacks energéticos para mantenerte en óptimas condiciones.</p>
-      </div>
+      <button className="next" onClick={nextSlide}>›</button>
     </div>
-  </section>
 );
 }
