@@ -12,8 +12,6 @@ import ReservasGuia from "./pages/reservasGuia/ReservasGuia";
 import Signup from "./pages/signup/Signup";
 import Informacion from "./pages/informacion/Informacion";
 import Foro from "./pages/foro/Foro";
-import Admin from "./pages/admin/Admin";
-import Actividad from "./pages/actividad/Actividad";
 import Contacto from "./pages/contacto/Contacto";
 import { UserProvider } from './context/UserContext.jsx';
 import ProtectedUserType from "./components/ui/protectedRoutes/ProtectedUserType.jsx";
@@ -57,9 +55,6 @@ export default function App() {
               <Route path="foro" element={<Foro/>} />
               <Route path="informacion" element={<Informacion/>} />
               <Route path="contacto" element={<Contacto />} />
-              <Route path="admin" element={<Admin />} />
-              <Route path="actividad/:name" element={<Actividad />} />
-
             </Route>
             
           </Route>

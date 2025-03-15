@@ -82,7 +82,6 @@ export default function Actividades() {
       
                 <RenderA
                 key={activity.id}
-                id={activity.id}
                 tipo={activity.type}
                 name={activity.name}
                 info={activity.info}
@@ -126,14 +125,14 @@ function Serch(tSerch){
     }
 }
 
-function RenderA({name, info, tipo, images, rating, id}){   
+function RenderA({name, info, tipo, images, rating}){   
     const mountainImages = [1, 2, 3, 4, 5];
     const navigate1 = useNavigate();
+    const gotocontact3 = (event) => {  
+        navigate1("/actividad")
+    }
 
-    const gotocontact3 = (event) => {
-        navigate1(`/actividad/${encodeURIComponent(id)}`); // Include name as a URL parameter
-    };
-    return( 
+    return(
 
     <li className="ac">
         <div className="imgs">
