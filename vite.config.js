@@ -9,7 +9,6 @@ export default defineConfig({
   },
   // other part of your config 
   plugins: [react(),
-    tailwindcss(),
   ],
   
   // ...
