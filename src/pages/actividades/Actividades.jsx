@@ -1,4 +1,3 @@
-import "./Actividades";
 import "./Actividades.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faCalendarDays, faArrowPointer } from "@fortawesome/free-solid-svg-icons";
@@ -49,49 +48,49 @@ export default function Actividades() {
         </div> {/* cierro div ActividadHome */}
     
 
-    <div className="container">
+        <div className="container">
 
-        <div className="fraseMain">
-            <p className="fraseM">Elige una de las actividades para una excursión</p>
-            <p className="fraseM">guiada según las rutas que ofrecemos</p>
-        </div>  {/* cierro div fraseMain */}
+            <div className="fraseMain">
+                <p className="fraseM">Elige una de las actividades para una excursión</p>
+                <p className="fraseM">guiada según las rutas que ofrecemos</p>
+            </div>  {/* cierro div fraseMain */}
 
-        <div className="containerDivisor">
-            <div className="divisor"></div>
-        </div>  {/* fin de div containerDivisor */}
+            <div className="containerDivisor">
+                <div className="divisor"></div>
+            </div>  {/* fin de div containerDivisor */}
 
-        <div className='multi-button'>
-            <button className="menu-button" onClick={() => setTSearch("Buscar excursión")}><FontAwesomeIcon icon={faMagnifyingGlass} />
-            <span> Buscar excursión</span></button>
-            <button className="menu-button" onClick={() => setTSearch("Insertar fecha")}><FontAwesomeIcon icon={faCalendarDays} />
-            <span> Insertar fecha</span></button>
-            <button className="menu-button" onClick={() => setTSearch("Elegir Actividad")}><FontAwesomeIcon icon={faArrowPointer} />
-            <span> Elegir Actividad </span></button>
-            <button className="menu-button2" onClick={Serch(tSerch,activities)}><span>Buscar</span></button>
-        </div> {/* fin de div */}
+            <div className='multi-button'>
+                <button className="menu-button" onClick={() => setTSearch("Buscar excursión")}><FontAwesomeIcon icon={faMagnifyingGlass} />
+                <span> Buscar excursión</span></button>
+                <button className="menu-button" onClick={() => setTSearch("Insertar fecha")}><FontAwesomeIcon icon={faCalendarDays} />
+                <span> Insertar fecha</span></button>
+                <button className="menu-button" onClick={() => setTSearch("Elegir Actividad")}><FontAwesomeIcon icon={faArrowPointer} />
+                <span> Elegir Actividad </span></button>
+                <button className="menu-button2" onClick={Serch(tSerch,activities)}><span>Buscar</span></button>
+            </div> {/* fin de div */}
 
-    </div>
+        </div>
 
-    <div className="container">
-        <ul className="Acs">
+        <div className="container">
+            <ul className="Acs">
+                
+                {activities.map((activity) => (
+        
+                    <RenderA
+                    key={activity.id}
+                    activityId={activity.id}
+                    tipo={activity.type}
+                    name={activity.name}
+                    info={activity.info}
+                    images={activity.images}
+                    rating={activity.rating}
+                    />
             
-            {activities.map((activity) => (
-      
-                <RenderA
-                key={activity.id}
-                activityId={activity.id}
-                tipo={activity.type}
-                name={activity.name}
-                info={activity.info}
-                images={activity.images}
-                rating={activity.rating}
-                />
-          
-            ))}
-           
-        </ul>
+                ))}
+            
+            </ul>
+        </div>
     </div>
-</div>
 // cierro div container2
 )
 }   
@@ -134,7 +133,7 @@ function RenderA({activityId,name, info, tipo, images, rating}){
 
     <li className="ac">
         <div className="imgs">
-        <img src={images[0]} className="ImageA" alt="" />
+        <img src={images?.[0]} className="ImageA" alt="" />
 
         </div>
     <div className="acl"> 

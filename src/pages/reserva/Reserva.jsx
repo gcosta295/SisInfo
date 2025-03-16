@@ -70,11 +70,11 @@ export default function Reserva() {
         <p className="tituloActividad">{data.type} - {routeData.name}</p>
         <p className="tipoRuta">📍Ruta {routeData.type}</p>
 
-        <div className="container">
+        <div className="containerReserva">
             <CalendarComponent data={data.date}></CalendarComponent>
-            <div className="containerDetalles1">
+            <div className="containerReservaDetalles1">
                 <p className="tituloDetalles">Detalles de la actividad</p>
-                <div className="containerDetalles2">
+                <div className="containerReservaDetalles2">
                     <p className="costo">$ {data.cost}</p>
                     <p className="primero">DÍA <br></br>PONER FECHA</p>
                     <p className="segundo">ACTIVIDAD <br></br>{data.type}</p>
