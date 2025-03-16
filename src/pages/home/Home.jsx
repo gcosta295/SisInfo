@@ -52,7 +52,7 @@ export default function Home() {
         {/*<img src="./elAvilaHome.jpg" alt="Avila" className="imgAvilaHome"/>*/}
         <img src="/fotos/elAvilaHome.jpg" alt="Avila" className="imgAvilaHome"/>
           <p className="textoImgHome">Tu aventura empieza aquí</p>
-          <button className='botonReservaYa' onClick={gotocontact1}>Reserva ya<img src="./flecha.png" className="imgFlecha"/></button>
+          <button className='botonReservaYa' onClick={gotocontact1}>Reserva ya<img src="/fotos/flecha.png" className="imgFlecha"/></button>
       </div>
 
       <div className="fraseHome">
