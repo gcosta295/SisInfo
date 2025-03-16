@@ -127,11 +127,11 @@ function Serch(tSerch,activities){
     console.log(list)
 }
 
-function RenderA({activityId,name, info, tipo, images, rating}){   
+function RenderA({activityId,name, info, tipo, images, rating, id}){   
     const mountainImages = [1, 2, 3, 4, 5];
     const navigate1 = useNavigate();
     const gotocontact3 = () => {  
-        navigate1(`/actividad/${activityId}`)
+        navigate1(`/actividad/${id}`)
     }
 
     return( 
