@@ -18,8 +18,8 @@ export default function Navbar(){
     const {logged, profile} = contextProfile; 
     
     useEffect(() => {
-        console.log("Estado del perfil:", profile);
-        console.log("Estado de logged:", logged);
+        // console.log("Estado del perfil:", profile);
+        // console.log("Estado de logged:", logged);
     }, [profile, logged]); 
 
     const handleLogout = async () => {

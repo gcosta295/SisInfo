@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithP
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'react-tabs/style/react-tabs.css';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { setDoc, doc } from "firebase/firestore";
 
 
@@ -24,7 +24,7 @@ export default function Signup() {
         createUserWithEmailAndPassword(auth, email, password)
           .then(async(userCredential) => {
             const user = userCredential.user;
-            console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
+            //console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
             if (user) {
                 await setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
                   email: user.email,
@@ -87,7 +87,6 @@ export default function Signup() {
 
     return(
         <>
-        <div><Toaster/></div>
         <div className="contenedor1">
             <div className="datos">
                 <p className="titulosignup">{tabIndex===0 ? "Bienvenido de vuelta" : "Comienza la aventura"}</p>

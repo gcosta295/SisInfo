@@ -6,6 +6,7 @@ import PerfilTrekker from "./pages/perfilTrekker/PerfilTrekker.jsx";
 import PerfilGuia from "./pages/perfilGuia/PerfilGuia.jsx";
 import ProtectedLogged from "./components/ui/protectedRoutes/ProtectedLogged.jsx"
 import Actividades from "./pages/actividades/Actividades";
+import Actividad from "./pages/actividad/Actividad";
 import Reserva from "./pages/reserva/Reserva";
 import ReservasTrekker from "./pages/reservasTrekker/ReservasTrekker";
 import ReservasGuia from "./pages/reservasGuia/ReservasGuia";
@@ -15,13 +16,16 @@ import Foro from "./pages/foro/Foro";
 import Contacto from "./pages/contacto/Contacto";
 import { UserProvider } from './context/UserContext.jsx';
 import ProtectedUserType from "./components/ui/protectedRoutes/ProtectedUserType.jsx";
-import DetalleAct from "./pages/detalleAct/DetalleAct.jsx";
 import EditarPerfilTrekker from "./pages/editarPerfilTrekker/EditarPerfilTrekker.jsx";
 import EditarPerfilGuia from "./pages/editarPerfilGuia/EditarPerfilGuia.jsx";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   return (
     <UserProvider>
+      <PayPalScriptProvider options={{ clientId: "AcSpzb5TqZYoNKDCXzrtCbJ8-KAGQW-HhAyDS9WUBCeNdjoSZq_AP1G0ypieXWM0181spQjyf-yjIefu" }}>
+      <Toaster></Toaster>
       <BrowserRouter>
         <Routes>     
           <Route path= "signup" element={<Signup/>} />  {/* si no esta protegido, entra cualquiera. Todos permitidos */}
@@ -31,7 +35,7 @@ export default function App() {
               <Route element={<ProtectedUserType roles={["guia", "administrador"]}/>}>   {/* usuarios permitidos: trekker (solo users loggeados) */}
                 <Route path="mi-perfil-trekker" element={<PerfilTrekker/>} /> 
                 <Route path="editar-trekker" element={<EditarPerfilTrekker/>} />
-                <Route path="reserva" element={<Reserva/>} />
+                <Route path="reserva/:actividadId" element={<Reserva/>} />
                 <Route path="reservas-trekker" element={<ReservasTrekker/>} />
               </Route>
             </Route>
@@ -46,7 +50,7 @@ export default function App() {
 
             <Route element={<ProtectedUserType roles={["guia", "administrador"]}/>}> {/* usuarios permitidos: trekker y cualquiera sin estar loggeado */}
               <Route path="actividades" element={<Actividades/>} />
-              <Route path="detalle" element={<DetalleAct/>} />
+              <Route path="actividad/:actividadId" element={<Actividad/>} />
             </Route>
 
 
@@ -60,6 +64,7 @@ export default function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </PayPalScriptProvider>
     </UserProvider>
   );
 }

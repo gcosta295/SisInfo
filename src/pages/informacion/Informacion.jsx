@@ -9,10 +9,10 @@ export default function Informacion() {
 
     const contextProf = use(UserContext);
     const {profile, logged} = contextProf;
-    console.log(contextProf);
+    // console.log(profile);
 
-return(
-<h1>informacion pagina </h1>
-)
+    return(
+        <h1>informacion pagina</h1>
+    )
 
 }

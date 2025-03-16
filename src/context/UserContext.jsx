@@ -28,9 +28,9 @@ const UserProvider = ({children}) => {
                         setProfile({});
                     }
     
-                    setProfile(docSnap.data());
+                    setProfile({uid: userConnected.uid, ...docSnap.data()}); //se desestructura el objeto que trae docSnap, y para agregar uid se debe destructurar con esos ...
                     setLogged(true);
-                    console.log(await docSnap.data()) //sirve!!!
+                    // console.log(await docSnap.data()) //sirve!!!
     
                 }catch(error){
                     console.log(error)

@@ -1,14 +1,11 @@
 import "./Actividades";
 import "./Actividades.css";
-import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faCalendarDays, faArrowPointer } from "@fortawesome/free-solid-svg-icons";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { db } from "../../firebase/firebase"; 
-import { collection, query, where, getDocs } from "firebase/firestore"; 
+import { collection, getDocs } from "firebase/firestore"; 
 import { useState, useEffect} from "react";
-import Navbar from "../../components/ui/navbar/Navbar";
-
 
 const querySnapshot = await getDocs(collection(db, "Activities")); 
 querySnapshot.forEach((doc) => {
@@ -30,7 +27,7 @@ export default function Actividades() {
                 const querySnapshot = await getDocs(collection(db, "Activities"));
                 const activityData = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
-                    ...doc.data(),
+                    ...doc.data(),  //lo mismo que pasa en UserContext,
                 }));
                 setActivities(activityData);
                 setLoading(false);
@@ -82,6 +79,7 @@ export default function Actividades() {
       
                 <RenderA
                 key={activity.id}
+                activityId={activity.id}
                 tipo={activity.type}
                 name={activity.name}
                 info={activity.info}
@@ -125,11 +123,11 @@ function Serch(tSerch){
     }
 }
 
-function RenderA({name, info, tipo, images, rating}){   
+function RenderA({activityId,name, info, tipo, images, rating}){   
     const mountainImages = [1, 2, 3, 4, 5];
     const navigate1 = useNavigate();
-    const gotocontact3 = (event) => {  
-        navigate1("/actividad")
+    const gotocontact3 = () => {  
+        navigate1(`/actividad/${activityId}`)
     }
 
     return(
