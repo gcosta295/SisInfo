@@ -87,7 +87,7 @@ export default function Actividades() {
                 tipo={activity.type}
                 name={activity.name}
                 info={activity.info}
-                images={activity.images}
+                images={activity.image}
                 rating={activity.rating}
                 list={activities}
                 />
@@ -141,7 +141,7 @@ function RenderA({name, info, tipo, images, rating, id}){
 
     <li className="ac">
         <div className="imgs">
-        <img src={images[0]} className="ImageA" alt="" />
+        <img src={images} className="ImageA" alt="" />
 
         </div>
     <div className="acl"> 

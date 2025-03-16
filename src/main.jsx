@@ -17,9 +17,10 @@ import Admin from "./pages/admin/Admin";
 import Contacto from "./pages/contacto/Contacto";
 import { UserProvider } from './context/UserContext.jsx';
 import ProtectedUserType from "./components/ui/protectedRoutes/ProtectedUserType.jsx";
-import DetalleAct from "./pages/detalleAct/DetalleAct.jsx";
+import EditAct from "./pages/editAct/EditAct.jsx";
 import EditarPerfilTrekker from "./pages/editarPerfilTrekker/EditarPerfilTrekker.jsx";
 import EditarPerfilGuia from "./pages/editarPerfilGuia/EditarPerfilGuia.jsx";
+import Actividad from "./pages/actividad/Actividad";
 
 export default function App() {
   return (
@@ -49,7 +50,6 @@ export default function App() {
 
             <Route element={<ProtectedUserType roles={["guia", "administrador"]}/>}> {/* usuarios permitidos: trekker y cualquiera sin estar loggeado */}
               <Route path="actividades" element={<Actividades/>} />
-              <Route path="detalle" element={<DetalleAct/>} />
             </Route>
 
 
@@ -59,10 +59,9 @@ export default function App() {
               <Route path="informacion" element={<Informacion/>} />
               <Route path="contacto" element={<Contacto />} />
               <Route path="admin" element={<Admin />} />
+              <Route path="editAct/:name" element={<EditAct />} />
               <Route path="actividad/:name" element={<Actividad />} />
-
             </Route>
-            
           </Route>
         </Routes>
       </BrowserRouter>
