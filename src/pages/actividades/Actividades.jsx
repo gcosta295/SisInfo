@@ -6,6 +6,7 @@ import { db } from "../../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore"; 
 import { useState, useEffect} from "react";
 
+
 const querySnapshot = await getDocs(collection(db, "Activities")); 
 querySnapshot.forEach((doc) => {
 // doc.data() is never undefined for query doc snapshots
@@ -39,64 +40,67 @@ export default function Actividades() {
         fetchData();
     }, []);
     const [tSerch, setTSearch] = useState("normal");
-    return(
-
-    <div className="container">
-
-        <div className= "ActividadHome">
-            <img src="\fotos\caminio.jpg" alt="Bosque" className="imgActividadHome"/>
-        </div> {/* cierro div ActividadHome */}
-    
-
+    return( 
         <div className="container">
 
-            <div className="fraseMain">
-                <p className="fraseM">Elige una de las actividades para una excursión</p>
-                <p className="fraseM">guiada según las rutas que ofrecemos</p>
-            </div>  {/* cierro div fraseMain */}
-
-            <div className="containerDivisor">
-                <div className="divisor"></div>
-            </div>  {/* fin de div containerDivisor */}
-
-            <div className='multi-button'>
-                <button className="menu-button" onClick={() => setTSearch("Buscar excursión")}><FontAwesomeIcon icon={faMagnifyingGlass} />
-                <span> Buscar excursión</span></button>
-                <button className="menu-button" onClick={() => setTSearch("Insertar fecha")}><FontAwesomeIcon icon={faCalendarDays} />
-                <span> Insertar fecha</span></button>
-                <button className="menu-button" onClick={() => setTSearch("Elegir Actividad")}><FontAwesomeIcon icon={faArrowPointer} />
-                <span> Elegir Actividad </span></button>
-                <button className="menu-button2" onClick={Serch(tSerch,activities)}><span>Buscar</span></button>
-            </div> {/* fin de div */}
-
-        </div>
-
-        <div className="container">
-            <ul className="Acs">
-                
-                {activities.map((activity) => (
+            <div className= "ActividadHome">
+                <img src="\fotos\caminio.jpg" alt="Bosque" className="imgActividadHome"/>
+            </div> {/* cierro div ActividadHome */}
         
-                    <RenderA
-                    key={activity.id}
-                    activityId={activity.id}
-                    tipo={activity.type}
-                    name={activity.name}
-                    info={activity.info}
-                    images={activity.images}
-                    rating={activity.rating}
-                    />
-            
-                ))}
-            
-            </ul>
-        </div>
-    </div>
-// cierro div container2
-)
-}   
 
-function Serch(tSerch){
-    // console.log("qwertyu");
+            <div className="container">
+
+                <div className="fraseMain">
+                    <p className="fraseM">Elige una de las actividades para una excursión</p>
+                    <p className="fraseM">guiada según las rutas que ofrecemos</p>
+                </div>  {/* cierro div fraseMain */}
+
+                <div className="containerDivisor">
+                    <div className="divisor"></div>
+                </div>  {/* fin de div containerDivisor */}
+
+                <div className='multi-button'>
+                    <button className="menu-button" onClick={() => setTSearch("Buscar excursión")}><FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <span> Buscar excursión</span></button>
+                    <button className="menu-button" onClick={() => setTSearch("Insertar fecha")}><FontAwesomeIcon icon={faCalendarDays} />
+                    <span> Insertar fecha</span></button>
+                    <button className="menu-button" onClick={() => setTSearch("Elegir Actividad")}><FontAwesomeIcon icon={faArrowPointer} />
+                    <span> Elegir Actividad </span></button>
+                    <button className="menu-button2" onClick={Serch(tSerch,activities)}><span>Buscar</span></button>
+                </div> {/* fin de div */}
+
+            </div>
+
+            <div className="container">
+                <ul className="Acs">
+                    {activities.map((activity) => (
+            
+                        <RenderA
+                        key={activity.id}
+                        id={activity.id}
+                        tipo={activity.type}
+                        name={activity.name}
+                        info={activity.info}
+                        images={activity.image}
+                        rating={activity.rating}
+                        list={activities}
+                        />
+                
+                    ))}
+            
+                </ul>
+            </div>
+    
+        </div>
+
+        
+// cierro div container2
+    )
+}
+
+function Serch(tSerch,activities){
+    const list = [];
+    //console.log(activities);
     if (tSerch != "normal"){
         if (tSerch == "Buscar excursión"){
             for(const x of activities.entries()) {
@@ -120,6 +124,7 @@ function Serch(tSerch){
             }
         }
     }
+    console.log(list)
 }
 
 function RenderA({activityId,name, info, tipo, images, rating}){   
@@ -129,11 +134,11 @@ function RenderA({activityId,name, info, tipo, images, rating}){
         navigate1(`/actividad/${activityId}`)
     }
 
-    return(
+    return( 
 
     <li className="ac">
         <div className="imgs">
-        <img src={images?.[0]} className="ImageA" alt="" />
+        <img src={images} className="ImageA" alt="" />
 
         </div>
     <div className="acl"> 

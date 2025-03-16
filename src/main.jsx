@@ -13,6 +13,7 @@ import ReservasGuia from "./pages/reservasGuia/ReservasGuia";
 import Signup from "./pages/signup/Signup";
 import Informacion from "./pages/informacion/Informacion";
 import Foro from "./pages/foro/Foro";
+import Admin from "./pages/admin/Admin";
 import Contacto from "./pages/contacto/Contacto";
 import { UserProvider } from './context/UserContext.jsx';
 import ProtectedUserType from "./components/ui/protectedRoutes/ProtectedUserType.jsx";
@@ -23,6 +24,7 @@ import { Toaster } from 'react-hot-toast';
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import EditAct from "./pages/editAct/EditAct.jsx";
 
 export default function App() {
   return (
@@ -63,8 +65,10 @@ export default function App() {
               <Route path="foro" element={<Foro/>} />
               <Route path="informacion" element={<Informacion/>} />
               <Route path="contacto" element={<Contacto />} />
+              <Route path="admin" element={<Admin />} />
+              <Route path="editAct/:name" element={<EditAct />} />
+              <Route path="actividad/:name" element={<Actividad />} />
             </Route>
-            
           </Route>
         </Routes>
       </BrowserRouter>
