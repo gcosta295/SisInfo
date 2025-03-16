@@ -5,13 +5,13 @@ import { UserContext } from '../../context/UserContext.jsx';
 
 export default function PerfilTrekker() {
 
-    const contextProfi = use(UserContext);
-    const { logged} = contextProfi;
-    // console.log(contextProfi);
+    const contextProfile = use(UserContext);
+    const { profile} = contextProfile;
+    // console.log(profile);
 
 return(
 
-<h1>Prueba4 perfilllll trekker, estas loggeado!!</h1>
-)
+    <h1>Prueba4 perfilllll trekker, estas loggeado!!</h1>
+    )
 
 }

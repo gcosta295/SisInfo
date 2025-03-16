@@ -20,9 +20,13 @@ import EditarPerfilTrekker from "./pages/editarPerfilTrekker/EditarPerfilTrekker
 import EditarPerfilGuia from "./pages/editarPerfilGuia/EditarPerfilGuia.jsx";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Toaster } from 'react-hot-toast';
+import { MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 
 export default function App() {
   return (
+    <MantineProvider withGlobalStyles withNormalizeCSS>
     <UserProvider>
       <PayPalScriptProvider options={{ clientId: "AcSpzb5TqZYoNKDCXzrtCbJ8-KAGQW-HhAyDS9WUBCeNdjoSZq_AP1G0ypieXWM0181spQjyf-yjIefu" }}>
       <Toaster></Toaster>
@@ -66,6 +70,7 @@ export default function App() {
       </BrowserRouter>
       </PayPalScriptProvider>
     </UserProvider>
+    </MantineProvider>
   );
 }
 

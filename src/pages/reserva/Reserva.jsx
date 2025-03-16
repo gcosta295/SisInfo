@@ -1,9 +1,11 @@
-import "./Reserva";
+import "./Reserva.css";
 import Paypal from "../../components/ui/paypal/Paypal.jsx"
 import { useState, useEffect} from "react";
 import {app} from '../../firebase/firebase.js'
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useParams } from "react-router";
+import CalendarComponent from "../../components/calendar/Calendar.jsx";
+
 
 const db = getFirestore(app);
 
@@ -12,6 +14,7 @@ export default function Reserva() {
     let params = useParams();
     const [data, setData] = useState({});
     const [routeData, setRouteData] = useState({});
+    const [guiaData, setGuiaData] = useState({});
 
     useEffect(() => {
         async function getData() {
@@ -39,6 +42,20 @@ export default function Reserva() {
                         console.log("Ruta no encontrada");
                     }
                 }
+
+                if (actividadData.guia) {
+                    const guiaRef = actividadData.guia; 
+                    const guiaSnap = await getDoc(guiaRef);
+
+                    if (guiaSnap.exists()) {
+                        setGuiaData(guiaSnap.data());
+                        console.log("datos de guia:", guiaSnap.data());
+                    } else {
+                        console.log("Guia no encontrado");
+                    }
+                }
+
+
             } catch (error) {
                 console.error(error.message);
             }
@@ -51,10 +68,24 @@ export default function Reserva() {
     return(
         <>
         <p className="tituloActividad">{data.type} - {routeData.name}</p>
-        <p className="tipoRuta">Ruta {routeData.type}</p>
+        <p className="tipoRuta">📍Ruta {routeData.type}</p>
 
-        
-        <Paypal actividad={data}></Paypal>
+        <div className="container">
+            <CalendarComponent data={data.date}></CalendarComponent>
+            <div className="containerDetalles1">
+                <p className="tituloDetalles">Detalles de la actividad</p>
+                <div className="containerDetalles2">
+                    <p className="costo">$ {data.cost}</p>
+                    <p className="primero">DÍA <br></br>PONER FECHA</p>
+                    <p className="segundo">ACTIVIDAD <br></br>{data.type}</p>
+                    <p className="tercero">RUTA <br></br>{routeData.type} - {routeData.name}</p>
+                    <p className="cuarto">GUÍA <br></br>{guiaData.firstName} {guiaData.lastName}</p>
+                </div>
+                <br></br>
+                    <Paypal className="botonPaypal" actividad={data}></Paypal>
+            </div>
+        </div>
+
         {/* tambien se podia pasar del params actividadId={params.actividadId}  pero mejor actividad para probar id */}
         </>
     )
