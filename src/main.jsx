@@ -20,7 +20,6 @@ import ProtectedUserType from "./components/ui/protectedRoutes/ProtectedUserType
 import EditAct from "./pages/editAct/EditAct.jsx";
 import EditarPerfilTrekker from "./pages/editarPerfilTrekker/EditarPerfilTrekker.jsx";
 import EditarPerfilGuia from "./pages/editarPerfilGuia/EditarPerfilGuia.jsx";
-import Actividad from "./pages/actividad/Actividad";
 
 export default function App() {
   return (
