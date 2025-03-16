@@ -10,6 +10,7 @@ import { useState, useEffect} from "react";
 import Navbar from "../../components/ui/navbar/Navbar";
 
 
+
 const querySnapshot = await getDocs(collection(db, "Activities")); 
 querySnapshot.forEach((doc) => {
 // doc.data() is never undefined for query doc snapshots
@@ -70,7 +71,7 @@ export default function Actividades() {
             <span> Insertar fecha</span></button>
             <button className="menu-button" onClick={() => setTSearch("Elegir Actividad")}><FontAwesomeIcon icon={faArrowPointer} />
             <span> Elegir Actividad </span></button>
-            <button className="menu-button2" onClick={Serch(tSerch,activities)}><span>Buscar</span></button>
+            <button className="menu-button2" onClick={Serch(tSerch , activities)}><span>Buscar</span></button>
         </div> {/* fin de div */}
 
     </div>
@@ -88,6 +89,7 @@ export default function Actividades() {
                 info={activity.info}
                 images={activity.images}
                 rating={activity.rating}
+                list={activities}
                 />
           
             ))}
@@ -99,8 +101,9 @@ export default function Actividades() {
 )
 }   
 
-function Serch(tSerch){
-    // console.log("qwertyu");
+function Serch(tSerch,activities){
+    const list = [];
+    //console.log(activities);
     if (tSerch != "normal"){
         if (tSerch == "Buscar excursión"){
             for(const x of activities.entries()) {
@@ -124,6 +127,7 @@ function Serch(tSerch){
             }
         }
     }
+    console.log(list)
 }
 
 function RenderA({name, info, tipo, images, rating, id}){   
