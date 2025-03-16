@@ -17,7 +17,7 @@ import Admin from "./pages/admin/Admin";
 import Contacto from "./pages/contacto/Contacto";
 import { UserProvider } from './context/UserContext.jsx';
 import ProtectedUserType from "./components/ui/protectedRoutes/ProtectedUserType.jsx";
-import DetalleAct from "./pages/editAct/EditAct.jsx";
+import DetalleAct from "./pages/detalleAct/DetalleAct.jsx";
 import EditarPerfilTrekker from "./pages/editarPerfilTrekker/EditarPerfilTrekker.jsx";
 import EditarPerfilGuia from "./pages/editarPerfilGuia/EditarPerfilGuia.jsx";
 
