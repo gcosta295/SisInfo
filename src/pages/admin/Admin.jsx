@@ -58,7 +58,7 @@ function RenderA({ name, price, num}) {
     const rowClass = num % 2 === 0 ? "light" : "dark";
     const navigate2 = useNavigate();
     const gotocontact4 = (event) => {
-        navigate2(`/actividad/:name/${encodeURIComponent(name)}`); // Include name as a URL parameter
+        navigate2(`/EditAct/${encodeURIComponent(name)}`); // Include name as a URL parameter
     };
   return (
     <div className={rowClass}>
