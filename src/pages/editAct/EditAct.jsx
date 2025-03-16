@@ -1,13 +1,13 @@
+import "./EditAct";
 import { useNavigate } from "react-router";
-import "./Actividad";
 import { db } from "../../firebase/firebase"; 
 import { collection, query, where, getDocs } from "firebase/firestore"; 
 import { useState, useEffect} from "react";
 
-export default function Actividad() {
+export default function EditActivity() {
     const fullUrl = window.location.href; // Get the full URL
     const pathname = window.location.pathname; // Get the pathname
-    const targetString = pathname.replace("/actividad/", "");
+    const targetString = pathname.replace("/EditAct/", "");
     const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -29,14 +29,5 @@ export default function Actividad() {
         };
         fetchData();
     }, []);
-    GetData(targetString,activities);
-    return <h1>Activity Details: {targetString}</h1>;
-}
-
-function GetData(targetString,activities){
-  for(const x of activities.entries()) {
-    if (x[1].id == targetString){               
-        console.log(x[1]);
-    }
-}
-}
+    return <h1>Activity Name: {targetString}</h1>;
+  }
