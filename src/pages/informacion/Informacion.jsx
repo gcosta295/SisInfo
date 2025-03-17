@@ -1,6 +1,8 @@
 import "./Informacion";
 import { use } from 'react'
 import { UserContext } from '../../context/UserContext.jsx';
+import CardWithImage from "../../components/ui/card/CardWithImage.jsx";
+import CarruselNoticias from "../../components/info/CarruselNoticias.jsx";
 
 export default function Informacion() {
     // const contextUser = use(UserContext);
@@ -13,8 +15,6 @@ export default function Informacion() {
 
 return(
     <div>
-
-
     <div className = "w-screen lg:h-screen md:h-fit md:p-24 p-10 flex flex-col-reverse justify-center items-center relative gap-4">
             <div className="bg-gray-100 w-fit md:w-2xl lg:w-fit h-fit shadow rounded-2xl overflow-clip">
             <div className="flex md:flex-row flex-col items-center h-fit">
@@ -62,11 +62,44 @@ return(
             </div>
             </div>
     </div>
+    <div>
+    </div>
         <div className="flex flex-col justify-center items-center">
             <div className="bg-gray-400 w-9/12 md:w-2xl lg:w-196 h-0.5 mt-1.5 mb-2"></div>
-        </div>      
-    
+        </div>
+        <div>
+            <CarruselNoticias/>
+        </div> 
+        <div className="flex flex-col justify-center items-center">
+            <div className="bg-gray-400 w-9/12 md:w-2xl lg:w-196 h-0.5 mt-1.5 mb-2"></div>
+        </div>        
     </div>
-
 )
 }
+
+//<div className="w-fit lg:h-screen md:h-fit md:p-24 p-10 flex flex-col-reverse justify-center relative">
+//<img src="./paseosHome.jpg" className="w-80 h-96 rounded"/>
+//<div className="absolute w-80 h-96 bg-black opacity-5 rounded-xl"></div>
+//<div className="tituloPaseos">Incluimos una nueva ruta</div>
+//<div className="paseosDescrip1">29 de Enero, 2025</div>
+//<div className="paseosDescrip2">Prepárate para la nueva ruta de Los Venados</div>
+//</div>
+//<div className="w-fit lg:h-screen md:h-fit md:p-24 p-10 flex flex-col-reverse justify-center relative">
+//<img src="./rappelHome.jpg" className="w-80 h-96 rounded"/>
+//<div className="absolute w-80 h-96 bg-black opacity-5 rounded-xl"></div>
+//<div className="tituloRappel">Contamos con 5 guías nuevos</div>
+//<div className="rappelDescrip1">16 de Enero, 2025</div>
+//<div className="rappelDescrip2">Esto significa que ofrecemos más actividades. ¡Reserva ya!</div>
+//</div>
+
+//<div className="mt-12 flex justify-center items-center bg-amber-400">
+//<div className="flex flex-row justify-evenly items-center bg-gray-200 w-fit h-fit rounded">
+//  <div className="md:w-200  w-fit lg:h-fit md:h-fit md:p-24 p-10 flex flex-col-reverse justify-center relative">
+//    <img src="./excursionesHome.jpg" className="w-fit h-96 rounded"/>
+//    <div className="flex flex-col w-fit h-96 bg-black opacity-5 rounded-xl"></div>
+//    <div className="flex flex-col text-white text-3xl font-semibold ml-4 h-1/16 md:w-fit w-50">Ahora ofrecemos clases de Rappel</div>
+//    <div className="flex flex-col text-white text-xl ml-4 mb-20">22 de Febrero, 2025</div>
+//    <div className="flex flex-col text-white text-xl ml-4 mt-75">Aventúrate con nosotros</div>
+//  </div>
+//</div>
+//</div>
