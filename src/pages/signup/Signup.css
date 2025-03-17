@@ -107,6 +107,7 @@ hr {
 .botonIrHome:hover{
     background-color: rgb(114, 194, 114); 
     color: white;
+    cursor: pointer;
 }
 
 .copyright{
@@ -174,6 +175,7 @@ hr {
 .google1:hover, .google2.google2:hover{
     background-color:#ffffff; 
     color:#4E4E4E;
+    cursor: pointer;
 }
 
 .imgGoogle{

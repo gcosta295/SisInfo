@@ -111,11 +111,12 @@ body {
   
   
   .button:hover {
-    background: #45a049; /* Color verde más oscuro al pasar el mouse */
+    background: #45a049; 
+    cursor: pointer;
   }
   
   .prev {
-    background: #4CAF50; /* Color verde para los botones */
+    background: #4CAF50; 
     border: none;
     font-size: 30px;
     cursor: pointer;

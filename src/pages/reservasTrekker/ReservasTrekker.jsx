@@ -18,11 +18,11 @@ export default function ReservasTrekker() {
         async function getData() {
             try {
                 const userRef = `/Users/${profile.uid}`;
-                console.log("Buscando reservas para:", userRef);
+                console.log("bduscando reservas para:", userRef);
 
                 const q = query(
                     collection(db, "Reservations"),
-                    where("user", "==", userRef) // Ahora coincide con el formato en Firestore
+                    where("user", "==", userRef) 
                 );
 
                 const querySnapshot = await getDocs(q);

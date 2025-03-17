@@ -38,6 +38,7 @@
 .botonVerReservaTrekker:hover, .botonEditarTrekker:hover{
     background-color: rgb(114, 194, 114); 
     color: white;
+    cursor: pointer;
 }
 
 .contenedorPerfilPadre{
@@ -61,7 +62,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    width: 400px;
     height:auto;
     background-color: #dbdbdb;
     border-top-left-radius: 10px;
@@ -88,7 +89,7 @@
 .derechaContenedorPerfilTrekker{
     padding:50px;
     display: flex;
-    width: 700px;
+    width: 600px;
     flex-direction: column;
     gap:50px;
     

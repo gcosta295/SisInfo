@@ -4,6 +4,7 @@ import { use } from 'react';
 import {app} from '../../firebase/firebase.js'
 import { useState, useEffect } from 'react';
 import { collection, getDocs, addDoc, query, getFirestore, orderBy } from "firebase/firestore";
+import toast from 'react-hot-toast';
 
 const db = getFirestore(app);
 
@@ -38,6 +39,13 @@ export default function Foro() {
 
     const handleAddComment = async(event) => {
         event.preventDefault();
+
+        if(!newComment.trim()){
+            toast.error("El comentario no puede estar vacío.")
+            return;
+        };
+        
+
         try{
             await addDoc(collection(db, "Forum"), {  
                 comment: newComment,
@@ -57,13 +65,16 @@ export default function Foro() {
         <>
             <p className="tituloForo">Foro de AvilaTrekkers</p>
 
-            <form className="formComentarioForo">
-                <input className="publicarComentarioForo" value={newComment} type="text" placeholder="Añade un comentario..." onChange={(e) => setNewComment(e.target.value)}/>
-                <button className="botonPublicarForo" onClick={handleAddComment}>Publicar</button>
-            </form>    
+            
 
             <div className="contenedorForo">
                 <div className="contenedorComentarios">
+                    <div className="formComentarioForo">
+                        <textarea className="publicarComentarioForo" value={newComment} type="text" placeholder="Añade un comentario..." onChange={(e) => setNewComment(e.target.value)}/>
+                        <div className="contenedorBotonPublicarForo">    
+                            <button className="botonPublicarForo" onClick={handleAddComment}>Publicar</button>
+                        </div>
+                    </div>    
                     {dataForo.map((comment) => (  //por cada elemento de dataforo leo un comentario y por cada comentario retorno lo de dentro de la arrow function
                         <div key={comment.id} className="comentario">
                             <img className="imgPerfilForo" src={comment.userProfilePic} width={70} height={70} />

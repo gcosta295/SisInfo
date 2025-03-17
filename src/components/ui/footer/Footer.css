@@ -23,6 +23,7 @@
 
 .contactfoot:hover{
     color: green;
+    cursor: pointer;
 }
 
 .copyrightFooter{
