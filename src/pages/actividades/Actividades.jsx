@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faCalendarDays, faArrowPointer } from "@fortawesome/free-solid-svg-icons";
 import { Navigate, useNavigate } from "react-router";
 import { db } from "../../firebase/firebase"; 
-import { collection, query, where, getDocs } from "firebase/firestore"; 
+import { collection, query, where, getDocs, doc } from "firebase/firestore"; 
 import { useState, useEffect} from "react";
 import Navbar from "../../components/ui/navbar/Navbar";
 
@@ -44,6 +44,7 @@ export default function Actividades() {
         fetchData();
     }, []);
     const [tSerch, setTSearch] = useState("normal");
+    const [dSerch, setDSerch] = useState("");
     return(
 
     <div className="container">
@@ -74,6 +75,10 @@ export default function Actividades() {
             <button className="menu-button2" onClick={Serch(tSerch , activities)}><span>Buscar</span></button>
         </div> {/* fin de div */}
 
+        <label>
+          <input className="box-text" type="text" placeholder="tipo / fecha (DD/MM/YY) / nombre"/>
+        </label>
+
     </div>
 
     <div className="container">
@@ -103,11 +108,12 @@ export default function Actividades() {
 
 function Serch(tSerch,activities){
     const list = [];
-    //console.log(activities);
+    //console.log("hola");
     if (tSerch != "normal"){
         if (tSerch == "Buscar excursión"){
             for(const x of activities.entries()) {
-                if (x[1].type == "Rappel"){                 //modificar por tipo input
+                //console.log(document.getElementsByClassName("box-text")[0].value);
+                if (x[1].type == document.getElementsByClassName("box-text")[0].value){     
                     list.push(x[1]);
                 }
             }
@@ -121,7 +127,7 @@ function Serch(tSerch,activities){
         }
         if (tSerch == "Elegir Actividad"){
             for(const x of activities.entries()) {
-                if (x[1].name.includes("e")){                 //modificar por name input
+                if (x[1].name.includes(document.getElementsByClassName("box-text")[0].value)){      
                     list.push(x[1]);
                 }
             }
