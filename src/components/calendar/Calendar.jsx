@@ -17,11 +17,11 @@ return(
     <Calendar
       static
       value={fixedDate}
-      onChange={() => {}} // No permite cambios
-      // excludeDate={(date) => date.getTime() !== fixedDay.getTime()} // Bloquea otras fechas
-      minDate={fixedDate} // Evita retroceder de mes
-        maxDate={fixedDate} // Evita avanzar de mes
-        disableOutsideEvents // Evita cambiar de mes con eventos externos
+      onChange={() => {}} 
+      // excludeDate={(date) => date.getTime() !== fixedDay.getTime()}
+      minDate={fixedDate}
+        maxDate={fixedDate} 
+        disableOutsideEvents 
       renderDay={(date) => {
         const day = date;
         const sameDay = day.getDate() === fixedDate.getDate() && day.getMonth() === fixedDate.getMonth() && day.getFullYear() === fixedDate.getFullYear()
@@ -45,7 +45,7 @@ return(
             fontWeight: "bold",
             borderRadius: "50%",
           }
-        : { pointerEvents: "none", color: "#ccc" } // Deshabilita otras fechas
+        : { pointerEvents: "none", color: "#ccc" }
       },
       }}
     />
@@ -61,14 +61,14 @@ return(
           }}
               // value={fixedDate}
               // onChange={() => {}} // no permite cambios
-              // excludeDate={(date) => date.getTime() !== fixedDate.getTime()} // bloquea todas las fechas excepto la fija
+              // excludeDate={(date) => date.getTime() !== fixedDate.getTime()} 
               // // fullWidth
               // size="md"
               // styles={{
               //     day: (date) =>
               //         date.getTime() === fixedDate.getTime()
               //             ? { backgroundColor: "#1971c2", color: "white", fontWeight: "bold", borderRadius: "50%" }
-              //             : { pointerEvents: "none", color: "#ccc" }, // deshabilita otras fechas
+              //             : { pointerEvents: "none", color: "#ccc" }, 
               // }}
           /> */}
           {/* <Demo/> */}
