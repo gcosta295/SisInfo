@@ -63,8 +63,15 @@ export default function Reserva() {
 
         getData();
     }, [params.actividadId]);
+    function formatearFechaDDMMYYYY(fecha) {
+        const dia = fecha.getDate().toString().padStart(2, '0');
+        const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Los meses van de 0 a 11
+        const año = fecha.getFullYear();
+        return `${dia}-${mes}-${año}`;
+      }
+    const fixedDate = new Date(data?.date?.seconds * 1000 + data?.date?.nanoseconds / 1000000); // Fecha fija (15 de marzo de 2025)
 
-
+    const isoDate = formatearFechaDDMMYYYY(fixedDate)
     return(
         <>
         <p className="tituloActividad">{data.type} - {routeData.name}</p>
@@ -78,13 +85,15 @@ export default function Reserva() {
                 <p className="tituloDetalles">Detalles de la actividad</p>
                 <div className="containerReservaDetalles2">
                     <p className="costo">$ {data.cost}</p>
-                    <p className="primero">DÍA <br></br>PONER FECHA</p>
+                    <p className="primero">DÍA <br></br>{isoDate}</p>
                     <p className="segundo">ACTIVIDAD <br></br>{data.type}</p>
                     <p className="tercero">RUTA <br></br>{routeData.type} - {routeData.name}</p>
                     <p className="cuarto">GUÍA <br></br>{guiaData.firstName} {guiaData.lastName}</p>
                 </div>
                 <br></br>
-                    <Paypal className="botonPaypal" actividad={data}></Paypal>
+                <div className="botonPaypal">
+                    <Paypal actividad={data}></Paypal>
+                </div>
             </div>
         </div>
 

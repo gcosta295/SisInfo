@@ -14,13 +14,21 @@ export default function Signup() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [profilePic, setProfilePic] = useState("");
     const [name, setName] = useState("");
     const [lastname, setLastname] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [tipoUser, setTipoUser] = useState("");
+    const [nacionality, setNacionality] = useState("");
+    const [favAct, setFavAct] = useState("");
+    const [descrip, setDescrip] = useState("");
 
     const handleSignUp = async() => {
         if (!email || !password) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
+        
+        const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
+        const profilePicUrl = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=128`;
+        
         createUserWithEmailAndPassword(auth, email, password)
           .then(async(userCredential) => {
             const user = userCredential.user;
@@ -30,8 +38,13 @@ export default function Signup() {
                   email: user.email,
                   firstName: name,
                   lastName: lastname,
+                  profilePicture: profilePicUrl,
                   phoneNumber: phoneNumber,
-                  tipoUsuario: tipoUser
+                  tipoUsuario: tipoUser,
+                  description: descrip,
+                  favActivity: favAct,
+                  nacionality: nacionality,
+
                 });
               }
             setEmail("");

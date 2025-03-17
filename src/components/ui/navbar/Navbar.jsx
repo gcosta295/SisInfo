@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import { useState } from 'react';
 import "./Navbar.css";  
 import { UserContext } from '../../../context/UserContext.jsx';
-import { use } from 'react'
+import { use } from 'react';
 import {app} from '../../../firebase/firebase.js';
 import { getAuth, signOut } from "firebase/auth";
 import { useEffect } from "react";

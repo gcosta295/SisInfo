@@ -7,13 +7,13 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    gap:5px;
+    gap:20px;
 
 }
 
 .contactfoot{
     color: white; 
-    font-size: larger;
+    font-size: 20px;;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -22,17 +22,12 @@
 }
 
 .contactfoot:hover{
-    color: rgba(5, 44, 5, 0.628);
+    color: green;
 }
 
-.copyright{
+.copyrightFooter{
     color: white; 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 10px;
 }
 
-.avtr{
-    color: white; 
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 10px;
-}
