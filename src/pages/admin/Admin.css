@@ -81,3 +81,11 @@
 
 }
 
+.right-side{
+    margin-left: auto; 
+  
+}
+
+.botondiv{
+    display:flex
+}
