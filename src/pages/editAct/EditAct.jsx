@@ -178,10 +178,9 @@ export default function EditActivity() {
     setNewDesc(document.getElementsByClassName("large-textarea")[0].value);
     setNewGuide(document.getElementsByClassName("drop2")[0].value);
     setNewImage(document.getElementsByClassName("url")[0].value);
-    setNewPrice(document.getElementsByClassName("aPrice")[0].value);
+    setNewCost(document.getElementsByClassName("aCost")[0].value);
     setNewType(document.getElementsByClassName("drop1")[0].value);
-    if(!newRoute || !newDesc || !newPrice || !newImage || !newType || !newGuide)return;
-    console.log("si");
+    if(!newRoute || !newDesc || !newCost || !newImage || !newType || !newGuide)return;
       try {
         const docRef = doc(db, "Activities", params.actividadId);
         const guideRef = doc(db, "Users", newGuide);
@@ -237,7 +236,7 @@ export default function EditActivity() {
         <button type="button" className="return2" onClick={gotoAdmin}>
           Regresar
         </button>
-        <form onSubmit={handleSubmit}>
+
           <h1>Tipo de Ruta</h1>
           <label>
             <select
@@ -256,7 +255,7 @@ export default function EditActivity() {
           <h1>Precio</h1>
           <label>
             <FontAwesomeIcon icon={faDollarSign} />
-            <input type="text" value={newCost} onChange={handleCostChange} />
+            <input type="text" value={newCost} onChange={handleCostChange} className="aCost"/>
           </label>
           <h1>Descripcion</h1>
           <label>
@@ -268,12 +267,12 @@ export default function EditActivity() {
           </label>
           <h1>URL de Imagen</h1>
           <label className="L">
-            <input type="text" value={newImage} onChange={handleImageChange} />
+            <input type="text" value={newImage} className = "url" onChange={handleImageChange} />
           </label>
           <h1>Tipo de Actividad</h1>
           <label>
             <select
-              className="drop"
+              className="drop1"
               value={newType}
               onChange={handleTypeChange}
             >
@@ -288,7 +287,7 @@ export default function EditActivity() {
           <h1>Asignar Guia</h1>
           <label>
             <select
-              className="drop"
+              className="drop2"
               value={newGuide}
               onChange={handleGuideChange}
             >
@@ -304,11 +303,11 @@ export default function EditActivity() {
             <button type="button" className="guardar3" onClick={handleDelete}>
               Eliminar
             </button>
-            <button type="submit" className="guardar">
+            <button type="submit" className="guardar" onClick={handleSubmit}> 
               Guardar
             </button>
           </div>
-        </form>
+
         {updateStatus && <p>{updateStatus}</p>}
       </div>
       <div className="RightColumn">
