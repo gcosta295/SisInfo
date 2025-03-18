@@ -72,8 +72,6 @@ export default function Actividad() {
         <>  <p className="tituloActividad">{dataAct.type} - {routeData.name}</p>
             <p className="tipoRuta">Ruta {routeData.type}</p>
             <p className="nombreGuia">Guia: {guiaData.firstName} {guiaData.lastName}</p>
-            
-
 
             <button className='botonReservar' onClick={goto1}>Reservar</button>
 

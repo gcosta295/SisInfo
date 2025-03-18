@@ -113,18 +113,19 @@ export default function EditActivity() {
         price: newPrice,
         image: newImage,
         type: newType,
+        guia: newGuide,
       });
-      setUpdateStatus("Name updated successfully!");
+      setUpdateStatus("Actividad Actualizada!");
     } catch (error) {
       console.error("Error updating document:", error);
-      setUpdateStatus("Error updating name: " + error.message); // Display error message
+      setUpdateStatus("Error updating name: " + error.message); // Mensaje de error
     }
   };
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this activity?"
-    ); // Add confirmation
+    ); // Confirmacion por si de verdad deseas borrarlo
     if (!confirmDelete) return;
 
     if (!targetString) {
@@ -135,7 +136,7 @@ export default function EditActivity() {
       const docRef = doc(db, "Activities", targetString);
       await deleteDoc(docRef);
       setUpdateStatus("Activity deleted successfully!");
-      navigate("/admin"); // Navigate to admin page after deletion
+      navigate("/admin"); // Te devuelve a la pagina anterior al borrar
     } catch (error) {
       console.error("Error deleting document:", error);
       setUpdateStatus("Error deleting activity: " + error.message);
@@ -151,9 +152,15 @@ export default function EditActivity() {
 
   if (!activityToEdit) return <p>Activity not found.</p>;
 
+  const gotoAdmin = () => {
+    navigate(`/admin`);
+  };
   return (
     <div className="mainContainer3">
       <div className="LeftColumn">
+        <button type="button" className="return2" onClick={gotoAdmin}>
+          Regresar
+        </button>
         <form onSubmit={handleSubmit}>
           <h1>Nombre Actividad</h1>
           <label>

@@ -49,10 +49,10 @@ h1{
 .botoncitos{
     display: flex;
     flex-direction: row;
+    margin-top: 10%;
 }
 .guardar{
-    margin-left: 5%;
-    margin-top: 10%;
+    margin-bottom: 5%;
     background-color: #83A846;
     color: white;
     font-weight: bold;
@@ -64,15 +64,36 @@ h1{
 }
 
 .guardar3{
+    margin-right: 10%;
     margin-left: 30%;
-    margin-top: 10%;
     background-color: #83A846;
     color: white;
     font-weight: bold;
     border: 2px solid #83A846;
     border-radius: 10px;
     width:300px;
-    height:40px;
-    
-    
+    height:40px; 
 }
+
+.return2{
+
+    background-color: #83A846;
+    color: white;
+    font-weight: bold;
+    border-color: #83A846;
+    border: 2px solid #83A846;
+    border-radius: 10px;
+    width:120px;
+    height:40px; 
+}
+
+.return2:hover, .guardar:hover, .guardar3:hover{
+    cursor: pointer;
+    filter: drop-shadow(3px 5px 5px rgba(0, 0, 0, 0.45));
+}
+
+.return2:active, .guardar:active, .guardar3:active{
+    filter: none;
+    transform: scale(.95);
+}
+
