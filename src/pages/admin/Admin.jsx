@@ -32,13 +32,14 @@ export default function Home() {
   const [tSerch, setTSearch] = useState("normal");
 
   return (
-    <div className="mainContainer">
+    <div className="mainContainer2">
       <div className="firstRow">
         <div className="empt"></div>
         <div className="Nombre">Nombre de Actividad</div>
         <div className="Precio">Precio</div>
         <div className="empt2">Editar</div>
       </div>
+      
       <div className="activities">
         {activities.map((activity, i) => (
           <RenderA
