@@ -68,7 +68,7 @@ export default function App() {
               <Route path="informacion" element={<Informacion/>} />
               <Route path="contacto" element={<Contacto />} />
               <Route path="admin" element={<Admin />} />
-              <Route path="editAct/:name" element={<EditAct />} />
+              <Route path="editAct/:actividadId" element={<EditAct />} />
               <Route path="actividad/:name" element={<Actividad />} />
             </Route>
           </Route>

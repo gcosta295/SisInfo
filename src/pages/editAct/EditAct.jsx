@@ -6,47 +6,90 @@ import {
   collection,
   query,
   where,
-  getDocs,
+  getDoc,
   doc,
   updateDoc,
+  getDocs,
 } from "firebase/firestore";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 export default function EditActivity() {
-  const fullUrl = window.location.href; // Get the full URL
-  const pathname = window.location.pathname; // Get the pathname
-  const targetString = pathname.replace("/editAct/", "");
   const [activities, setActivities] = useState([]);
-  const [users, setUsers] = useState([]);
-  const navigate = useNavigate();
+  const [activityToEdit, setActivityToEdit] = useState(null);
 
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [newName, setNewName] = useState("");
   const [newDesc, setNewDesc] = useState("");
   const [newGuide, setNewGuide] = useState("");
-
-  const [newPrice, setNewPrice] = useState("");
+  const params = useParams();
+  const [dataAct, setDataAct] = useState(null);
+  const [newCost, setNewCost] = useState("");
   const [newImage, setNewImage] = useState("");
   const [newType, setNewType] = useState("");
+  const [newRoute, setNewRoute] = useState("");
+  const [routeData, setRouteData] = useState({});
+
   const [updateStatus, setUpdateStatus] = useState(null);
   const [guideNames, setGuideNames] = useState([]); // Combined guide names state
+  const [RouteNames, setRouteNames] = useState([]); // Combined guide names state
 
   const typeOptions = ["Paseo", "Rappel", "Excursion"];
+  const [guiaData, setGuiaData] = useState(null); // Add useState for guiaData
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "Activities"));
-        const activityData = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setActivities(activityData);
+      if (!params?.actividadId) {
+        console.error("actividadId is undefined");
+        setLoading(false);
+        return;
+      }
 
+      const actividadRef = doc(db, "Activities", params.actividadId);
+
+      try {
+        const actividadSnap = await getDoc(actividadRef);
+
+        if (!actividadSnap.exists()) {
+          console.log("Documento de actividad no existe!!!");
+          setError("Activity not found.");
+          setLoading(false);
+          return;
+        }
+
+        const activityData = actividadSnap.data();
+
+        if (activityData.guia) {
+          const guiaRef = activityData.guia;
+          const guiaSnap = await getDoc(guiaRef);
+
+          if (guiaSnap.exists()) {
+            setGuiaData(guiaSnap.data());
+            console.log("datos de guia:", guiaSnap.data());
+          }
+          setNewGuide(activityData.guia.id); // Extract document ID from reference
+        } else {
+          setNewGuide("");
+        }
+
+        if (activityData.route) {
+          const routeRef = activityData.route;
+          const routeSnap = await getDoc(routeRef);
+
+          if (routeSnap.exists()) {
+            setRouteData(routeSnap.data());
+            console.log("datos de ruta:", routeSnap.data());
+          }
+          setNewRoute(activityData.route.id); // Extract document ID from reference
+        } else {
+          setNewRoute("");
+        }
+
+        // Fetch all guides for the dropdown
         const usersCollection = collection(db, "Users");
         const guidesQuery = query(
           usersCollection,
@@ -66,25 +109,48 @@ export default function EditActivity() {
           });
           setGuideNames(names);
         }
+
+        const routesCollection = collection(db, "Routes");
+        const routesSnapshot = await getDocs(routesCollection);
+
+        if (routesSnapshot.empty) {
+          console.log("No routes found.");
+        } else {
+          const Rnames = routesSnapshot.docs.map((doc) => {
+            const data2 = doc.data();
+            return {
+              id: doc.id,
+              name: `${data2.name} ${data2.type}`,
+            };
+          });
+          setRouteNames(Rnames);
+        }
+
+        setActivityToEdit(activityData);
+
+        setNewName(activityData.name);
+        setNewDesc(activityData.info);
+        setNewCost(activityData.cost);
+        setNewImage(activityData.image);
+        setNewType(activityData.type);
+
         setLoading(false);
       } catch (err) {
         setError(err);
         setLoading(false);
-        console.error("Error fetching activities:", err);
+        console.error("Error fetching data:", err);
       }
     };
+
     fetchData();
   }, []);
-  const handleNameChange = (e) => {
-    setNewName(e.target.value);
-  };
 
   const handleDescChange = (e) => {
     setNewDesc(e.target.value);
   };
 
-  const handlePriceChange = (e) => {
-    setNewPrice(e.target.value);
+  const handleCostChange = (e) => {
+    setNewCost(e.target.value);
   };
 
   const handleImageChange = (e) => {
@@ -98,22 +164,35 @@ export default function EditActivity() {
     setNewGuide(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleRouteChange = (e) => {
+    setNewRoute(e.target.value);
+  };
 
-    if (!targetString) {
+  const handleSubmit = async (e) => {
+
+    if (!params.actividadId) {
       setUpdateStatus("Error: documentId is missing.");
       return;
     }
-    try {
-      const docRef = doc(db, "Activities", targetString);
+    setNewRoute(document.getElementsByClassName("drop")[0].value);
+    setNewDesc(document.getElementsByClassName("large-textarea")[0].value);
+    setNewGuide(document.getElementsByClassName("drop2")[0].value);
+    setNewImage(document.getElementsByClassName("url")[0].value);
+    setNewCost(document.getElementsByClassName("aCost")[0].value);
+    setNewType(document.getElementsByClassName("drop1")[0].value);
+    if(!newRoute || !newDesc || !newCost || !newImage || !newType || !newGuide)return;
+      try {
+        const docRef = doc(db, "Activities", params.actividadId);
+        const guideRef = doc(db, "Users", newGuide);
+        const routeRef = doc(db, "Routes", newRoute);
       await updateDoc(docRef, {
         name: newName,
         info: newDesc,
-        price: newPrice,
+        cost: newCost,
         image: newImage,
         type: newType,
-        guia: newGuide,
+        guia: guideRef, // Save the reference string
+        route: routeRef, // Save the reference string
       });
       setUpdateStatus("Actividad Actualizada!");
     } catch (error) {
@@ -128,12 +207,12 @@ export default function EditActivity() {
     ); // Confirmacion por si de verdad deseas borrarlo
     if (!confirmDelete) return;
 
-    if (!targetString) {
+    if (!params.actividadId) {
       setUpdateStatus("Error: documentId is missing.");
       return;
     }
     try {
-      const docRef = doc(db, "Activities", targetString);
+      const docRef = doc(db, "Activities", params.actividadId);
       await deleteDoc(docRef);
       setUpdateStatus("Activity deleted successfully!");
       navigate("/admin"); // Te devuelve a la pagina anterior al borrar
@@ -146,10 +225,6 @@ export default function EditActivity() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const activityToEdit = activities.find(
-    (activity) => activity.id === targetString
-  );
-
   if (!activityToEdit) return <p>Activity not found.</p>;
 
   const gotoAdmin = () => {
@@ -161,15 +236,26 @@ export default function EditActivity() {
         <button type="button" className="return2" onClick={gotoAdmin}>
           Regresar
         </button>
-        <form onSubmit={handleSubmit}>
-          <h1>Nombre Actividad</h1>
+
+          <h1>Tipo de Ruta</h1>
           <label>
-            <input type="text" value={newName} onChange={handleNameChange} />
+            <select
+              className="drop"
+              value={newRoute}
+              onChange={handleRouteChange}
+            >
+              <option value="">Ruta</option>
+              {RouteNames.map((route) => (
+                <option key={route.id} value={route.id}>
+                  {route.name}
+                </option>
+              ))}
+            </select>
           </label>
           <h1>Precio</h1>
           <label>
             <FontAwesomeIcon icon={faDollarSign} />
-            <input type="text" value={newPrice} onChange={handlePriceChange} />
+            <input type="text" value={newCost} onChange={handleCostChange} className="aCost"/>
           </label>
           <h1>Descripcion</h1>
           <label>
@@ -181,12 +267,12 @@ export default function EditActivity() {
           </label>
           <h1>URL de Imagen</h1>
           <label className="L">
-            <input type="text" value={newImage} onChange={handleImageChange} />
+            <input type="text" value={newImage} className = "url" onChange={handleImageChange} />
           </label>
           <h1>Tipo de Actividad</h1>
           <label>
             <select
-              className="drop"
+              className="drop1"
               value={newType}
               onChange={handleTypeChange}
             >
@@ -201,11 +287,11 @@ export default function EditActivity() {
           <h1>Asignar Guia</h1>
           <label>
             <select
-              className="drop"
+              className="drop2"
               value={newGuide}
               onChange={handleGuideChange}
             >
-              <option value="">Selecciona</option>
+              <option value="">{newGuide}</option>
               {guideNames.map((guide) => (
                 <option key={guide.id} value={guide.id}>
                   {guide.name}
@@ -217,11 +303,11 @@ export default function EditActivity() {
             <button type="button" className="guardar3" onClick={handleDelete}>
               Eliminar
             </button>
-            <button type="submit" className="guardar">
+            <button type="submit" className="guardar" onClick={handleSubmit}> 
               Guardar
             </button>
           </div>
-        </form>
+
         {updateStatus && <p>{updateStatus}</p>}
       </div>
       <div className="RightColumn">
@@ -231,7 +317,7 @@ export default function EditActivity() {
           <h1>{activityToEdit.name}</h1>
           <h1>
             <FontAwesomeIcon icon={faDollarSign} />
-            {activityToEdit.price}
+            {activityToEdit.cost}
           </h1>
         </div>
       </div>
