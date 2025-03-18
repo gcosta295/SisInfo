@@ -76,7 +76,7 @@ export default function Actividades() {
         </div> {/* fin de div */}
 
         <label>
-          <input className="box-text" type="text" placeholder="tipo / fecha (DD/MM/YY) / nombre"/>
+          <input className="box-text" type="text" placeholder="tipo / fecha (MM/DD/YY) / nombre"/>
         </label>
 
     </div>
@@ -108,11 +108,10 @@ export default function Actividades() {
 
 function Serch(tSerch,activities){
     const list = [];
-    //console.log("hola");
+    console.log(activities);
     if (tSerch != "normal"){
         if (tSerch == "Buscar excursión"){
             for(const x of activities.entries()) {
-                //console.log(document.getElementsByClassName("box-text")[0].value);
                 if (x[1].type == document.getElementsByClassName("box-text")[0].value){     
                     list.push(x[1]);
                 }
@@ -120,9 +119,25 @@ function Serch(tSerch,activities){
         }
         if (tSerch == "Insertar fecha"){
             for(const x of activities.entries()) {
-                if (x[1].date.seconds == 1742529600 || x[1].date.nanoseconds == 365000000){                 //modificar por date input
-                    list.push(x[1]);
+                var myDate = new Date( x[1].date.seconds *1000);
+                const myArray = myDate.toLocaleString().split(",");
+                try {
+                    const Array1 = document.getElementsByClassName("box-text")[0].value.split("/");
+                    console.log(Array1);
+                    const Array2 = myArray[0].split("/");
+                    console.log(Array2);
+                    if (parseInt(Array1[0])-parseInt(Array2[0])==0 && parseInt(Array1[1])-parseInt(Array2[1])==0){
+                        if ((parseInt(Array1[2])-parseInt(Array2[2]))%10==0){
+                            console.log(3);
+                            list.push(x[1]);
+                        }                 
+                        
                 }
+                  }
+                  catch(err) {
+                    document.getElementById("demo").innerHTML = err.message;
+                  }
+                
             }
         }
         if (tSerch == "Elegir Actividad"){
