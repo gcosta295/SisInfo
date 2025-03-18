@@ -75,51 +75,36 @@ export default function EditActivity() {
     };
     fetchData();
   }, []);
-  const handleNameChange = (e) => {
-    setNewName(e.target.value);
-  };
-
-  const handleDescChange = (e) => {
-    setNewDesc(e.target.value);
-  };
-
-  const handlePriceChange = (e) => {
-    setNewPrice(e.target.value);
-  };
-
-  const handleImageChange = (e) => {
-    setNewImage(e.target.value);
-  };
-  const handleTypeChange = (e) => {
-    setNewType(e.target.value);
-  };
-
-  const handleGuideChange = (e) => {
-    setNewGuide(e.target.value);
-  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
 
     if (!targetString) {
       setUpdateStatus("Error: documentId is missing.");
       return;
     }
-    try {
-      const docRef = doc(db, "Activities", targetString);
-      await updateDoc(docRef, {
-        name: newName,
-        info: newDesc,
-        price: newPrice,
-        image: newImage,
-        type: newType,
-        guia: newGuide,
-      });
-      setUpdateStatus("Actividad Actualizada!");
-    } catch (error) {
-      console.error("Error updating document:", error);
-      setUpdateStatus("Error updating name: " + error.message); // Mensaje de error
-    }
+    setNewName(document.getElementsByClassName("aName")[0].value);
+    setNewDesc(document.getElementsByClassName("large-textarea")[0].value);
+    setNewGuide(document.getElementsByClassName("drop2")[0].value);
+    setNewImage(document.getElementsByClassName("url")[0].value);
+    setNewPrice(document.getElementsByClassName("aPrice")[0].value);
+    setNewType(document.getElementsByClassName("drop1")[0].value);
+    if(!newName || !newDesc || !newPrice || !newImage || !newType || !newGuide)return;
+    console.log("si");
+      try {
+        const docRef = doc(db, "Activities", targetString);
+        await updateDoc(docRef, {
+          name: newName,
+          info: newDesc,
+          price: newPrice,
+          image: newImage,
+          type: newType,
+          guia: newGuide,
+        });
+        setUpdateStatus("Actividad Actualizada!");
+      } catch (error) {
+        console.error("Error updating document:", error);
+        setUpdateStatus("Error updating name: " + error.message); // Mensaje de error
+      }
   };
 
   const handleDelete = async () => {
@@ -161,67 +146,59 @@ export default function EditActivity() {
         <button type="button" className="return2" onClick={gotoAdmin}>
           Regresar
         </button>
-        <form onSubmit={handleSubmit}>
-          <h1>Nombre Actividad</h1>
-          <label>
-            <input type="text" value={newName} onChange={handleNameChange} />
-          </label>
-          <h1>Precio</h1>
-          <label>
-            <FontAwesomeIcon icon={faDollarSign} />
-            <input type="text" value={newPrice} onChange={handlePriceChange} />
-          </label>
-          <h1>Descripcion</h1>
-          <label>
-            <textarea
-              className="large-textarea"
-              value={newDesc}
-              onChange={handleDescChange}
-            ></textarea>
-          </label>
-          <h1>URL de Imagen</h1>
-          <label className="L">
-            <input type="text" value={newImage} onChange={handleImageChange} />
-          </label>
-          <h1>Tipo de Actividad</h1>
-          <label>
-            <select
-              className="drop"
-              value={newType}
-              onChange={handleTypeChange}
-            >
-              <option value="">Selecciona</option>
-              {typeOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
-          <h1>Asignar Guia</h1>
-          <label>
-            <select
-              className="drop"
-              value={newGuide}
-              onChange={handleGuideChange}
-            >
-              <option value="">Selecciona</option>
-              {guideNames.map((guide) => (
-                <option key={guide.id} value={guide.id}>
-                  {guide.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <div className="botoncitos">
-            <button type="button" className="guardar3" onClick={handleDelete}>
-              Eliminar
-            </button>
-            <button type="submit" className="guardar">
-              Guardar
-            </button>
-          </div>
-        </form>
+        <h1>Nombre Actividad</h1>
+        <label>
+          <input type="text" className="aName"/>
+        </label>
+        <h1>Precio</h1>
+        <label>
+          <FontAwesomeIcon icon={faDollarSign} />
+          <input type="text" className="aPrice"/>
+        </label>
+        <h1>Descripcion</h1>
+        <label>
+          <textarea
+            className="large-textarea"
+          ></textarea>
+        </label>
+        <h1>URL de Imagen</h1>
+        <label className="L">
+          <input type="text" className="url"/>
+        </label>
+        <h1>Tipo de Actividad</h1>
+        <label>
+          <select
+            className="drop1"
+          >
+            <option value="">Selecciona</option>
+            {typeOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+        <h1>Asignar Guia</h1>
+        <label>
+          <select
+            className="drop2"
+          >
+            <option value="">Selecciona</option>
+            {guideNames.map((guide) => (
+              <option key={guide.id} value={guide.id}>
+                {guide.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <div className="botoncitos">
+          <button type="button" className="guardar3" onClick={handleDelete}>
+            Eliminar
+          </button>
+          <button type="button" className="guardar" onClick={handleSubmit}>
+            Guardar
+          </button>
+        </div>
         {updateStatus && <p>{updateStatus}</p>}
       </div>
       <div className="RightColumn">
