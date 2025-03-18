@@ -21,17 +21,36 @@ export default function CarruselNoticias(){
         descripcion:"Aventúrate con nosotros",
         imagen: "./fotos/informacion/news_guias.png"
     },
-    {titulo:"Premiaremos a nuestros Trekkers más activos",
+    {titulo:"Premios para nuestros Trekkers",
         fecha:"16 de Febrero, 2025",
         descripcion:"Vive una experiencia genial",
         imagen: "./fotos/informacion/news_premio.png"
+    },
+    {titulo:"Taller de fotografía de naturaleza",
+        fecha:"20 de Marzo, 2025",
+        descripcion:"Captura la belleza de nuestros paisajes",
+        imagen: "./fotos/informacion/news_taller_fotografia.png"
+    },
+    {titulo:"Nueva experiencia de rappel nocturno",
+        fecha:"10 de Marzo, 2025",
+        descripcion:"Descubre la adrenalina bajo las estrellas",
+        imagen: "./fotos/informacion/news_rappel_nocturno.png"
+    },
+    {titulo:"Nuevas rutas de senderismo",
+        fecha:"15 de Marzo, 2025",
+        descripcion:"Descubre vistas espectaculares.",
+        imagen: "./fotos/informacion/news_nuevas_rutas_senderismo.png"
+    },
+    {titulo:"Taller de técnicas de escalada",
+        fecha:"22 de Marzo, 2025",
+        descripcion:"Únete a nuestro taller para aprender técnicas avanzadas de escalada y rappel.",
+        imagen: "./fotos/informacion/news_taller_escalada.png"
     }
-
 
     ]
     return (
-        <div className="md:p-24 p-8">
-            <h2 className="text-[40px] text-gray-700 font-bold">Entérate de nuestras últimas noticias</h2>     
+        <div className="md:px-20 md:py-16 p-8">
+            <h2 className="text-[40px] text-gray-700 font-bold mb-9">Entérate de nuestras últimas noticias</h2>     
             <div className="bg-white shadow rounded-lg md:p-16 p-6 m-auto w-full h-fit">
                 <Swiper
                   spaceBetween={50}
