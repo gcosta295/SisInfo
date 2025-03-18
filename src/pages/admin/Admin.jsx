@@ -33,6 +33,10 @@ export default function Home() {
 
   return (
     <div className="mainContainer2">
+      <div className="botondiv">
+      <button className="guardar right-side">Nueva Actividad</button>
+
+      </div>
       <div className="firstRow">
         <div className="empt"></div>
         <div className="Nombre">Nombre de Actividad</div>
