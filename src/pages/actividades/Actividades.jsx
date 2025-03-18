@@ -124,7 +124,7 @@ function Serch(tSerch,activities){
                     const Array2 = myArray[0].split("/");
                     console.log(Array2);
                     if (parseInt(Array1[0])-parseInt(Array2[0])==0 && parseInt(Array1[1])-parseInt(Array2[1])==0){
-                        if ((parseInt(Array1[2])-parseInt(Array2[2]))%10==0){
+                        if ((parseInt(Array1[2])-parseInt(Array2[2]))%10==0 && (parseInt(Array1[2])-parseInt(Array2[2]))>=0){
                             console.log(3);
                             list.push(x[1]);
                         }                 
