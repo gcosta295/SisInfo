@@ -177,16 +177,18 @@ export default function EditActivity() {
     }
     try {
       const docRef = doc(db, "Activities", params.actividadId);
-      const guideRefString = `/Users/${newGuide}`;
-      const routeRefString = `/Routes/${newRoute}`;
+      const guideRef = doc(db, "Users", newGuide);
+      const routeRef = doc(db, "Routes", newRoute);
+
       await updateDoc(docRef, {
-        name: newName,
-        info: newDesc,
-        cost: newCost,
-        image: newImage,
-        type: newType,
-        guia: guideRefString, // Save the reference string
-        route: routeRefString, // Save the reference string
+          name: newName,
+          info: newDesc,
+          cost: newCost,
+          image: newImage,
+          type: newType,
+          guia: guideRef, // Save the DocumentReference
+          route: routeRef, // Save the DocumentReference
+
       });
       setUpdateStatus("Actividad Actualizada!");
     } catch (error) {
