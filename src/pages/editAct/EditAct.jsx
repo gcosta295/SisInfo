@@ -72,17 +72,25 @@
               }
 
               // Fetch all guides for the dropdown
-              const guidesCollection = collection(db, "Users  ");
-              const guidesSnap = await getDocs(guidesCollection);
-
-              const names = guidesSnap.docs.map((doc) => {
+              const usersCollection = collection(db, "Users");
+              const guidesQuery = query(
+                usersCollection,
+                where("tipoUsuario", "==", "guia")
+              );
+              const guidesSnapshot = await getDocs(guidesQuery);
+      
+              if (guidesSnapshot.empty) {
+                console.log("No guides found.");
+              } else {
+                const names = guidesSnapshot.docs.map((doc) => {
                   const data = doc.data();
                   return {
-                      id: doc.id,
-                      name: `${data.firstName} ${data.lastName}`,
+                    id: doc.id,
+                    name: `${data.firstName} ${data.lastName}`,
                   };
-              });
-              setGuideNames(names);
+                });
+                setGuideNames(names);
+              }
 
               setActivityToEdit(activityData);
 
