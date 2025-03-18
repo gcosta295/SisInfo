@@ -41,6 +41,8 @@ export default function App() {
               <Route element={<ProtectedUserType roles={["guia", "administrador"]}/>}>   {/* usuarios permitidos: trekker (solo users loggeados) */}
                 <Route path="mi-perfil-trekker" element={<PerfilTrekker/>} /> 
                 <Route path="editar-trekker" element={<EditarPerfilTrekker/>} />
+                <Route path="actividad" element={<Actividad/>} />
+                <Route path="reserva" element={<Reserva/>} />
                 <Route path="reserva/:actividadId" element={<Reserva/>} />
                 <Route path="reservas-trekker" element={<ReservasTrekker/>} />
               </Route>
