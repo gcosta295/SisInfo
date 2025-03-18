@@ -145,6 +145,29 @@ export default function EditActivity() {
     fetchData();
   }, []);
 
+  const handleDescChange = (e) => {
+    setNewDesc(e.target.value);
+  };
+
+  const handleCostChange = (e) => {
+    setNewCost(e.target.value);
+  };
+
+  const handleImageChange = (e) => {
+    setNewImage(e.target.value);
+  };
+  const handleTypeChange = (e) => {
+    setNewType(e.target.value);
+  };
+
+  const handleGuideChange = (e) => {
+    setNewGuide(e.target.value);
+  };
+
+  const handleRouteChange = (e) => {
+    setNewRoute(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
 
     if (!params.actividadId) {
@@ -161,16 +184,16 @@ export default function EditActivity() {
     console.log("si");
       try {
         const docRef = doc(db, "Activities", params.actividadId);
-      const guideRefString = `/Users/${newGuide}`;
-      const routeRefString = `/Routes/${newRoute}`;
+        const guideRef = doc(db, "Users", newGuide);
+        const routeRef = doc(db, "Routes", newRoute);
       await updateDoc(docRef, {
         name: newName,
         info: newDesc,
         cost: newCost,
         image: newImage,
         type: newType,
-        guia: guideRefString, // Save the reference string
-        route: routeRefString, // Save the reference string
+        guia: guideRef, // Save the reference string
+        route: routeRef, // Save the reference string
       });
       setUpdateStatus("Actividad Actualizada!");
     } catch (error) {
@@ -214,11 +237,13 @@ export default function EditActivity() {
         <button type="button" className="return2" onClick={gotoAdmin}>
           Regresar
         </button>
+        <form onSubmit={handleSubmit}>
           <h1>Tipo de Ruta</h1>
           <label>
             <select
               className="drop"
               value={newRoute}
+              onChange={handleRouteChange}
             >
               <option value="">Ruta</option>
               {RouteNames.map((route) => (
@@ -231,18 +256,19 @@ export default function EditActivity() {
           <h1>Precio</h1>
           <label>
             <FontAwesomeIcon icon={faDollarSign} />
-            <input type="text" value={newCost}  />
+            <input type="text" value={newCost} onChange={handleCostChange} />
           </label>
           <h1>Descripcion</h1>
           <label>
             <textarea
               className="large-textarea"
               value={newDesc}
+              onChange={handleDescChange}
             ></textarea>
           </label>
           <h1>URL de Imagen</h1>
           <label className="L">
-            <input type="text" value={newImage} />
+            <input type="text" value={newImage} onChange={handleImageChange} />
           </label>
           <h1>Tipo de Actividad</h1>
           <label>
@@ -264,6 +290,7 @@ export default function EditActivity() {
             <select
               className="drop"
               value={newGuide}
+              onChange={handleGuideChange}
             >
               <option value="">{newGuide}</option>
               {guideNames.map((guide) => (
@@ -281,6 +308,7 @@ export default function EditActivity() {
               Guardar
             </button>
           </div>
+        </form>
         {updateStatus && <p>{updateStatus}</p>}
       </div>
       <div className="RightColumn">
