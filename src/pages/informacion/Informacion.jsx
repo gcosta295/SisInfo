@@ -15,7 +15,7 @@ export default function Informacion() {
 
     const contextProf = use(UserContext);
     const {profile, logged} = contextProf;
-    console.log(contextProf);
+    // console.log(profile);
 
     return (
     <div>

@@ -1,14 +1,10 @@
-import "./Actividades";
 import "./Actividades.css";
-import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faCalendarDays, faArrowPointer } from "@fortawesome/free-solid-svg-icons";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { db } from "../../firebase/firebase"; 
-import { collection, query, where, getDocs, doc } from "firebase/firestore"; 
+import { collection, getDocs } from "firebase/firestore"; 
 import { useState, useEffect} from "react";
-import Navbar from "../../components/ui/navbar/Navbar";
-
 
 
 const querySnapshot = await getDocs(collection(db, "Activities")); 
@@ -31,7 +27,7 @@ export default function Actividades() {
                 const querySnapshot = await getDocs(collection(db, "Activities"));
                 const activityData = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
-                    ...doc.data(),
+                    ...doc.data(),  //lo mismo que pasa en UserContext,
                 }));
                 setActivities(activityData);
                 setLoading(false);
@@ -46,65 +42,66 @@ export default function Actividades() {
     const [tSerch, setTSearch] = useState("normal");
     const [dSerch, setDSerch] = useState("");
     return(
+        <div className="container">
 
-    <div className="container">
+            <div className= "ActividadHome">
+                <img src="\fotos\caminio.jpg" alt="Bosque" className="imgActividadHome"/>
+            </div> {/* cierro div ActividadHome */}
+        
 
-        <div className= "ActividadHome">
-            <img src="\fotos\caminio.jpg" alt="Bosque" className="imgActividadHome"/>
-        </div> {/* cierro div ActividadHome */}
-    
+            <div className="container">
 
-    <div className="container">
+                <div className="fraseMain">
+                    <p className="fraseM">Elige una de las actividades para una excursión</p>
+                    <p className="fraseM">guiada según las rutas que ofrecemos</p>
+                </div>  {/* cierro div fraseMain */}
 
-        <div className="fraseMain">
-            <p className="fraseM">Elige una de las actividades para una excursión</p>
-            <p className="fraseM">guiada según las rutas que ofrecemos</p>
-        </div>  {/* cierro div fraseMain */}
+                <div className="containerDivisor">
+                    <div className="divisor"></div>
+                </div>  {/* fin de div containerDivisor */}
 
-        <div className="containerDivisor">
-            <div className="divisor"></div>
-        </div>  {/* fin de div containerDivisor */}
+                <div className='multi-button'>
+                    <button className="menu-button" onClick={() => setTSearch("Buscar excursión")}><FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <span> Buscar excursión</span></button>
+                    <button className="menu-button" onClick={() => setTSearch("Insertar fecha")}><FontAwesomeIcon icon={faCalendarDays} />
+                    <span> Insertar fecha</span></button>
+                    <button className="menu-button" onClick={() => setTSearch("Elegir Actividad")}><FontAwesomeIcon icon={faArrowPointer} />
+                    <span> Elegir Actividad </span></button>
+                    <button className="menu-button2" onClick={Serch(tSerch,activities)}><span>Buscar</span></button>
+                </div> {/* fin de div */}
 
-        <div className='multi-button'>
-            <button className="menu-button" onClick={() => setTSearch("Buscar excursión")}><FontAwesomeIcon icon={faMagnifyingGlass} />
-            <span> Buscar excursión</span></button>
-            <button className="menu-button" onClick={() => setTSearch("Insertar fecha")}><FontAwesomeIcon icon={faCalendarDays} />
-            <span> Insertar fecha</span></button>
-            <button className="menu-button" onClick={() => setTSearch("Elegir Actividad")}><FontAwesomeIcon icon={faArrowPointer} />
-            <span> Elegir Actividad </span></button>
-            <button className="menu-button2" onClick={Serch(tSerch , activities)}><span>Buscar</span></button>
-        </div> {/* fin de div */}
+            </div>
 
-        <label>
-          <input className="box-text" type="text" placeholder="tipo / fecha (MM/DD/YY) / nombre"/>
-        </label>
-
-    </div>
-
-    <div className="container">
-        <ul className="Acs">
+            <label>
+                <input className="box-text" type="text" placeholder="tipo / fecha (MM/DD/YY) / nombre"/>
+            </label>
             
-            {activities.map((activity) => (
-      
-                <RenderA
-                key={activity.id}
-                id={activity.id}
-                tipo={activity.type}
-                name={activity.name}
-                info={activity.info}
-                images={activity.image}
-                rating={activity.rating}
-                list={activities}
-                />
-          
-            ))}
-           
-        </ul>
-    </div>
-</div>
+            <div className="container">
+                <ul className="Acs">
+                    {activities.map((activity) => (
+            
+                        <RenderA
+                        key={activity.id}
+                        id={activity.id}
+                        tipo={activity.type}
+                        name={activity.name}
+                        info={activity.info}
+                        images={activity.image}
+                        rating={activity.rating}
+                        list={activities}
+                        />
+                
+                    ))}
+            
+                </ul>
+            </div>
+    
+        </div>
+
+        
 // cierro div container2
-)
-}   
+    )
+}
 
 function Serch(tSerch,activities){
     const list = [];
@@ -151,13 +148,13 @@ function Serch(tSerch,activities){
     console.log(list)
 }
 
-function RenderA({name, info, tipo, images, rating, id}){   
+function RenderA({activityId,name, info, tipo, images, rating, id}){   
     const mountainImages = [1, 2, 3, 4, 5];
     const navigate1 = useNavigate();
+    const gotocontact3 = () => {  
+        navigate1(`/actividad/${id}`)
+    }
 
-    const gotocontact3 = (event) => {
-        navigate1(`/actividad/${encodeURIComponent(id)}`); // Include name as a URL parameter
-    };
     return( 
 
     <li className="ac">
