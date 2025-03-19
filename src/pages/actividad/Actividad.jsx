@@ -14,15 +14,12 @@ export default function Actividad() {
     const [guiaData, setGuiaData] = useState({});
 
     useEffect(() => {
-        async function fetchData() {
-            const actividadRef = doc(db, "Activities", params.actividadId);
-
+        async function getData() {
+            const actividadRef = doc(db, 'Activities', params.actividadId);
             try {
                 const actividadSnap = await getDoc(actividadRef);
-
                 if (!actividadSnap.exists()) {
                     console.log("Documento de actividad no existe!!!");
-                    setLoading(false);
                     return;
                 }
 
@@ -31,7 +28,7 @@ export default function Actividad() {
                 console.log("Actividad:", actividadData);
 
                 if (actividadData.route) {
-                    const routeRef = actividadData.route;
+                    const routeRef = actividadData.route; 
                     const routeSnap = await getDoc(routeRef);
 
                     if (routeSnap.exists()) {
@@ -42,47 +39,26 @@ export default function Actividad() {
                     }
                 }
 
-                const querySnapshot = await getDocs(collection(db, "Activities"));
-                const activityData = querySnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-                setActivities(activityData);
-                console.log("Activities:", activityData);
+                if (actividadData.guia) {
+                    const guiaRef = actividadData.guia; 
+                    const guiaSnap = await getDoc(guiaRef);
 
-                const usersCollection = collection(db, "Users");
-                const guidesQuery = query(
-                    usersCollection,
-                    where("tipoUsuario", "==", "guia")
-                );
-                const guidesSnapshot = await getDocs(guidesQuery);
-
-                if (guidesSnapshot.empty) {
-                    console.log("No guides found.");
-                } else {
-                    const names = guidesSnapshot.docs.map((doc) => {
-                        const data = doc.data();
-                        return {
-                            id: doc.id,
-                            name: `${data.firstName} ${data.lastName}`,
-                        };
-                    });
-                    setGuideNames(names);
+                    if (guiaSnap.exists()) {
+                        setGuiaData(guiaSnap.data());
+                        console.log("datos de guia:", guiaSnap.data());
+                    } else {
+                        console.log("Guia no encontrado");
+                    }
                 }
 
-                setActivityToEdit(activityData.find(activity => activity.id === params.actividadId))
 
-                setLoading(false);
-            } catch (err) {
-                setError(err);
-                setLoading(false);
-                console.error("Error fetching data:", err);
+            } catch (error) {
+                console.error(error.message);
             }
         }
 
-        fetchData();
+        getData();
     }, [params.actividadId]);
-
     // console.log("params:", params)
 
     const navigate = useNavigate();
@@ -94,9 +70,9 @@ export default function Actividad() {
 
     return(
         <>  <p className="tituloActividad">{dataAct.type} - {routeData.name}</p>
-            <p className="tipoRuta">Ruta {routeData.type}</p>
+            <p className="tipoRuta">📍 Ruta {routeData.type}</p>
             <p className="nombreGuia">Guia: {guiaData.firstName} {guiaData.lastName}</p>
-
+            
             <button className='botonReservar' onClick={goto1}>Reservar</button>
 
         </>
