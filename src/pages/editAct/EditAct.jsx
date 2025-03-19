@@ -141,6 +141,8 @@ export default function EditActivity() {
         setNewImage(activityData.image);
         setNewType(activityData.type);
         setNewDif(activityData.rating);
+        setNewDate(activityData.date);
+
 
         setLoading(false);
       } catch (err) {
@@ -242,7 +244,11 @@ export default function EditActivity() {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  
+if (error) {
+    window.alert(error.message);
+    return null; // Or some other JSX to render
+}
 
   if (!activityToEdit) return <p>Activity not found.</p>;
 
