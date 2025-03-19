@@ -192,7 +192,8 @@ export default function Actividad() {
                 <p className="nombreForo">
                 {guiaData.firstName} {guiaData.lastName}
                 </p>
-               
+                <button className='botonVerPerfilGuiaDesdeTrekker' onClick={goto2}>Ver perfil del guia</button>
+
               </div>
             </div>
           </div>
