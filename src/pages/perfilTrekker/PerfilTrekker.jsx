@@ -39,10 +39,12 @@ export default function PerfilTrekker() {
                         <div>
                             <p className="tituloDescripcion">Descripción</p>
                             <p className="descripcionTrekker">{profile.description}</p>
+                            {profile.description || "No se ha añadido esta información aún"}
                         </div>
                         <div className="contenedorActFav">
                             <p className="actFavTrekker">Actividad favorita</p>
                             <p className="actFavTrekkerTexto">{profile.favActivity}</p>
+                            {profile.favActivity || "No se ha añadido esta información"}
                         </div>
                     </div>
                 </div>

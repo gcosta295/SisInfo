@@ -3,6 +3,23 @@
     gap:20px;
 }
 
+.formModificarTelefTrekker{
+    display:flex;
+    gap:20px;
+}
+
+.nuevoTdeguia{
+    padding: 5px;
+    width: 305px;
+    height:40px;
+    border-radius: 6px;
+    border-color: #D2D2D2;
+    color: #4E4E4E;
+    border: 1px solid #ccc;
+    outline: none;
+    box-shadow: none;
+}
+
 .labelCorreoGuia{
     font-weight: bold;
 }

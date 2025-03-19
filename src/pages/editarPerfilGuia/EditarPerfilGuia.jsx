@@ -18,11 +18,13 @@ export default function EditarPerfilGuia() {
     const auth = getAuth();
     // console.log(profile);
     
-    const [email, setEmail] = useState(profile.email|| "");
+    // const [email, setEmail] = useState(profile.email|| "");
     const [password, setPassword] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState(profile.phoneNumber||"");
-    const [description, setDescription] = useState(profile.description||"");
-    const [favActivity, setFavActivity] = useState(profile.favActivity||"");
+    const [phoneNumber, setPhoneNumber] = useState(profile.phoneNumber);
+    const [description, setDescription] = useState(profile.description || "No se ha añadido esta información aún");
+    const [favActivity, setFavActivity] = useState(profile.favActivity || "No se ha añadido esta información aún");
+    const [profilePicture, setProfilePicture] = useState(profile.profilePicture);
+
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
@@ -37,15 +39,15 @@ export default function EditarPerfilGuia() {
             
             // Actualiza en Firestore
             const userRef = doc(db, "Users", profile.uid);  
-            await setDoc(userRef, { email, description, favActivity, phoneNumber }, { merge: true });
+            await setDoc(userRef, { description, favActivity, phoneNumber, profilePicture }, { merge: true });
             
             // Actualiza el perfil en el UserContext inmediatamente
             setProfile(prevProfile => ({
                 ...prevProfile,
-                email,
                 description,
                 favActivity,
                 phoneNumber,
+                profilePicture,
             }));
     
             // Si hay una contraseña nueva, cambia la contraseña
@@ -102,26 +104,27 @@ export default function EditarPerfilGuia() {
                         <div>
                             <p className="tituloDescripcion">Descripción <br></br></p>
                             <div className="formModificarCorreoTrekker">
-                                <textarea value={description} type="text" className="descripNueva" placeholder="Añade una descripción personal..." onChange={(e) => setDescription(e.target.value)} />
+                                <textarea value={description} className="descripNueva" placeholder="Añade una descripción personal..." onChange={(e) => setDescription(e.target.value)} />
                             </div>
                         </div>
                         <div className="contenedorActFav">
                             <p className="actFavTrekker">Actividad favorita</p>
                             <div className="formModificarCorreoTrekker">
                                 <select value={favActivity} className="favActNueva" onChange={(e) => setFavActivity(e.target.value)}>
+                                    <option value="Elige una opción">Elige una opción</option>
                                     <option value="Excursión">Excursión</option>
                                     <option value="Paseo">Paseo</option>
                                     <option value="Rappel">Rappel</option>
                                 </select>
                             </div>
                         </div>
-                        <div className="formModificarCorreoTrekker">
-                            <p className="labelCorreoGuia">Correo electrónico</p>
-                            <input value={email} type="email" className="correoNuevoGuiaEdit" placeholder="Nuevo correo electrónico" onChange={(e) => setEmail(e.target.value)} />
+                        <div className="formModificarTelefTrekker">
+                            <p className="labelCorreoGuia">Foto de perfil</p>
+                            <input value={profilePicture} className="nuevoTdeguia" placeholder="URL de imagen" onChange={(e) => setProfilePicture(e.target.value)} />
                         </div>
                         <div className="formModificarTelefTrekker">
                             <p className="labelCorreoGuia">Teléfono</p>
-                            <input value={phoneNumber} type="text" className="nuevoTGuia" placeholder="Nuevo número telefónico" onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <input value={phoneNumber} className="nuevoTdeguia" placeholder="Nuevo número telefónico" onChange={(e) => setPhoneNumber(e.target.value)} />
                         </div>
                     </div>
                 </div>
