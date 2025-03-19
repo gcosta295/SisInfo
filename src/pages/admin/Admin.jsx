@@ -7,10 +7,13 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 
 export default function Home() {
+  const navigate = useNavigate();
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const gotocontact5 = (event) => {
+    navigate('/newAc'); // Include name as a URL parameter
+};
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,7 +37,7 @@ export default function Home() {
   return (
     <div className="mainContainer2">
       <div className="botondiv">
-      <button className="guardar right-side">Nueva Actividad</button>
+      <button className="guardar right-side" onClick={gotocontact5}>Nueva Actividad</button>
 
       </div>
       <div className="firstRow">
