@@ -24,43 +24,46 @@ export default function Signup() {
     const [descrip, setDescrip] = useState("");
 
     const handleSignUp = async() => {
-        if (!email || !password) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
-        
-        const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
-        const profilePicUrl = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=128`;
-        
-        createUserWithEmailAndPassword(auth, email, password)
-          .then(async(userCredential) => {
-            const user = userCredential.user;
-            //console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
-            if (user) {
-                await setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
-                  email: user.email,
-                  firstName: name,
-                  lastName: lastname,
-                  profilePicture: profilePicUrl,
-                  phoneNumber: phoneNumber,
-                  tipoUsuario: tipoUser,
-                  description: descrip,
-                  favActivity: favAct,
-                  nacionality: nacionality,
+        if ( !email || !name || !lastname || !password || !tipoUser) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
+            if ( (email.includes('@correo.unimet.edu.ve') || email.includes('@unimet.edu.ve')) && !(tipoUser == "guia" && !phoneNumber)){
+                const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
+                const profilePicUrl = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=128`;
+            
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then(async(userCredential) => {
+                    const user = userCredential.user;
+                    if (user) {
+                        await setDoc(doc(db, "Users", user.uid), {  
+                          email: user.email,
+                          firstName: name,
+                          lastName: lastname,
+                          profilePicture: profilePicUrl,
+                          phoneNumber: phoneNumber,
+                          tipoUsuario: tipoUser,
+                          description: descrip,
+                          favActivity: favAct,
+                          nacionality: nacionality,
 
+                        });
+                      }
+                    setEmail("");
+                    setPassword("");
+                    setName("");
+                    setLastname("");
+                    setPhoneNumber("");
+                    setTipoUser("");
+                    toast.success('Registro exitoso')
+                    navigate("/");
+                })
+                .catch((error) => {
+                    const errorCode = error.code; //motivo
+                    const errorMessage = error.message;  //explicacion
+                    console.log(errorCode, errorMessage); //si hay error, aparece mensaje automatico con el motivo y explicacion
                 });
-              }
-            setEmail("");
-            setPassword("");
-            setName("");
-            setLastname("");
-            setPhoneNumber("");
-            setTipoUser("");
-            toast.success('Registro exitoso')
-            navigate("/");
-          })
-          .catch((error) => {
-            const errorCode = error.code; //motivo
-            const errorMessage = error.message;  //explicacion
-            console.log(errorCode, errorMessage); //si hay error, aparece mensaje automatico con el motivo y explicacion
-          });
+            }else{
+                console.log("no funca");
+            }
+        
     };
 
     const handleSignIn = () => {
@@ -88,14 +91,71 @@ export default function Signup() {
 
     const navigate = useNavigate();
 
-    // const [value,setValue] = useState('')
-    const handleClick =()=>{
-        signInWithPopup(auth,provider).then((data)=>{
-            // setValue(data.user.email)
-            navigate("/");
-            console.log(data.user);
-        })
-    };
+const handleClick = () => {
+  signInWithPopup(auth, provider)
+    .then((data) => {
+      const user = data.user;
+      const email = user.email;
+      if (email && (email.endsWith('@correo.unimet.edu.ve') || email.endsWith('@unimet.edu.ve'))) {
+        const password = prompt("Por favor, ingresa tu contraseña:");
+        if (password === null) {
+          return; 
+        }
+        const userType = prompt("Por favor, ingresa tu tipo de usuario: (trekker, guia)");
+        if (userType === null) {
+          return; 
+        }
+        let phoneNumber = "";
+        if (userType.toLowerCase() === "guia") {
+          phoneNumber = prompt("Por favor, ingresa tu número de teléfono:");
+          if (phoneNumber === null) {
+            return; 
+          }
+        }
+        
+        if ((password != "" && userType != "") && (userType == "guia" || userType == "trekker")){
+            if ((userType == "guia" && phoneNumber != "") || userType == "trekker"){
+                const list = user.displayName.split("");
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then(async(userCredential) => {
+                    const user = userCredential.user;
+                    console.log("si1");
+                    if (user) {
+                        console.log("si2");
+                        await setDoc(doc(db, "Users", user.uid), {  
+                          email: email,
+                          firstName: list[0],
+                          lastName: list[1],
+                          profilePicture: null,
+                          phoneNumber: phoneNumber,
+                          tipoUsuario: userType,
+                          description: null,
+                          favActivity: null,
+                          nacionality: null,
+
+                        });
+                        console.log("si3");
+                      }
+                    setEmail("");
+                    setPassword("");
+                    setName("");
+                    setLastname("");
+                    setPhoneNumber("");
+                    setTipoUser("");
+                    toast.success('Registro exitoso')
+                    navigate("/");  });
+            }
+        }
+      } else {
+        auth.signOut(); // Cierra la sesión
+        toast.error('Dominio de correo electrónico no permitido.');
+      }
+    })
+    .catch((error) => {
+      console.error('Error al iniciar sesión:', error);
+      toast.error('Error al iniciar sesión con Google');
+    });
+};
 
     const [isGuide, setIsGuide] = useState(false); // Estado para controlar si el usuario es guía
 
