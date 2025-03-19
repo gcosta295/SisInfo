@@ -20,13 +20,15 @@
 .LeftColumn2{
     padding-left: 5%;
     padding-right: 5%;
-    padding-top: 3%;
+    padding-top: 2%;
+    
 
 
 }
 
 .RightColumn2{
    margin-right: 8%;
+   margin-bottom: 5%;
 }
 
 .columnas{
@@ -89,7 +91,12 @@
 
 .ac3{
     background-color: #F5F5F5;
-    padding: 20px;
+    padding-left: 10%;
+    padding-right: 10%;
+    
+    padding-top: 5%;
+    padding-bottom: 5%;
+
     border-radius: 5px;
     box-shadow: 0px 4px 10px rgba(46, 46, 46, 0.315);
     display: flex;
@@ -112,4 +119,12 @@
    
     padding:10px; 
    
+}
+
+.rutaName{
+    margin-top: -30px;
+}
+
+.descc{
+    margin-top: 10%;
 }

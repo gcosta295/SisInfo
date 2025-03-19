@@ -177,15 +177,18 @@ export default function Actividad() {
             </div>
           </div>
           <div className="ac3">
-            <img src={dataAct.image} alt="" />
-            <p>{dataAct.info}</p>
+            <h2>Ruta {routeData.type}</h2>
+            <h3 className="rutaName"> {routeData.name}</h3>
+            <img src={routeData.image} alt="" />
+            
+            <p className="descc">{routeData.description}</p>
           </div>
           <div className="ac3">
     <h3>Guia Asignado</h3>
     <div  className="comentario2">
               <img
                 className="imgPerfilForo"
-                src={guiaData.userProfilePic}
+                src={guiaData.profilePicture}
                 width={70}
                 height={70}
                 alt=""
@@ -203,7 +206,7 @@ export default function Actividad() {
         </div>
       </div>
    
-
+    
       <div className="contenedorForo">
         <div className="contenedorComentarios">
           <div className="formComentarioForo">
