@@ -60,6 +60,8 @@ export default function EditarPerfilTrekker() {
             }
 
             const userRef = doc(db, "Users", profile.uid);
+            console.log({ description, favActivity, profilePicture });
+            
             await setDoc(userRef, { description, favActivity, profilePicture }, { merge: true });
     
             setProfile(prevProfile => ({
@@ -69,7 +71,7 @@ export default function EditarPerfilTrekker() {
                 profilePicture,
             }));
             toast.success("Datos actualizados correctamente");
-            navigate("/mi-perfil-guia");
+            navigate("/mi-perfil-trekker");
     
         } catch (error) {
             console.error("Error actualizando los datos:", error);
@@ -177,6 +179,10 @@ export default function EditarPerfilTrekker() {
                                     <option value="Rappel">Rappel</option>
                                 </select>
                             </div>
+                        </div>
+                        <div className="formModificarTelefTrekker">
+                            <p className="labelCorreoGuia">Foto de perfil</p>
+                            <input value={profilePicture} className="nuevoTdeguia" placeholder="URL de imagen" onChange={(e) => setProfilePicture(e.target.value)} />
                         </div>
                     </div>
                 </div>

@@ -157,7 +157,7 @@ export default function EditarPerfilGuia() {
                 profilePicture,
             }));
             toast.success("Datos actualizados correctamente");
-            navigate("/mi-perfil-trekker");
+            navigate("/mi-perfil-guia");
     
         } catch (error) {
             console.error("Error actualizando los datos:", error);
