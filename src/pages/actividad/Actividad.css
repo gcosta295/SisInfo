@@ -105,4 +105,10 @@
 
 .comentario2{
     display:flex;
+    gap:20px;
+    justify-content:left;
+    align-items: center;
+   
+    padding:10px; 
+   
 }
