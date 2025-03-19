@@ -140,6 +140,15 @@ export default function Actividad() {
   };
 
   const mountainImages = [1, 2, 3, 4, 5];
+
+  const formatDate = (timestamp) => {
+    if (!timestamp) return ""; // Handle cases where timestamp is undefined
+    const date = timestamp.toDate();
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+};
   return (
     <>
       <p className="tituloActividad">
@@ -153,7 +162,7 @@ export default function Actividad() {
 
           <div className="fecha">
             <h3>Fecha</h3>
-            {/* <h1>{dataAct.date}</h1> */}
+            <h3 className="fechaD">{dataAct.date && formatDate(dataAct.date)}</h3> 
           </div>
           <div className="fecha">
             <h3>Dificultad</h3>
