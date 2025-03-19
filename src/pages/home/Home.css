@@ -27,16 +27,16 @@
 .textoImgHome {
     position: absolute;
     color: white;
-    font-size: 80px;
+    font-size: 7vw;
     font-weight: bold;
-    margin-top: 80px;
-    margin-left: 30px;
+    margin-top: 10%;
+    margin-left: 5%;
 }
 
 .botonReservaYa{
     position: absolute;
-    margin-top: 250px;
-    margin-left: 50px;
+    margin-top: 30%;
+    margin-left: 5%;
     background-repeat: no-repeat;
     border: none;
     transition-duration: 0.4s;
@@ -44,14 +44,13 @@
     background-color: green;
     border-radius: 8px;
     outline: none;
-    font-size: 25px;
+    font-size: 2vw;
     font-weight: bold;
     padding: 8px 18px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    display:flex;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
     align-items: center;  
     justify-content: center;
-
 }
 
 .botonReservaYa:hover{
@@ -60,7 +59,7 @@
 }
 
 .imgFlecha {
-    width: 30px;
+    width: 5vw;
     margin-left: 10px;
 }
 
@@ -73,10 +72,18 @@
 }
 
 .fraseHome1{
-    font-size: 40px;
+    font-size: 4vw;
     font-weight: bold;
     color: #4B4949;
     margin-top: 10px;
+    align-items: center;
+}
+
+@media (max-width: 48rem) {
+    .fraseHome1 {
+        font-size: 6vw;
+        align-items:center;
+    }
 }
 
 .containerDivisor{
@@ -86,20 +93,30 @@
 }
 
 .divisor{
-    width: 1400px;
+    width: 100%;
+    max-width: 1400px;
     height: 2px;
     background-color: rgba(192, 192, 192, 0.514);
-    margin-bottom: 70px;
-    margin-top: 38px;
+    margin: 38px auto 70px; 
 }
 
-.containerMVO{
-    display:flex;
-    justify-content: space-evenly;
+.containerMVO {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    gap: 20px; 
+}
+
+@media (max-width: 48rem) {
+    .containerMVO {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
 
 .mision, .vision, .objetivo{
-    width:359px;
+    width:90%;
+    max-width: 400px;
     height:314px;
     background-color: #82a84662;
     display:flex;
@@ -108,11 +125,24 @@
     box-shadow: 0px 4px 10px rgba(82, 82, 82, 0.315);
 }
 
+@media (min-width: 1400px) {
+    .containerMVO {
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        flex-wrap: wrap; 
+    }
+
+    .mision, .vision, .objetivo {
+        margin: 20px; 
+    }
+}
+
 .tituloMision, .tituloVision, .tituloObjetivo{
     position:absolute;
     margin-top: 120px;
     font-weight: bolder;
-    font-size:30px;
+    font-size:1.5rem;
     color: #4b4949;
     margin-left: 15px;
 }
@@ -121,52 +151,78 @@
     position:absolute;
     margin-top: 170px;
     color: #4b4949;
-    width:330px;
+    width:90%;
     margin-left:15px;
-    line-height: 1.25;
+    font-size: 1rem;
+    line-height: 1.5; 
 }
 
 .imgMision, .imgVision, .imgObjetivo{
-    position:absolute;
-    width: 80px;
-    height: 80px;
+    position: absolute;
+    width: 60px;
+    height: 60px; 
     margin-left: 10px;
     margin-top: 20px;
 }
 
 .actividadesOfrecemos{
-    font-size: 40px;
+    font-size: 4vw; 
     color: #4B4949;
     font-weight: bold;
-    margin-left: 230px;
-    margin-top: 20px;
+    margin: 20px 0; 
+    text-align:left; 
+    margin-left: 10%;
+}
+@media (max-width: 48rem) {
+    .actividadesOfrecemos {
+        font-size: 6vw;
+        align-items:center;
+    }
 }
 
 .divisor2{
-    width: 1400px;
-    height: 2px;
+    width: 100%;
+    max-width: 1400px;
     background-color: rgba(192, 192, 192, 0.514);
-    margin-bottom: 40px;
-    margin-top: 70px;
+    margin: 70px auto 40px;
 }
 
-.containerDescripcionActividades{
+.containerDescripcionActividades {
     margin-top: 50px;
     display: flex;
+    flex-direction: row;
+    align-items: center; 
     justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+    .containerDescripcionActividades {
+        flex-direction: column; 
+        align-items: stretch; 
+    }
 }
 
 .fondoDescrip{
-    display:flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction: row; 
     justify-content: space-evenly;
     align-items: center;
-    width: 1100px;
-    height: 450px;
+    width: 100%; 
+    max-width: 1100px; 
+    height: auto;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px; 
+}
+
+@media (max-width: 768px) {
+    .fondoDescrip {
+        flex-direction: column; 
+        align-items: center; 
+        gap:20px;
+    }
 }
 
 .excursiones, .paseos, .rappel{
@@ -234,88 +290,161 @@
 }
 
 .imgRutas{
-    width: 600px;
-    height: 270px;
+    width: 600px; 
+    height: 270px; 
     border-radius: 10px;
 }
 
-.textoActividades, .textoForo{
-    display:flex;
-    flex-direction: column;
+.textoActividades, .textoForo {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
 }
 
-.textoActividades1{
-    margin:20px;
-    font-size: 40px;
+.textoActividades1 {
+    margin: 20px;
+    font-size: 40px; 
     font-weight: bold;
     color: #4B4949;
     margin-left: 10px;
     margin-top: 20px;
+    text-align: center; 
 }
 
-.textoActividades2{
-    margin:10px;
+.textoActividades2 {
+    margin: 10px;
     color: #4B4949;
     line-height: 1.5;
     margin-left: 10px;
-    width: 400px;
+    width: 400px; 
+    text-align: center; 
 }
 
-.botonVerActividades{
+.botonVerActividades {
     background-color: transparent;
     color: #4B4949;
     font-weight: bold;
     border: 2px solid #4B4949;
     border-radius: 20px;
-    width:165px;
-    height:40px;
+    width: 165px; 
+    height: 40px;
     margin-left: 10px;
     margin-top: 20px;
 }
 
-.botonVerActividades:hover{
+.botonVerActividades:hover {
     background-color: #4b4949;
     color: white;
 }
 
-.imgForoHome{
-    width: 500px;
-    height: 319px;
+.imgForoHome {
+    width: 500px; 
+    height: 319px; 
     border-radius: 10px;
     margin-right: 20px;
 }
 
-.textoForo1{
-    margin-bottom:20px;
-    font-size: 40px;
+.textoForo1 {
+    margin-bottom: 20px;
+    font-size: 40px; 
     font-weight: bold;
     color: #4B4949;
-    margin-left: 50px;
-    width:440px;
+    margin-left: 0px;
+    width: 90%; 
     line-height: 1.5;
+    text-align: center; 
 }
 
-.textoForo2{
-    margin:10px;
+.textoForo2 {
+    margin: 10px;
     color: #4B4949;
     line-height: 1.5;
     margin-left: 50px;
-    width: 500px;
+    width: 90%; 
+    text-align: center; 
 }
 
-.botonIrAlForo{
+.botonIrAlForo {
     background-color: transparent;
     color: #4B4949;
     font-weight: bold;
     border: 2px solid #4B4949;
     border-radius: 20px;
-    width:130px;
-    height:40px;
+    width: 130px; 
+    height: 40px;
     margin-left: 50px;
     margin-top: 20px;
 }
 
-.botonIrAlForo:hover{
+.botonIrAlForo:hover {
     background-color: #4b4949;
     color: white;
+}
+
+@media (max-width: 1024px) {
+    .imgRutas {
+        width: 100%; 
+        max-width: 600px; 
+        height: auto; 
+    }
+
+    .imgForoHome {
+        width: 100%; 
+        max-width: 500px; 
+        height: auto; 
+    }
+
+    .textoActividades1, .textoForo1 {
+        font-size: 30px; 
+        text-align: center; 
+    }
+
+    .textoActividades2, .textoForo2 {
+        width: 90%; 
+        margin-left: 0; 
+        text-align: center; 
+    }
+
+    .botonVerActividades, .botonIrAlForo {
+        width: 100%; 
+        max-width: 165px; 
+        margin-left: 0; 
+    }
+}
+
+@media (max-width: 768px) {
+    .actividadesHome, .foroHome {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .imgRutas {
+        width: 100%; 
+        max-width: 600px; 
+        height: auto; 
+        order: -1;
+    }
+
+    .imgForoHome {
+        margin-top: 10%;
+        width: 100%; 
+        max-width: 500px; 
+        height: auto; 
+        order: -1;
+    }
+
+    .textoForo{
+        text-align: center;
+    }
+
+    .textoActividades1, .textoForo1 {
+        font-size: 24px; 
+        text-align: center; 
+    }
+
+    .textoActividades2, .textoForo2 {
+        width: 90%; 
+        text-align: center; 
+        margin-left: 0; 
+    }
 }
