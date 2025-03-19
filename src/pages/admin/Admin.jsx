@@ -3,7 +3,7 @@ import "./Admin.css";
 
 import { useNavigate } from "react-router";
 import { db } from "../../firebase/firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -53,7 +53,7 @@ export default function Home() {
         {activities.map((activity, i) => (
           <RenderA
             key={activity.id}
-            name={activity.name}
+            type={activity.type}
             price={activity.cost}
             num={i+1}
             id={activity.id}
@@ -65,7 +65,7 @@ export default function Home() {
   );
 }
 
-function RenderA({ route, price, num, id}) {
+function RenderA({ route, price, num, id, type}) {
   const [routeName, setRouteName] = useState("");
   const rowClass = num % 2 === 0 ? "light" : "dark";
   const navigate2 = useNavigate();
@@ -100,7 +100,7 @@ function RenderA({ route, price, num, id}) {
     <div className={rowClass}>
       <div className="empt">{num}</div>
       <div className="Nombre">
-        <h2 className="n">{routeName}</h2>
+        <h2 className="n">{type} - {routeName}</h2>
       </div>
       <div className="Precio">
         <h2 className="n">{price}</h2>

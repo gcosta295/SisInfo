@@ -10,7 +10,7 @@ import {
   doc,
   updateDoc,
   getDocs,
-  Timestamp,
+  Timestamp, deleteDoc,
 } from "firebase/firestore";
 
 import { useState, useEffect } from "react";
@@ -76,9 +76,9 @@ export default function EditActivity() {
             console.log("datos de guia:", guiaSnap.data());
           }
           setNewGuide(activityData.guia.id); // Extract document ID from reference
-        } else {
+          } else {
           setNewGuide("");
-        }
+          }
 
         if (activityData.route) {
           const routeRef = activityData.route;
@@ -185,13 +185,13 @@ export default function EditActivity() {
       return;
     }
     try {
+      console.log(newRoute)
       const docRef = doc(db, "Activities", params.actividadId);
       const guideRef = doc(db, "Users", newGuide);
       const routeRef = doc(db, "Routes", newRoute);
       const dateTimestamp = Timestamp.fromDate(new Date(newDate));
 
       await updateDoc(docRef, {
-        name: newName,
         info: newDesc,
         cost: newCost,
         image: newImage,
@@ -250,7 +250,6 @@ export default function EditActivity() {
               value={newRoute}
               onChange={handleRouteChange}
             >
-              <option value="">Ruta</option>
               {RouteNames.map((route) => (
                 <option key={route.id} value={route.id}>
                   {route.name}
