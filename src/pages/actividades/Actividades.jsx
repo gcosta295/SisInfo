@@ -79,7 +79,6 @@ export default function Actividades() {
             <div className="container">
                 <ul className="Acs">
                     {activities.map((activity) => (
-            
                         <RenderA
                         key={activity.id}
                         id={activity.id}

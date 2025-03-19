@@ -36,7 +36,7 @@ export default function Paypal({actividad}) {
                 
 
             try{
-            const userRef = doc(db, "Users", profile.uid);
+            const userRef = doc(db, "Users", profile.uid);   //asi se crea un campo tipo reference, como pasarle /Users/uid
             const activityRef = doc(db, "Activities", actividadId);
             const reservationRef = doc(db, "Reservations", data.orderID);
 

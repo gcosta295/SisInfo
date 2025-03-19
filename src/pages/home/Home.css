@@ -57,6 +57,7 @@
 .botonReservaYa:hover{
         background-color: rgb(114, 194, 114); 
         color: white;
+        cursor: pointer;
 }
 
 .imgFlecha {
@@ -276,6 +277,7 @@
 .botonVerActividades:hover{
     background-color: #4b4949;
     color: white;
+    cursor: pointer;
 }
 
 .imgForoHome{
@@ -318,4 +320,5 @@
 .botonIrAlForo:hover{
     background-color: #4b4949;
     color: white;
+    cursor: pointer;
 }
