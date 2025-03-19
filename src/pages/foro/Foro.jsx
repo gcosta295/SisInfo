@@ -18,7 +18,7 @@ export default function Foro() {
 
     const getData = async () => {
         const foroRef = collection(db, 'Forum'); 
-        const foroQuery = query(foroRef, orderBy("date", "desc")); //  ordenación 
+        const foroQuery = query(foroRef, orderBy("date", "desc")); //  ordenamiento 
         try {
             const foroSnap = await getDocs(foroQuery);
             const foroData = foroSnap.docs.map((doc) => ({
@@ -64,9 +64,6 @@ export default function Foro() {
     return(
         <>
             <p className="tituloForo">Foro de AvilaTrekkers</p>
-
-            
-
             <div className="contenedorForo">
                 <div className="contenedorComentarios">
                     <div className="formComentarioForo">
