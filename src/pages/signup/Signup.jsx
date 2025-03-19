@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithP
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'react-tabs/style/react-tabs.css';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { setDoc, doc } from "firebase/firestore";
 
 
@@ -19,35 +19,40 @@ export default function Signup() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [tipoUser, setTipoUser] = useState("");
 
-    const handleSignUp = () => {
-        if (!email || !password) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
-        createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
-            if (user) {
-                setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
-                  email: user.email,
-                  firstName: name,
-                  lastName: lastname,
-                  phoneNumber: phoneNumber,
-                  tipoUsuario: tipoUser
-                });
-              }
-            setEmail("");
-            setPassword("");
-            setName("");
-            setLastname("");
-            setPhoneNumber("");
-            setTipoUser("");
-            toast.success('Registro exitoso')
-            navigate("/");
-          })
-          .catch((error) => {
-            const errorCode = error.code; //motivo
-            const errorMessage = error.message;  //explicacion
-            console.log(errorCode, errorMessage); //si hay error, aparece mensaje automatico con el motivo y explicacion
-          });
+    const handleSignUp = async() => {
+        if (!email || !password || !name || !lastname || !phoneNumber || !tipoUser) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
+            if (email.includes("@correo.unimet.edu.ve") || email.includes("@unimet.edu.ve")){
+                createUserWithEmailAndPassword(auth, email, password)
+                  .then(async(userCredential) => {
+                    const user = userCredential.user;
+                    //console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
+                    if (user) {
+                        await setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
+                          email: user.email,
+                          firstName: name,
+                          lastName: lastname,
+                          phoneNumber: phoneNumber,
+                          tipoUsuario: tipoUser
+                        });
+                      }
+                    setEmail("");
+                    setPassword("");
+                    setName("");
+                    setLastname("");
+                    setPhoneNumber("");
+                    setTipoUser("");
+                    toast.success('Registro exitoso')
+                    navigate("/");
+                  })
+                  .catch((error) => {
+                    const errorCode = error.code; //motivo
+                    const errorMessage = error.message;  //explicacion
+                    console.log(errorCode, errorMessage); //si hay error, aparece mensaje automatico con el motivo y explicacion
+                  });
+            }
+            else{
+                toast.error('correo electronico invalido')
+            }
     };
 
     const handleSignIn = () => {
@@ -87,7 +92,6 @@ export default function Signup() {
 
     return(
         <>
-        <div><Toaster/></div>
         <div className="contenedor1">
             <div className="datos">
                 <p className="titulosignup">{tabIndex===0 ? "Bienvenido de vuelta" : "Comienza la aventura"}</p>
