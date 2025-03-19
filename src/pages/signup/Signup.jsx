@@ -107,12 +107,26 @@ const handleClick = () => {
         }
         let phoneNumber = "";
         if (userType.toLowerCase() === "guia") {
-          phoneNumber = prompt("Por favor, ingresa tu número de teléfono:");
+          phoneNumber = prompt("Por favor, ingresa tu número de teléfono: (xxxx-xxxxxxx)");
           if (phoneNumber === null) {
             return; 
           }
         }
-        
+        try {
+            const list1 = phoneNumber.split("-");
+            if (list1[0].length != 4 || list1[1].length != 7){
+                phoneNumber = "";   
+            }else{
+                if(isNaN(parseInt(list1[0])) || isNaN(parseInt(list1[1]))){
+                    phoneNumber = "";
+                    console.log("pop");
+                }
+            }
+                 
+        } catch (error) {   
+            console.error('Error al iniciar sesión:', error);
+            toast.error('Error al iniciar sesión con Google');
+        }
         if ((password != "" && userType != "") && (userType == "guia" || userType == "trekker")){
             if ((userType == "guia" && phoneNumber != "") || userType == "trekker"){
                 const list = user.displayName.split("");
