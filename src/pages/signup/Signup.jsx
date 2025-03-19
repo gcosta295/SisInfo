@@ -119,7 +119,6 @@ const handleClick = () => {
             }else{
                 if(isNaN(parseInt(list1[0])) || isNaN(parseInt(list1[1]))){
                     phoneNumber = "";
-                    console.log("pop");
                 }
             }
                  
