@@ -42,13 +42,13 @@ export default function PerfilGuia() {
                     <div className="derechaContenedorPerfilGuia">
                         <div>
                             <p className="tituloDescripcion">Descripción</p>
-                            <p className="descripcionGuia">{profile.description}</p>
-                            {profile.description || "No se ha añadido esta información aún"}
+                            <p className="descripcionGuia">{profile.description || "No se ha añadido esta información"}</p>
+                            
                         </div>
                         <div className="contenedorActFav">
                             <p className="actFavGuia">Actividad favorita</p>
-                            <p className="actFavGuiaTexto">{profile.favActivity}</p>
-                            {profile.favActivity || "No se ha añadido esta información"}
+                            <p className="actFavGuiaTexto">{profile.favActivity || "No se ha añadido esta información"}</p>
+                            
                         </div>
                         <div className="contenedorActFav">
                             <p className="actFavTrekker">Correo electrónico</p>
