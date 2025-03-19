@@ -1,0 +1,32 @@
+*   {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+}
+
+
+.rutapin{
+    display: flex;
+    flex-direction: row;
+}
+
+.pin{
+    width: 100px;
+}
+
+.tiporuta2{
+    font-size: xx-large ;
+}
+
+.LeftColumn2{
+    padding: 5%;
+}
+
+.columnas{
+    display: flex;
+    flex-direction: row;
+}
+
+.rutapic{
+    width: 100%;
+    margin-bottom: 5%;
+}
