@@ -108,6 +108,10 @@ export default function Actividad() {
   const handleAddComment = async (event) => {
     event.preventDefault();
 
+    const goto2 = (event) => {  
+      navigate(`/perfil-trekker-guia/${params.actividadId}`)   //boton con navigate para que lleve a reserva/params.actividadId como en actividades para ir a actividad especifica
+  }
+
     if (!newComment.trim()) {
       toast.error("El comentario no puede estar vacío.");
       return;
