@@ -27,6 +27,7 @@ export default function CreateActivity() {
   const [newType, setNewType] = useState("");
   const [newRoute, setNewRoute] = useState("");
   const [newDate, setNewDate] = useState(""); // Add newDate state
+  const [newDif, setNewDif] = useState("");
 
   const [updateStatus, setUpdateStatus] = useState(null);
   const [guideNames, setGuideNames] = useState([]);
@@ -112,6 +113,9 @@ export default function CreateActivity() {
     setNewDate(e.target.value);
   };
 
+  const handleDifChange = (e) => {
+    setNewDif(e.target.value);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -132,6 +136,7 @@ export default function CreateActivity() {
         guia: guideRef,
         route: routeRef,
         date: dateTimestamp, // Save Timestamp
+        rating: newDif,
       });
       setUpdateStatus("Actividad Creada!");
     } catch (error) {
@@ -177,6 +182,10 @@ export default function CreateActivity() {
               onChange={handleCostChange}
               className="aCost"
             />
+          </label>
+          <h1>Dificultad</h1>
+          <label>
+            <input type="text" value={newDif} onChange={handleDifChange} />
           </label>
           <h1>Descripcion</h1>
           <label>
@@ -225,7 +234,7 @@ export default function CreateActivity() {
               ))}
             </select>
           </label>
-          <h1>Date and time</h1>
+          <h1>Fecha y Hora</h1>
           <label>
             <input
               type="datetime-local"
