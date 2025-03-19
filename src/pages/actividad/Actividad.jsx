@@ -98,6 +98,10 @@ export default function Actividad() {
         navigate(`/reserva/${params.actividadId}`)   //boton con navigate para que lleve a reserva/params.actividadId como en actividades para ir a actividad especifica
     }
 
+    const goto2 = (event) => {  
+        navigate(`/perfil-trekker-guia/${params.actividadId}`)   //boton con navigate para que lleve a reserva/params.actividadId como en actividades para ir a actividad especifica
+    }
+
     const handleAddComment = async(event) => {
         event.preventDefault();
 
@@ -129,6 +133,8 @@ export default function Actividad() {
             <p className="nombreGuia">Guia: {guiaData.firstName} {guiaData.lastName}</p>
             
             <button className='botonReservar' onClick={goto1}>Reservar</button>
+            <button className='botonVerPerfilGuiaDesdeTrekker' onClick={goto2}>Ver perfil del guia</button>
+
 
             <div className="contenedorForo">
                 <div className="contenedorComentarios">

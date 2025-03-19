@@ -26,6 +26,7 @@ import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import EditAct from "./pages/editAct/EditAct.jsx";
 import NewAc from "./pages/newAc/NewAc.jsx";
+import VerPerfilGuiaDesdeTrekker from "./pages/verPerfilGuiaDesdeTrekker/VerPerfilGuiaDesdeTrekker.jsx"
 
 
 export default function App() {
@@ -47,6 +48,7 @@ export default function App() {
                 <Route path="reserva" element={<Reserva/>} />
                 <Route path="reserva/:actividadId" element={<Reserva/>} />
                 <Route path="reservas-trekker" element={<ReservasTrekker/>} />
+                <Route path="perfil-trekker-guia/:actividadId" element={<VerPerfilGuiaDesdeTrekker />} />
               </Route>
             </Route>
 

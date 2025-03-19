@@ -6,7 +6,7 @@ import { getAuth, updatePassword } from "firebase/auth";
 import { db } from "../../firebase/firebase";
 import { setDoc, doc } from "firebase/firestore";
 import toast from 'react-hot-toast';
-import { EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
+import { EmailAuthProvider, reauthenticateWithCredential, updateEmail } from "firebase/auth";
 import Swal from 'sweetalert2';
 
 
@@ -18,36 +18,24 @@ export default function EditarPerfilTrekker() {
     const auth = getAuth();
     // console.log(profile);
     
-    const [email, setEmail] = useState(profile.email || "");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [description, setDescription] = useState(profile.description||"");
     const [favActivity, setFavActivity] = useState(profile.favActivity||"");
     const [loading, setLoading] = useState(false);
+    const [profilePicture, setProfilePicture] = useState(profile.profilePicture);
 
     const navigate = useNavigate();
 
     const handleUpdateProfile = async () => {
         try {
             setLoading(true);
-            if (!profile.uid) {
+            const user = auth.currentUser;
+            if (!profile.uid || !user) {
                 console.error("No se encontró UID del usuario.");
                 return;
             }
-            
-            // Actualiza en Firestore
-            const userRef = doc(db, "Users", profile.uid);  
-            await setDoc(userRef, { email, description, favActivity }, { merge: true });
-            
-            // Actualiza el perfil en el UserContext inmediatamente
-            setProfile(prevProfile => ({
-                ...prevProfile,
-                email,
-                description,
-                favActivity,
-            }));
     
-            // Si hay una contraseña nueva, cambia la contraseña
-            const user = auth.currentUser;
             if (password && user) {
                 const { value: currentPassword } = await Swal.fire({
                     title: "Verificación requerida",
@@ -70,15 +58,94 @@ export default function EditarPerfilTrekker() {
                 await reauthenticateWithCredential(user, credential);
                 await updatePassword(user, password);
             }
+
+            const userRef = doc(db, "Users", profile.uid);
+            console.log({ description, favActivity, profilePicture });
+            
+            await setDoc(userRef, { description, favActivity, profilePicture }, { merge: true });
     
-            toast.success("Perfil actualizado correctamente");
+            setProfile(prevProfile => ({
+                ...prevProfile,
+                description,
+                favActivity,
+                profilePicture,
+            }));
+            toast.success("Datos actualizados correctamente");
             navigate("/mi-perfil-trekker");
     
         } catch (error) {
             console.error("Error actualizando los datos:", error);
-            toast.error("Hubo un error al actualizar los datos. Es posible que necesites volver a iniciar sesión.");
+            toast.error("Hubo un error al actualizar los datos");
         } finally {
-            setLoading(false);  // Asegurarse de que loading se establezca en false al finalizar
+            setLoading(false);
+        }
+    };
+
+    const handleUpdateEmail = async () => {
+        try {
+            setLoading(true);
+            const user = auth.currentUser;
+            if (!profile.uid || !user) {
+                console.error("No se encontró UID del usuario.");
+                return;
+            }
+    
+            let newEmail = email;
+    
+            if (email !== user.email) {
+                const { value: confirmedEmail } = await Swal.fire({
+                    title: "Confirmar el correo electrónico",
+                    input: "email",
+                    inputPlaceholder: "Ingresa nuevamente el correo electrónico",
+                    showCancelButton: true,
+                    confirmButtonText: "Confirmar",
+                    cancelButtonText: "Cancelar",
+                    icon: "info"
+                });
+    
+                if (!confirmedEmail) {
+                    toast.error("Debes confirmar tu nuevo correo.");
+                    return;
+                }
+    
+                if (confirmedEmail !== email) {
+                    toast.error("Los correos no coinciden. Inténtalo de nuevo.");
+                    return;
+                }
+    
+                newEmail = confirmedEmail;
+            }
+    
+            const { value: password } = await Swal.fire({
+                title: "Ingresa tu contraseña",
+                input: "password",
+                inputPlaceholder: "Ingresa tu contraseña actual",
+                inputAttributes: { type: "password" },
+                showCancelButton: true,
+                confirmButtonText: "Confirmar",
+                cancelButtonText: "Cancelar",
+                icon: "warning"
+            });
+    
+            if (!password) {
+                toast.error("Debes ingresar tu contraseña.");
+                return;
+            }
+    
+            const credential = EmailAuthProvider.credential(user.email, password);
+            await reauthenticateWithCredential(user, credential);
+    
+            await updateEmail(user, newEmail);
+    
+            const userRef = doc(db, "Users", profile.uid);
+            await setDoc(userRef, { email: newEmail }, { merge: true });
+    
+            toast.success("Correo actualizado correctamente");
+        } catch (error) {
+            console.error("Error actualizando los datos:", error);
+            toast.error("Hubo un error al actualizar los datos.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -113,6 +180,10 @@ export default function EditarPerfilTrekker() {
                                 </select>
                             </div>
                         </div>
+                        <div className="formModificarTelefTrekker">
+                            <p className="labelCorreoGuia">Foto de perfil</p>
+                            <input value={profilePicture} className="nuevoTdeguia" placeholder="URL de imagen" onChange={(e) => setProfilePicture(e.target.value)} />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,7 +196,14 @@ export default function EditarPerfilTrekker() {
                         <label>Correo electrónico<br></br></label>
                         <input value={email} type="email" className="correoNuevo" placeholder="Nuevo correo electrónico" onChange={(e) => setEmail(e.target.value)} />
                     </div>
-                    <div className="formModificarContrasenaTrekker">
+                </div>
+            </div>
+            <div className="contenedorBotonEditTrekker">
+                <button className="botonGuardarCambiosTrekker" onClick={handleUpdateEmail}>Cambiar correo</button>
+            </div>
+            <div className="padreModificarDatosTrekker">
+                <div className="modificarDatosTrekker">
+                    <div className="formModificarCorreoTrekker">
                         <label>Contraseña <br></br></label>
                         <input value={password} type="password" className="contrasenaNueva" placeholder="Nueva contraseña" onChange={(e) => setPassword(e.target.value)} />
                     </div>
@@ -136,5 +214,4 @@ export default function EditarPerfilTrekker() {
             </div>
         </>
         )
-
 }
