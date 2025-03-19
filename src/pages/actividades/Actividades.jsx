@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faCalendarDays, faArrowPointer } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
 import { db } from "../../firebase/firebase"; 
-import { collection, getDocs } from "firebase/firestore"; 
+import { collection, getDocs, getDoc } from "firebase/firestore"; 
 import { useState, useEffect} from "react";
 
 
@@ -88,6 +88,7 @@ export default function Actividades() {
                         images={activity.image}
                         rating={activity.rating}
                         list={activities}
+                        route={activity.route}
                         />
                 
                     ))}
@@ -147,12 +148,36 @@ function Serch(tSerch,activities){
     console.log(list)
 }
 
-function RenderA({activityId,name, info, tipo, images, rating, id}){   
+function RenderA({activityId,name, info, tipo, images, rating, id, route}){   
     const mountainImages = [1, 2, 3, 4, 5];
     const navigate1 = useNavigate();
     const gotocontact3 = () => {  
         navigate1(`/actividad/${id}`)
     }
+
+    const [routeName, setRouteName] = useState("");
+ 
+  useEffect(() => {
+        const fetchRouteName = async () => {
+          if (route) {
+              try {
+                  const routeDoc = await getDoc(route);
+                  if (routeDoc.exists()) {
+                      setRouteName(routeDoc.data().name);
+                  } else {
+                      setRouteName("Route not found");
+                  }
+              } catch (error) {
+                  console.error("Error fetching route:", error);
+                  setRouteName("Error fetching route");
+              }
+          } else {
+              setRouteName("No route assigned");
+          }
+      };
+
+      fetchRouteName();
+  }, [route]);
 
     return( 
 
@@ -163,7 +188,7 @@ function RenderA({activityId,name, info, tipo, images, rating, id}){
         </div>
     <div className="acl"> 
     <h1 className="titleTipo titles">{tipo}</h1>
-    <h2 className='titleName titles'>{name}</h2>
+    <h2 className='titleName titles'>{routeName}</h2>
     <p className= "p titles">{info}</p>
     <div className="simbolos">
     
