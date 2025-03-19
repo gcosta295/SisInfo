@@ -25,6 +25,8 @@ import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import EditAct from "./pages/editAct/EditAct.jsx";
+import NewAc from "./pages/newAc/NewAc.jsx";
+
 
 export default function App() {
   return (
@@ -70,6 +72,8 @@ export default function App() {
               <Route path="admin" element={<Admin />} />
               <Route path="editAct/:actividadId" element={<EditAct />} />
               <Route path="actividad/:name" element={<Actividad />} />
+              <Route path="newAc" element={<NewAc />} />
+
             </Route>
           </Route>
         </Routes>
