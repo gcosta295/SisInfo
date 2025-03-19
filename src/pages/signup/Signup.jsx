@@ -1,6 +1,6 @@
 import "./Signup.css";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { auth, provider, db } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -97,6 +97,12 @@ export default function Signup() {
         })
     };
 
+    const [isGuide, setIsGuide] = useState(false); // Estado para controlar si el usuario es guía
+
+    // useEffect para actualizar isGuide cuando cambia tipoUser
+    useEffect(() => {
+        setIsGuide(tipoUser === "guia");
+    }, [tipoUser]);
 
     return(
         <>
@@ -136,11 +142,11 @@ export default function Signup() {
                             <form className="forms">
                                 <div className="formNombre">
                                     <label>Nombre</label>
-                                    <input value={name} type="text" className="name" placeholder="Nombre(s)" onChange={(e) => setName(e.target.value)} />
+                                    <input value={name} type="text" className="nameS" placeholder="Nombre(s)" onChange={(e) => setName(e.target.value)} />
                                 </div>
                                 <div className="formApellido">
                                     <label>Apellido</label>
-                                    <input value={lastname} type="text" className="lastname" placeholder="Apellido(s)"  onChange={(e) => setLastname(e.target.value)}/>
+                                    <input value={lastname} type="text" className="lastnameS" placeholder="Apellido(s)"  onChange={(e) => setLastname(e.target.value)}/>
                                 </div>
                                 <div className="formCorreo">
                                     <label>Correo electrónico</label>
@@ -151,10 +157,6 @@ export default function Signup() {
                                     <input value={password} type="password" className="contrasena" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)}  />
                                     <p className="instrucContrasena">*La contraseña debe tener mínimo 6 caracteres.</p>
                                 </div>
-                                <div className="formTelefono">
-                                    <label>Número telefónico</label>
-                                    <input value={phoneNumber} type="text" className="numTelefono" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/>
-                                </div>
                                 <div className="tipoUsuario">
                                     <label>Tipo de usuario</label>
                                     <select className="tipoUser" onChange={(e) => setTipoUser(e.target.value)}>
@@ -163,6 +165,12 @@ export default function Signup() {
                                         <option value="guia">Guía</option>
                                     </select>
                                 </div>
+                                {isGuide && (
+                                    <div className="formTelefono">
+                                        <label>Número telefónico</label>
+                                        <input value={phoneNumber} type="text" className="numTelefonoS" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/>
+                                    </div>
+                                )}
                             </form>
                             <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>
                             <button className="google2" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
