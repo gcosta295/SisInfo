@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 import { setDoc, doc } from "firebase/firestore";
 
 
+
 export default function Signup() {
 
     const [email, setEmail] = useState("");
@@ -25,8 +26,17 @@ export default function Signup() {
 
     const handleSignUp = async() => {
         if ( !email || !name || !lastname || !password || !tipoUser) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
-            if ( (email.includes('@correo.unimet.edu.ve') || email.includes('@unimet.edu.ve')) && !(tipoUser == "guia" && !phoneNumber)){
-                const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
+            if (!(tipoUser == "guia" && !phoneNumber)){
+                const list1 = phoneNumber.split("-");
+                if (list1[0].length != 4 || list1[1].length != 7){
+                    setEmail("");   
+                }else{
+                    if(isNaN(parseInt(list1[0])) || isNaN(parseInt(list1[1]))){
+                        setEmail("");
+                    }
+                }
+                if (email.includes('@correo.unimet.edu.ve') || email.includes('@unimet.edu.ve')){
+                    const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
                 const profilePicUrl = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=128`;
             
                 createUserWithEmailAndPassword(auth, email, password)
@@ -60,8 +70,12 @@ export default function Signup() {
                     const errorMessage = error.message;  //explicacion
                     console.log(errorCode, errorMessage); //si hay error, aparece mensaje automatico con el motivo y explicacion
                 });
+                }
+                else{
+                    toast.error('Error iniciando sesión')
+                }
             }else{
-                console.log("no funca");
+                toast.error('Error iniciando sesión')
             }
         
     };
@@ -85,89 +99,33 @@ export default function Signup() {
         setPassword("");
         toast.error('Error iniciando sesión')
     });
-};
+    }
 
     const [tabIndex, setTabIndex] = useState(0);
 
     const navigate = useNavigate();
 
-const handleClick = () => {
+    const handleClick = () => {
   signInWithPopup(auth, provider)
     .then((data) => {
-      const user = data.user;
-      const email = user.email;
-      if (email && (email.endsWith('@correo.unimet.edu.ve') || email.endsWith('@unimet.edu.ve'))) {
-        const password = prompt("Por favor, ingresa tu contraseña:");
-        if (password === null) {
-          return; 
+    const user = data.user;
+    const email = user.email;
+    if (email && (email.endsWith('@correo.unimet.edu.ve') || email.endsWith('@unimet.edu.ve'))) {
+        setPassword(prompt("Por favor, ingresa tu contraseña:"));
+        const uType = prompt("Por favor, ingresa tu tipo de usuario: (trekker, guia)")
+        setTipoUser(uType);
+        if (uType == "guia") {
+            setPhoneNumber(prompt("Por favor, ingresa tu número de teléfono: (xxxx-xxxxxxx)"));
         }
-        const userType = prompt("Por favor, ingresa tu tipo de usuario: (trekker, guia)");
-        if (userType === null) {
-          return; 
-        }
-        let phoneNumber = "";
-        if (userType.toLowerCase() === "guia") {
-          phoneNumber = prompt("Por favor, ingresa tu número de teléfono: (xxxx-xxxxxxx)");
-          if (phoneNumber === null) {
-            return; 
-          }
-        }
-        try {
-            const list1 = phoneNumber.split("-");
-            if (list1[0].length != 4 || list1[1].length != 7){
-                phoneNumber = "";   
-            }else{
-                if(isNaN(parseInt(list1[0])) || isNaN(parseInt(list1[1]))){
-                    phoneNumber = "";
-                }
-            }
-                 
-        } catch (error) {   
-            console.error('Error al iniciar sesión:', error);
-            toast.error('Error al iniciar sesión con Google');
-        }
-        if ((password != "" && userType != "") && (userType == "guia" || userType == "trekker")){
-            if ((userType == "guia" && phoneNumber != "") || userType == "trekker"){
-                const list = user.displayName.split("");
-                createUserWithEmailAndPassword(auth, email, password)  //arregrar create
-                    .then(async(userCredential) => {
-                    const user = userCredential.user;
-                    console.log("si1");
-                    if (user) {
-                        console.log("si2");
-                        await setDoc(doc(db, "Users", user.uid), {  
-                          email: email,
-                          firstName: list[0],
-                          lastName: list[1],
-                          profilePicture: null,
-                          phoneNumber: phoneNumber,
-                          tipoUsuario: userType,
-                          description: null,
-                          favActivity: null,
-                          nacionality: null,
-
-                        });
-                        console.log("si3");
-                      }
-                    setEmail("");
-                    setPassword("");
-                    setName("");
-                    setLastname("");
-                    setPhoneNumber("");
-                    setTipoUser("");
-                    toast.success('Registro exitoso')
-                    navigate("/");  });
-            }
-        }
-      } else {
-        auth.signOut(); // Cierra la sesión
-        toast.error('Dominio de correo electrónico no permitido.');
-      }
+        const list = user.displayName.split(" ");
+        console.log(user.displayName);
+        setName(list[0]);
+        setLastname(list[1]);
+        handleSignUp;
+    }else{
+        toast.error('Error iniciando sesión')
+    }
     })
-    .catch((error) => {
-      console.error('Error al iniciar sesión:', error);
-      toast.error('Error al iniciar sesión con Google');
-    });
 };
 
     const [isGuide, setIsGuide] = useState(false); // Estado para controlar si el usuario es guía
