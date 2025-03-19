@@ -51,11 +51,20 @@ export default function App() {
             </Route>
 
             <Route element={<ProtectedLogged/>}>
+
               <Route element={<ProtectedUserType roles={["trekker", "administrador"]}/>}> {/* usuarios permitidos: guia (solo users loggeados)*/}
                 <Route path="mi-perfil-guia" element={<PerfilGuia/>} />
                 <Route path="editar-guia" element={<EditarPerfilGuia/>} />
                 <Route path="reservas-guia" element={<ReservasGuia/>} />
               </Route>
+            </Route>
+            <Route element={<ProtectedLogged/>}>
+              <Route element={<ProtectedUserType roles={["trekker", "guia"]}/>}> {/* usuarios permitidos: administradores (solo users loggeados)*/}
+                <Route path="admin" element={<Admin />} />
+                <Route path="editAct/:actividadId" element={<EditAct />} />
+                <Route path="newAc" element={<NewAc />} />
+              </Route>     
+
             </Route>
 
             <Route element={<ProtectedUserType roles={["guia", "administrador"]}/>}> {/* usuarios permitidos: trekker y cualquiera sin estar loggeado */}
@@ -69,12 +78,8 @@ export default function App() {
               <Route path="foro" element={<Foro/>} />
               <Route path="informacion" element={<Informacion/>} />
               <Route path="contacto" element={<Contacto />} />
-              <Route path="admin" element={<Admin />} />
-              <Route path="editAct/:actividadId" element={<EditAct />} />
-              <Route path="actividad/:name" element={<Actividad />} />
-              <Route path="newAc" element={<NewAc />} />
+            </Route>       
 
-            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

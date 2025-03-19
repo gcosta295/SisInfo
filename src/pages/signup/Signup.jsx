@@ -142,11 +142,11 @@ export default function Signup() {
                             <form className="forms">
                                 <div className="formNombre">
                                     <label>Nombre</label>
-                                    <input value={name} type="text" className="nameS" placeholder="Nombre(s)" onChange={(e) => setName(e.target.value)} />
+                                    <input value={name}  className="nameS" placeholder="Nombre(s)" onChange={(e) => setName(e.target.value)} />
                                 </div>
                                 <div className="formApellido">
                                     <label>Apellido</label>
-                                    <input value={lastname} type="text" className="lastnameS" placeholder="Apellido(s)"  onChange={(e) => setLastname(e.target.value)}/>
+                                    <input value={lastname}  className="lastnameS" placeholder="Apellido(s)"  onChange={(e) => setLastname(e.target.value)}/>
                                 </div>
                                 <div className="formCorreo">
                                     <label>Correo electrónico</label>
@@ -168,7 +168,7 @@ export default function Signup() {
                                 {isGuide && (
                                     <div className="formTelefono">
                                         <label>Número telefónico</label>
-                                        <input value={phoneNumber} type="text" className="numTelefonoS" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/>
+                                        <input value={phoneNumber}  className="numTelefonoS" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/>
                                     </div>
                                 )}
                             </form>

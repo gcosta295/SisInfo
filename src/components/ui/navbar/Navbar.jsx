@@ -58,7 +58,7 @@ export default function Navbar(){
                         :
                         <div className="dropdownMenu">
                             <NavLink to={"/signup"} className="opcionInicioSes">Iniciar sesión</NavLink>
-                            <NavLink to={"/admin"} className="opcionInicioSes">Prueba admin</NavLink>
+                            {/* <NavLink to={"/admin"} className="opcionInicioSes">Prueba admin</NavLink> */}
 
                         </div>
                     )}
