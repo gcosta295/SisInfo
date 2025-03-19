@@ -129,7 +129,7 @@ const handleClick = () => {
         if ((password != "" && userType != "") && (userType == "guia" || userType == "trekker")){
             if ((userType == "guia" && phoneNumber != "") || userType == "trekker"){
                 const list = user.displayName.split("");
-                createUserWithEmailAndPassword(auth, email, password)
+                createUserWithEmailAndPassword(auth, email, password)  //arregrar create
                     .then(async(userCredential) => {
                     const user = userCredential.user;
                     console.log("si1");
