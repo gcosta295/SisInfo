@@ -105,13 +105,15 @@ export default function Actividad() {
     navigate(`/reserva/${params.actividadId}`);
   };
 
+  const goto2 = (event) => {  
+    navigate(`/perfil-trekker-guia/${params.actividadId}`)   //boton con navigate para que lleve a reserva/params.actividadId como en actividades para ir a actividad especifica
+};
+
+
   const handleAddComment = async (event) => {
     event.preventDefault();
 
-    const goto2 = (event) => {  
-      navigate(`/perfil-trekker-guia/${params.actividadId}`)   //boton con navigate para que lleve a reserva/params.actividadId como en actividades para ir a actividad especifica
-  }
-
+ 
     if (!newComment.trim()) {
       toast.error("El comentario no puede estar vacío.");
       return;
@@ -192,9 +194,10 @@ export default function Actividad() {
                 <p className="nombreForo">
                 {guiaData.firstName} {guiaData.lastName}
                 </p>
-                <button className='botonVerPerfilGuiaDesdeTrekker' onClick={goto2}>Ver perfil del guia</button>
 
               </div>
+              <button className='botonPublicarForo' onClick={goto2}>Ver perfil</button>
+
             </div>
           </div>
         </div>
