@@ -32,6 +32,8 @@ export default function EditActivity() {
   const [dataAct, setDataAct] = useState(null);
   const [newCost, setNewCost] = useState("");
   const [newImage, setNewImage] = useState("");
+  const [newDif, setNewDif] = useState("");
+
   const [newType, setNewType] = useState("");
   const [newRoute, setNewRoute] = useState("");
   const [routeData, setRouteData] = useState({});
@@ -138,6 +140,7 @@ export default function EditActivity() {
         setNewCost(activityData.cost);
         setNewImage(activityData.image);
         setNewType(activityData.type);
+        setNewDif(activityData.rating);
 
         setLoading(false);
       } catch (err) {
@@ -177,11 +180,20 @@ export default function EditActivity() {
     setNewDate(e.target.value);
   };
 
+  const handleDifChange = (e) => {
+    setNewDif(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!params.actividadId) {
       setUpdateStatus("Error: documentId is missing.");
+      return;
+    }
+
+    if (newDif < 1 || newDif > 5) {
+      setUpdateStatus("Error: La dificultad debe estar entre 1 y 5.");
       return;
     }
     try {
@@ -199,11 +211,12 @@ export default function EditActivity() {
         guia: guideRef, // Save the DocumentReference
         route: routeRef, // Save the DocumentReference
         date: dateTimestamp, // Save Timestamp
+        rating: newDif,
       });
       setUpdateStatus("Actividad Actualizada!");
     } catch (error) {
       console.error("Error updating document:", error);
-      setUpdateStatus("Error updating name: " + error.message); // Mensaje de error
+      setUpdateStatus("Error " + error.message); // Mensaje de error
     }
   };
 
@@ -263,6 +276,10 @@ export default function EditActivity() {
             <FontAwesomeIcon icon={faDollarSign} />
             <input type="text" value={newCost} onChange={handleCostChange} />
           </label>
+          <h1>Dificultad</h1>
+          <label>
+            <input type="text" value={newDif} onChange={handleDifChange} />
+          </label>
           <h1>Descripcion</h1>
           <label>
             <textarea
@@ -304,7 +321,8 @@ export default function EditActivity() {
                 </option>
               ))}
             </select>
-          </label>time
+          </label>
+          time
           <h1>Fecha y Hora</h1>
           <label>
             <input
