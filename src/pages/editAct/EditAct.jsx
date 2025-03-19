@@ -10,7 +10,9 @@ import {
   doc,
   updateDoc,
   getDocs,
+  Timestamp,
 } from "firebase/firestore";
+
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
@@ -33,6 +35,8 @@ export default function EditActivity() {
   const [newType, setNewType] = useState("");
   const [newRoute, setNewRoute] = useState("");
   const [routeData, setRouteData] = useState({});
+  const [newDate, setNewDate] = useState(""); // Add newDate state
+  const [routeN, setRouteN] = useState(""); // Add newDate state
 
   const [updateStatus, setUpdateStatus] = useState(null);
   const [guideNames, setGuideNames] = useState([]); // Combined guide names state
@@ -83,6 +87,7 @@ export default function EditActivity() {
           if (routeSnap.exists()) {
             setRouteData(routeSnap.data());
             console.log("datos de ruta:", routeSnap.data());
+            setRouteN(routeSnap.data().name);
           }
           setNewRoute(activityData.route.id); // Extract document ID from reference
         } else {
@@ -143,7 +148,7 @@ export default function EditActivity() {
     };
 
     fetchData();
-  }, []);
+  }, [params?.actividadId]);
 
   const handleDescChange = (e) => {
     setNewDesc(e.target.value);
@@ -168,31 +173,32 @@ export default function EditActivity() {
     setNewRoute(e.target.value);
   };
 
+  const handleDateChange = (e) => {
+    setNewDate(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
+    e.preventDefault();
 
     if (!params.actividadId) {
       setUpdateStatus("Error: documentId is missing.");
       return;
     }
-    setNewRoute(document.getElementsByClassName("drop")[0].value);
-    setNewDesc(document.getElementsByClassName("large-textarea")[0].value);
-    setNewGuide(document.getElementsByClassName("drop2")[0].value);
-    setNewImage(document.getElementsByClassName("url")[0].value);
-    setNewCost(document.getElementsByClassName("aCost")[0].value);
-    setNewType(document.getElementsByClassName("drop1")[0].value);
-    if(!newRoute || !newDesc || !newCost || !newImage || !newType || !newGuide)return;
-      try {
-        const docRef = doc(db, "Activities", params.actividadId);
-        const guideRef = doc(db, "Users", newGuide);
-        const routeRef = doc(db, "Routes", newRoute);
+    try {
+      const docRef = doc(db, "Activities", params.actividadId);
+      const guideRef = doc(db, "Users", newGuide);
+      const routeRef = doc(db, "Routes", newRoute);
+      const dateTimestamp = Timestamp.fromDate(new Date(newDate));
+
       await updateDoc(docRef, {
         name: newName,
         info: newDesc,
         cost: newCost,
         image: newImage,
         type: newType,
-        guia: guideRef, // Save the reference string
-        route: routeRef, // Save the reference string
+        guia: guideRef, // Save the DocumentReference
+        route: routeRef, // Save the DocumentReference
+        date: dateTimestamp, // Save Timestamp
       });
       setUpdateStatus("Actividad Actualizada!");
     } catch (error) {
@@ -236,7 +242,7 @@ export default function EditActivity() {
         <button type="button" className="return2" onClick={gotoAdmin}>
           Regresar
         </button>
-
+        <form onSubmit={handleSubmit}>
           <h1>Tipo de Ruta</h1>
           <label>
             <select
@@ -255,7 +261,7 @@ export default function EditActivity() {
           <h1>Precio</h1>
           <label>
             <FontAwesomeIcon icon={faDollarSign} />
-            <input type="text" value={newCost} onChange={handleCostChange} className="aCost"/>
+            <input type="text" value={newCost} onChange={handleCostChange} />
           </label>
           <h1>Descripcion</h1>
           <label>
@@ -267,12 +273,12 @@ export default function EditActivity() {
           </label>
           <h1>URL de Imagen</h1>
           <label className="L">
-            <input type="text" value={newImage} className = "url" onChange={handleImageChange} />
+            <input type="text" value={newImage} onChange={handleImageChange} />
           </label>
           <h1>Tipo de Actividad</h1>
           <label>
             <select
-              className="drop1"
+              className="drop"
               value={newType}
               onChange={handleTypeChange}
             >
@@ -287,7 +293,7 @@ export default function EditActivity() {
           <h1>Asignar Guia</h1>
           <label>
             <select
-              className="drop2"
+              className="drop"
               value={newGuide}
               onChange={handleGuideChange}
             >
@@ -298,23 +304,31 @@ export default function EditActivity() {
                 </option>
               ))}
             </select>
+          </label>time
+          <h1>Fecha y Hora</h1>
+          <label>
+            <input
+              type="datetime-local"
+              value={newDate}
+              onChange={handleDateChange}
+            />
           </label>
           <div className="botoncitos">
             <button type="button" className="guardar3" onClick={handleDelete}>
               Eliminar
             </button>
-            <button type="submit" className="guardar" onClick={handleSubmit}> 
+            <button type="submit" className="guardar">
               Guardar
             </button>
           </div>
-
+        </form>
         {updateStatus && <p>{updateStatus}</p>}
       </div>
       <div className="RightColumn">
         <img src={activityToEdit.image} className="ImageA" alt="" />
 
         <div className="Old">
-          <h1>{activityToEdit.name}</h1>
+          <h1>{routeN}</h1>
           <h1>
             <FontAwesomeIcon icon={faDollarSign} />
             {activityToEdit.cost}
