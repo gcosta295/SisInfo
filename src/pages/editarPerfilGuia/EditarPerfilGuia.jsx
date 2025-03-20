@@ -274,7 +274,7 @@ export default function EditarPerfilGuia() {
                         </div>
                         <div className="formModificarTelefTrekker">
                             <p className="labelCorreoGuia">Teléfono</p>
-                            <input value={phoneNumber} className="nuevoTdeguia" placeholder="Nuevo número telefónico" onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <input value={phoneNumber}  className="nuevoTdeguia" placeholder="Nuevo número telefónico" onChange={(e) => setPhoneNumber(e.target.value)} />
                         </div>
                     </div>
                 </div>

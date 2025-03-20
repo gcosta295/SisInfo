@@ -64,22 +64,23 @@
 .box-text{
     display: flex;
     justify-content: center;
-    width: 300px;
+    width: 600px;
     height:40px;
     border-radius: 6px;
-
+    border: 2px solid #D9D9D9;
 }
 
 .multi-button button{
-    height: 50px;
-    /* font-weight: bold; */
+    height: 40px;
     font-size: 1.2rem;
     border: none;
     margin: -5px; 
     padding: 0;
     stroke: black;
     border: 2px solid #D9D9D9;
-    border-radius: 5px;  }
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
 
 .multi-button :nth-child(1){
 
@@ -108,10 +109,10 @@
 }
 .menu-button2{
     width: 100px;
-    background-color: rgb(110, 107, 107);
+    background-color: rgb(167, 167, 167);
     color: white;
+    height: 40px;
 
-    
 
 }
 
@@ -199,10 +200,10 @@
 }
 
 .verInfo{
-    background-color: #83A846;
+    background-color: green;
     color: white;
     font-weight: bold;
-    border: 2px solid #83A846;
+    border: 2px solid green;
     border-radius: 20px;
     width:130px;
     height:40px;
