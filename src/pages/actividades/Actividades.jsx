@@ -72,18 +72,11 @@ export default function Actividades() {
         activities.forEach((activity) => {
           const myDate = new Date(activity.date.seconds * 1000);
           const myArray = myDate.toLocaleString().split(",");
-          console.log(myArray);
           try {
-            const Array1 = searchText.split("/");
+            const Array1 = data.split("/");
             const Array2 = myArray[0].split("/");
-            if (
-              parseInt(Array1[0]) - parseInt(Array2[0]) === 0 &&
-              parseInt(Array1[1]) - parseInt(Array2[1]) === 0
-            ) {
-              if (
-                (parseInt(Array1[2]) - parseInt(Array2[2])) % 10 === 0 &&
-                parseInt(Array1[2]) - parseInt(Array2[2]) >= 0
-              ) {
+            if (parseInt(Array1[0]) - parseInt(Array2[0]) === 0 && parseInt(Array1[1]) - parseInt(Array2[1]) === 0) {
+              if ((parseInt(Array1[2]) - parseInt(Array2[2]) + 2000 == 0) || (parseInt(Array1[2]) - parseInt(Array2[2]) == 0)) {
                 list.push(activity);
               }
             }
