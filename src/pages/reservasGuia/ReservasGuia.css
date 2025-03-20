@@ -1,11 +1,35 @@
-.tituloAsignadasGuia{
+.tituloAsignadasGuia {
     font-size: 50px;
     font-weight: bold;
-    padding:20px;
+    padding: 20px;
     margin-left: 100px;
 }
 
-.palabraNoActs{
-    margin-left:120px;
+.palabraNoActs {
+    margin-left: 120px;
     margin-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+    .tituloAsignadasGuia {
+        font-size: 36px;
+        margin-left: 20px;
+    }
+
+    .palabraNoActs {
+        margin-left: 20px;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tituloAsignadasGuia {
+        font-size: 28px;
+        margin-left: 10px;
+    }
+
+    .palabraNoActs {
+        margin-left: 10px;
+        margin-bottom: 30px;
+    }
 }

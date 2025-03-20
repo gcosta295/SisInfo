@@ -1,5 +1,4 @@
 import ContactoInfo from "../../components/contacto/ContactoInfo";
-import "./Contacto";
 import { useNavigate } from "react-router";
 
 export default function Contacto() {

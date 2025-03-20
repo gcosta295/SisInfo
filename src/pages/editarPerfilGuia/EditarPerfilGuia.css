@@ -1,17 +1,17 @@
-.formModificarCorreoTrekker{
-    display:flex;
-    gap:20px;
+.formModificarCorreoTrekker {
+    display: flex;
+    gap: 20px;
 }
 
-.formModificarTelefTrekker{
-    display:flex;
-    gap:20px;
+.formModificarTelefTrekker {
+    display: flex;
+    gap: 20px;
 }
 
-.nuevoTdeguia{
+.nuevoTdeguia {
     padding: 5px;
     width: 305px;
-    height:40px;
+    height: 40px;
     border-radius: 6px;
     border-color: #D2D2D2;
     color: #4E4E4E;
@@ -20,14 +20,14 @@
     box-shadow: none;
 }
 
-.labelCorreoGuia{
+.labelCorreoGuia {
     font-weight: bold;
 }
 
-.correoNuevoGuiaEdit{
+.correoNuevoGuiaEdit {
     padding: 5px;
     width: 300px;
-    height:40px;
+    height: 40px;
     border-radius: 6px;
     border-color: #D2D2D2;
     color: #4E4E4E;
@@ -36,15 +36,10 @@
     box-shadow: none;
 }
 
-.formModificarTelefTrekker{
-    display:flex;
-    gap:20px;
-}
-
-.nuevoTGuia{
+.nuevoTGuia {
     padding: 5px;
     width: 100px;
-    height:40px;
+    height: 40px;
     border-radius: 6px;
     border-color: #D2D2D2;
     color: #4E4E4E;
@@ -53,23 +48,53 @@
     box-shadow: none;
 }
 
-.padreModificarDatosGuia{
-    display:flex;
+.padreModificarDatosGuia {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.modificarDatosGuia{
+.modificarDatosGuia {
     width: 1000px;
     height: 280px;
     background-color: #ffffff;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     margin-bottom: 70px;
     border-radius: 10px;
-    display:flex;
-    align-items:start;
+    display: flex;
+    align-items: start;
     justify-content: center;
     flex-direction: column;
     padding-left: 50px;
-    gap:40px;
+    gap: 40px;
+}
+
+@media (max-width: 768px) {
+    .modificarDatosGuia {
+        width: 90%;
+        height: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        gap: 20px;
+    }
+
+    .nuevoTdeguia, .correoNuevoGuiaEdit, .nuevoTGuia {
+        width: 100%;
+    }
+
+    .formModificarCorreoTrekker, .formModificarTelefTrekker {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modificarDatosGuia {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .nuevoTdeguia, .correoNuevoGuiaEdit, .nuevoTGuia {
+        height: 35px;
+    }
 }

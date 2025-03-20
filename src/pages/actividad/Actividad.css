@@ -1,0 +1,201 @@
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    box-sizing: border-box; 
+}
+
+.tituloActividad{
+    font-size: 48px;
+    font-weight: bolder;
+    padding: 10px;
+}
+
+.tipoRuta{
+    font-size: 36px;
+    font-weight: bolder;
+    padding: 10px;
+}
+
+.rutapin {
+    display: flex;
+    flex-direction: row;
+}
+
+.pin {
+    width: 100px;
+}
+
+.tiporuta2 {
+    font-size: xx-large;
+}
+
+.LeftColumn2 {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+}
+
+.RightColumn2 {
+    margin-right: 8%;
+    margin-bottom: 5%;
+}
+
+.columnas {
+    display: flex;
+    flex-direction: row;
+}
+
+.rutapic {
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.fecha {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+    align-items: center;
+}
+
+.simbolos2 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5%;
+    margin-top: 2%;
+}
+
+.ac2 {
+    background-color: #F5F5F5;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(46, 46, 46, 0.315);
+    display: flex;
+}
+
+.verInfo2 {
+    background-color: #83A846;
+    color: white;
+    font-weight: bold;
+    border: 2px solid #83A846;
+    border-radius: 10px;
+    width: 130px;
+    height: 40px;
+    margin-left: 50px;
+}
+
+.verInfo2:hover {
+    cursor: pointer;
+    filter: drop-shadow(3px 5px 5px rgba(0, 0, 0, 0.45));
+}
+
+.ac2 {
+    background-color: #F5F5F5;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(46, 46, 46, 0.315);
+    display: flex;
+    min-width: 80px;
+}
+
+.ac3 {
+    background-color: #F5F5F5;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(46, 46, 46, 0.315);
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+}
+
+.precio4 {
+    display: flex;
+    flex-direction: row;
+}
+
+.comentario2 {
+    display: flex;
+    gap: 20px;
+    justify-content: left;
+    align-items: center;
+    padding: 10px;
+}
+
+.rutaName {
+    margin-top: 0px;
+}
+
+.descc {
+    margin-top: 10%;
+}
+
+.fechaD {
+    margin-left: 10%;
+    font-size: large;
+}
+
+@media (max-width: 768px) {
+    .rutapin {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .LeftColumn2, .RightColumn2 {
+        padding: 0; 
+        margin: 0; 
+        width: 100%; 
+    }
+
+    .columnas {
+        flex-direction: column; 
+    }
+
+    .rutapic {
+        width: 100%; 
+    }
+
+    .verInfo2 {
+        margin-left: 0; 
+        width: 100%; 
+        text-align: center; 
+    }
+
+    .ac3 {
+        padding-left: 5%; 
+        padding-right: 5%; 
+    }
+
+    .fechaD {
+        margin-left: 0; 
+        font-size: medium; 
+    }
+}
+
+@media (max-width: 480px) {
+    .tituloActividad{
+        font-size: 34px;
+    }
+    
+    .tiporuta2 {
+        font-size: 34px; 
+    }
+
+    .tipoRuta {
+        font-size: 24px; 
+    }
+
+    .comentario2 {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+
+    .simbolos2 {
+        margin-left: 0; 
+    }
+
+    .ac2 {
+        flex-direction: row; 
+        align-items: center; 
+    }
+}

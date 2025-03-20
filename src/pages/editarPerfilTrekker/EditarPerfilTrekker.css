@@ -1,4 +1,4 @@
-.botonGuardarCambiosTrekker{
+.botonGuardarCambiosTrekker {
     background-repeat: no-repeat;
     border: none;
     transition-duration: 0.4s;
@@ -9,46 +9,46 @@
     font-weight: bold;
     padding-left: 20px;
     padding-right: 20px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    display:flex;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
     align-items: center;  
     justify-content: center;
     width: 250px;
-    height:50px;
+    height: 50px;
     font-size: 24px;
 }
 
-.botonGuardarCambiosTrekker:hover{
+.botonGuardarCambiosTrekker:hover {
     background-color: rgb(114, 194, 114); 
     color: white;
     cursor: pointer;
 }
 
-.padreModificarDatosTrekker{
-    display:flex;
+.padreModificarDatosTrekker {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.modificarDatosTrekker{
+.modificarDatosTrekker {
     width: 1000px;
     height: 300px;
     background-color: #ffffff;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     margin-bottom: 70px;
     border-radius: 10px;
-    display:flex;
-    align-items:start;
+    display: flex;
+    align-items: start;
     justify-content: center;
     flex-direction: column;
     padding-left: 50px;
-    gap:40px;
+    gap: 40px;
 }
 
-.correoNuevo, .contrasenaNueva{
+.correoNuevo, .contrasenaNueva {
     padding: 5px;
     width: 380px;
-    height:40px;
+    height: 40px;
     border-radius: 6px;
     border-color: #D2D2D2;
     color: #4E4E4E;
@@ -57,10 +57,10 @@
     box-shadow: none;
 }
 
-.descripNueva{
+.descripNueva {
     padding: 5px;
     width: 500px;
-    height:100px;
+    height: 100px;
     border-radius: 6px;
     border-color: #D2D2D2;
     color: #4E4E4E;
@@ -69,10 +69,10 @@
     box-shadow: none;
 }
 
-.favActNueva{
+.favActNueva {
     padding: 5px;
     width: 305px;
-    height:40px;
+    height: 40px;
     border-radius: 6px;
     border-color: #D2D2D2;
     color: #4E4E4E;
@@ -81,7 +81,56 @@
     box-shadow: none;
 }
 
-.contenedorActFav{
-    display:flex;
-    gap:30px;
+.contenedorActFav {
+    display: flex;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .modificarDatosTrekker {
+        width: 90%;
+        height: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        gap: 20px;
+    }
+
+    .correoNuevo, .contrasenaNueva, .favActNueva {
+        width: 100%;
+    }
+
+    .descripNueva {
+        width: 100%;
+    }
+
+    .contenedorActFav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .botonGuardarCambiosTrekker {
+        width: 100%;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modificarDatosTrekker {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .botonGuardarCambiosTrekker {
+        font-size: 18px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .correoNuevo, .contrasenaNueva, .favActNueva {
+        height: 35px;
+    }
+
+    .descripNueva {
+        height: 80px;
+    }
 }
