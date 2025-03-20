@@ -157,41 +157,11 @@ export default function Actividad() {
       <p className="tipoRuta">📍Ruta {routeData.type}</p>
       <div className="columnas">
         <div className="LeftColumn2">
-          <img src={dataAct.image} className="rutapic" alt="" />
-          <p>{dataAct.info}</p>
-
-          <div className="fecha">
-            <h3>Fecha</h3>
-            <h3 className="fechaD">{dataAct.date && formatDate(dataAct.date)}</h3> 
+          <img src={dataAct.image} className="rutapic" alt="" width={470} height={370} />
+          <div className="dataActInfo">
+            <p>{dataAct.info}</p>
           </div>
-          <div className="fecha">
-            <h3>Dificultad</h3>
-            <RenderA key={dataAct.id} rating={dataAct.rating} />
-          </div>
-        </div>
-
-        <div className="RightColumn2">
-          <div className="rutapin">
-            <div className="precio2">
-              <h3>Precio</h3>
-              <div className="precio4">
-                <div className="ac2">
-                  <FontAwesomeIcon icon={faDollarSign} />
-                  <h1 className="price3">{dataAct.cost}</h1>
-                </div>
-                <button className="verInfo2" onClick={goto1}>
-                  Reserva Ya
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="ac3">
-            <h2>Ruta {routeData.type}</h2>
-            <h3 className="rutaName"> {routeData.name}</h3>
-            <img src={routeData.image} alt="" />
-            
-            <p className="descc">{routeData.description}</p>
-          </div>
+          
           <div className="ac3">
     <h3>Guia Asignado</h3>
     <div  className="comentario2">
@@ -212,6 +182,40 @@ export default function Actividad() {
 
             </div>
           </div>
+          <div className="fecha">
+            <h3>Fecha</h3>
+            <h3 className="fechaD">{dataAct.date && formatDate(dataAct.date)}</h3> 
+          </div>
+          <div className="fecha">
+            <h3>Dificultad</h3>
+            <RenderA key={dataAct.id} rating={dataAct.rating} />
+          </div>
+          
+        </div>
+
+        <div className="RightColumn2">
+          <div className="rutapin">
+            <div className="precio2">
+              <h3 className="titPrecio">Precio</h3>
+              <div className="precio4">
+                <div className="ac2">
+                  <FontAwesomeIcon icon={faDollarSign} />
+                  <h1 className="price3">{dataAct.cost}</h1>
+                </div>
+                <button className="verInfo2" onClick={goto1}>
+                  Reserva  ya
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="ac3">
+            <h2>Ruta {routeData.type}</h2>
+            <h3 className="rutaName"> {routeData.name}</h3>
+            <img src={routeData.image} alt="" width="370px" height="360px"/>
+            
+            <p className="descc">{routeData.description}</p>
+          </div>
+          
         </div>
       </div>
    

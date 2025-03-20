@@ -56,14 +56,14 @@ export default function Actividades() {
     const list = [];
     const data = searchText; // Usa el estado searchText
     if (
-      data === "Rappel" ||
-      data === "Excursion" ||
-      data === "Paseo" ||
+      data.toLowerCase() === "Rappel".toLowerCase() ||
+      data.toLowerCase() === "Excursion".toLowerCase() ||
+      data.toLowerCase() === "Paseo".toLowerCase() ||
       data.includes("/")
     ) {
-      if (data === "Rappel" || data === "Excursion" || data === "Paseo") {
+      if (data.toLowerCase() === "Rappel".toLowerCase() || data.toLowerCase() === "Excursion".toLowerCase() || data.toLowerCase() === "Paseo".toLowerCase()) {
         activities.forEach((activity) => {
-          if (activity.type === data) {
+          if (activity.type?.toLowerCase() === data.toLowerCase()) {
             list.push(activity);
           }
         });
@@ -93,7 +93,7 @@ export default function Actividades() {
       }
     } else {
       RouteNames.forEach((routeName) => {
-        if (routeName.name.includes(data)) {
+        if (routeName.name.toLowerCase().includes(data.toLowerCase())) {
           activities.forEach((activity) => {
             if (activity.route.id == routeName.id) {
               list.push(activity);
@@ -128,14 +128,14 @@ export default function Actividades() {
           <label>
             <input
               className="box-text"
-              type="text"
+              
               placeholder="     Tipo Ruta / Fecha (MM/DD/YY) / Nombre"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
           </label>
           <button className="menu-button2" onClick={Serch}>
-            <span>Buscar</span>
+            <span style={{color: "white"}}>Buscar</span>
           </button>
         </div>
       </div>
