@@ -198,12 +198,10 @@ const handleClick1 = () => {
                                         <option value="guia">Guía</option>
                                     </select>
                                 </div>
-                                {isGuide && (
-                                    <div className="formTelefono">
+                                <div className="formTelefono">
                                         <label>Número telefónico</label>
                                         <input value={phoneNumber}  className="numTelefonoS" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/>
                                     </div>
-                                )}
                             </form>
                             <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>
                             <button className="google2" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
