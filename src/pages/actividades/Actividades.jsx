@@ -1,4 +1,3 @@
-
 import "./Actividades.css";
 import { useNavigate } from "react-router";
 import { db } from "../../firebase/firebase";
@@ -56,7 +55,12 @@ export default function Actividades() {
   const Serch = async () => {
     const list = [];
     const data = searchText; // Usa el estado searchText
-    if (data === "Rappel" || data === "Excursion" || data === "Paseo" || data.includes("/")) {
+    if (
+      data === "Rappel" ||
+      data === "Excursion" ||
+      data === "Paseo" ||
+      data.includes("/")
+    ) {
       if (data === "Rappel" || data === "Excursion" || data === "Paseo") {
         activities.forEach((activity) => {
           if (activity.type === data) {
@@ -71,8 +75,14 @@ export default function Actividades() {
           try {
             const Array1 = searchText.split("/");
             const Array2 = myArray[0].split("/");
-            if (parseInt(Array1[0]) - parseInt(Array2[0]) === 0 && parseInt(Array1[1]) - parseInt(Array2[1]) === 0) {
-              if ((parseInt(Array1[2]) - parseInt(Array2[2])) % 10 === 0 && (parseInt(Array1[2]) - parseInt(Array2[2])) >= 0) {
+            if (
+              parseInt(Array1[0]) - parseInt(Array2[0]) === 0 &&
+              parseInt(Array1[1]) - parseInt(Array2[1]) === 0
+            ) {
+              if (
+                (parseInt(Array1[2]) - parseInt(Array2[2])) % 10 === 0 &&
+                parseInt(Array1[2]) - parseInt(Array2[2]) >= 0
+              ) {
                 list.push(activity);
               }
             }
@@ -84,11 +94,11 @@ export default function Actividades() {
     } else {
       RouteNames.forEach((routeName) => {
         if (routeName.name.includes(data)) {
-            activities.forEach((activity) => {
-                if (activity.route.id == routeName.id){
-                    list.push(activity);
-                }
-            })
+          activities.forEach((activity) => {
+            if (activity.route.id == routeName.id) {
+              list.push(activity);
+            }
+          });
         }
       });
     }
@@ -98,31 +108,38 @@ export default function Actividades() {
   return (
     <div className="container">
       <div className="ActividadHome">
-        <img src="\fotos\caminio.jpg" alt="Bosque" className="imgActividadHome" />
+        <img
+          src="\fotos\caminio.jpg"
+          alt="Bosque"
+          className="imgActividadHome"
+        />
       </div>
       <div className="container">
         <div className="fraseMain">
-          <p className="fraseM">Elige una de las actividades para una excursión</p>
+          <p className="fraseM">
+            Elige una de las actividades para una excursión
+          </p>
           <p className="fraseM">guiada según las rutas que ofrecemos</p>
         </div>
         <div className="containerDivisor">
           <div className="divisor"></div>
         </div>
         <div className="multi-button">
+          <label>
+            <input
+              className="box-text"
+              type="text"
+              placeholder="     Tipo Ruta / Fecha (MM/DD/YY) / Nombre"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+          </label>
           <button className="menu-button2" onClick={Serch}>
             <span>Buscar</span>
           </button>
         </div>
       </div>
-      <label>
-        <input
-          className="box-text"
-          type="text"
-          placeholder="tipo / fecha (MM/DD/YY) / nombre"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-      </label>
+
       <div className="container">
         <ul className="Acs">
           {filteredActivities.map((activity) => (
@@ -144,52 +161,48 @@ export default function Actividades() {
   );
 }
 
+function RenderA({ activityId, name, info, tipo, images, rating, id, route }) {
+  const mountainImages = [1, 2, 3, 4, 5];
+  const navigate1 = useNavigate();
+  const gotocontact3 = () => {
+    navigate1(`/actividad/${id}`);
+  };
 
-function RenderA({activityId,name, info, tipo, images, rating, id, route}){   
-    const mountainImages = [1, 2, 3, 4, 5];
-    const navigate1 = useNavigate();
-    const gotocontact3 = () => {  
-        navigate1(`/actividad/${id}`)
-    }
-    
-    const [routeName, setRouteName] = useState("");
- 
+  const [routeName, setRouteName] = useState("");
+
   useEffect(() => {
-        const fetchRouteName = async () => {
-        const routeDoc = await getDoc(route);
-          if (route) {
-              try {
-                  if (routeDoc.exists()) {
-                      setRouteName(routeDoc.data().name);
-                  } else {
-                      setRouteName("Route not found");
-                  }
-              } catch (error) {
-                  console.error("Error fetching route:", error);
-                  setRouteName("Error fetching route");
-              }
+    const fetchRouteName = async () => {
+      const routeDoc = await getDoc(route);
+      if (route) {
+        try {
+          if (routeDoc.exists()) {
+            setRouteName(routeDoc.data().name);
           } else {
-              setRouteName("No route assigned");
+            setRouteName("Route not found");
           }
-      };
+        } catch (error) {
+          console.error("Error fetching route:", error);
+          setRouteName("Error fetching route");
+        }
+      } else {
+        setRouteName("No route assigned");
+      }
+    };
 
-      fetchRouteName();
+    fetchRouteName();
   }, [route]);
 
-    return( 
-
+  return (
     <li className="ac">
-        <div className="imgs">
+      <div className="imgs">
         <img src={images} className="ImageA" alt="" />
-
-        </div>
-    <div className="acl"> 
-    <h1 className="titleTipo titles">{tipo}</h1>
-    <h2 className='titleName titles'>{routeName}</h2>
-    <p className= "p titles">{info}</p>
-    <div className="simbolos">
-    
-    {mountainImages.map((index) => (
+      </div>
+      <div className="acl">
+        <h1 className="titleTipo titles">{tipo}</h1>
+        <h2 className="titleName titles">{routeName}</h2>
+        <p className="p titles">{info}</p>
+        <div className="simbolos">
+          {mountainImages.map((index) => (
             <img
               key={index}
               src="\fotos\mountaini.png"
@@ -198,11 +211,11 @@ function RenderA({activityId,name, info, tipo, images, rating, id, route}){
               style={{ opacity: index <= rating ? 0.8 : 0.3 }}
             />
           ))}
-    </div>
-    <button className="verInfo" onClick={gotocontact3}>Ver detalles</button>
-    
-    </div>
-
+        </div>
+        <button className="verInfo" onClick={gotocontact3}>
+          Ver detalles
+        </button>
+      </div>
     </li>
-  )
+  );
 }
