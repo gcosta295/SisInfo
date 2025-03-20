@@ -10,6 +10,18 @@
     margin-top: 20px;
 }
 
+@media (max-width: 768px) {
+    .tituloForo {
+        align-items: center; 
+        gap:20px;
+        font-size: 30px;
+        font-weight: bold;
+        margin-left: 0;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+}
+
 .contenedorForo{
     display:flex;
     justify-content: center;
