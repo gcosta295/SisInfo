@@ -56,14 +56,14 @@ export default function Actividades() {
     const list = [];
     const data = searchText; // Usa el estado searchText
     if (
-      data === "Rappel" ||
-      data === "Excursion" ||
-      data === "Paseo" ||
+      data.toLowerCase() === "Rappel".toLowerCase() ||
+      data.toLowerCase() === "Excursion".toLowerCase() ||
+      data.toLowerCase() === "Paseo".toLowerCase() ||
       data.includes("/")
     ) {
-      if (data === "Rappel" || data === "Excursion" || data === "Paseo") {
+      if (data.toLowerCase() === "Rappel".toLowerCase() || data.toLowerCase() === "Excursion".toLowerCase() || data.toLowerCase() === "Paseo".toLowerCase()) {
         activities.forEach((activity) => {
-          if (activity.type === data) {
+          if (activity.type?.toLowerCase() === data.toLowerCase()) {
             list.push(activity);
           }
         });
@@ -73,16 +73,10 @@ export default function Actividades() {
           const myDate = new Date(activity.date.seconds * 1000);
           const myArray = myDate.toLocaleString().split(",");
           try {
-            const Array1 = searchText.split("/");
+            const Array1 = data.split("/");
             const Array2 = myArray[0].split("/");
-            if (
-              parseInt(Array1[0]) - parseInt(Array2[0]) === 0 &&
-              parseInt(Array1[1]) - parseInt(Array2[1]) === 0
-            ) {
-              if (
-                (parseInt(Array1[2]) - parseInt(Array2[2])) % 10 === 0 &&
-                parseInt(Array1[2]) - parseInt(Array2[2]) >= 0
-              ) {
+            if (parseInt(Array1[0]) - parseInt(Array2[0]) === 0 && parseInt(Array1[1]) - parseInt(Array2[1]) === 0) {
+              if ((parseInt(Array1[2]) - parseInt(Array2[2]) + 2000 == 0) || (parseInt(Array1[2]) - parseInt(Array2[2]) == 0)) {
                 list.push(activity);
               }
             }
@@ -93,7 +87,7 @@ export default function Actividades() {
       }
     } else {
       RouteNames.forEach((routeName) => {
-        if (routeName.name.includes(data)) {
+        if (routeName.name.toLowerCase().includes(data.toLowerCase())) {
           activities.forEach((activity) => {
             if (activity.route.id == routeName.id) {
               list.push(activity);
@@ -128,14 +122,14 @@ export default function Actividades() {
           <label>
             <input
               className="box-text"
-              type="text"
+              
               placeholder="     Tipo Ruta / Fecha (MM/DD/YY) / Nombre"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
           </label>
           <button className="menu-button2" onClick={Serch}>
-            <span>Buscar</span>
+            <span style={{color: "white"}}>Buscar</span>
           </button>
         </div>
       </div>
