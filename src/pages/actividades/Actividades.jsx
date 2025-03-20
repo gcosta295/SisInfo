@@ -72,6 +72,7 @@ export default function Actividades() {
         activities.forEach((activity) => {
           const myDate = new Date(activity.date.seconds * 1000);
           const myArray = myDate.toLocaleString().split(",");
+          console.log(myArray);
           try {
             const Array1 = searchText.split("/");
             const Array2 = myArray[0].split("/");
