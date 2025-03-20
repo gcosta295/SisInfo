@@ -1,54 +1,29 @@
-import "./Contacto.css";
-import { use } from 'react'
-import { UserContext } from '../../context/UserContext.jsx';
+import ContactoInfo from "../../components/contacto/ContactoInfo";
+import { useNavigate } from "react-router";
 
 export default function Contacto() {
-    // const contextUser = use(UserContext);
-    // const {user, setUser} = contextUser;
-    // console.log(contextUser);
 
-    const contextProf = use(UserContext);
-    const {profile, logged} = contextProf;
-    console.log(contextProf);
-
-  return (
-    <div className="contactoContainer">
-      <div className="contactoContent">
-        <div className="contactoImage">
-          <img src="\fotos\fotologin.jpg" alt="Paisaje de senderismo" />
-          <div className="contactoInfo">
-            <div className="infoItem">
-              <img src="\fotos\Ubicacion.svg" alt="Ubicación" />
-              <div>
-                <h3>Ubicación</h3>
-                <p>Avenida Universitaria, Universidad Metropolitana, Caracas, Venezuela</p>
-              </div>
+return (
+    <div className="w-screen lg:h-screen md:p-24 p-10 flex md:flex-row flex-col-reverse justify-center items-center relative gap-4">
+        <ContactoInfo />
+        <div className="w-full h-fit shadow rounded-2xl overflow-clip">
+            <div className="flex md:flex-row flex-col items-center h-fit">
+                <img src="./fotos/fotologin.jpg" className="md:w-1/2 w-full md:h-140 h-80 object-cover" align-middle alt="hiker" />
+                <div className="flex flex-col gap-4 md:gap-8 p-8 md:p-12 lg:p-16 md:w-1/2 w-full">
+                    <h1 className="text-2xl font-semibold">Contáctanos</h1>
+                    <div className="flex flex-col gap-4 text-sm">
+                        <p>
+                            <b>¡AvilaTrekker!</b> ¡Nos encantaría saber de ti! Si tienes preguntas, comentarios o 
+                            necesitas más información sobre nuestras excursiones en el Parque Nacional El Ávila, no dudes en ponerte 
+                            en contacto con nosotros.
+                        </p>
+                        <p>
+                            Estamos aquí para ayudarte a planificar una experiencia inolvidable en la naturaleza.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div className="infoItem">
-              <img src="\fotos\Correo.svg" alt="Correo" />
-              <div>
-                <h3>Correo</h3>
-                <p>avila.trek@gmail.com</p>
-              </div>
-            </div>
-            <div className="infoItem">
-              <img src="\fotos\Telefono.svg" alt="Teléfono" />
-              <div>
-                <h3>Teléfono</h3>
-                <p>+58 123 456 7890</p>
-              </div>
-            </div>
-          </div>
         </div>
-        <div className="contactoTexto">
-          <h2>Contáctanos</h2>
-          <p>
-            AvilaTrekker, nos encantaría saber de ti. <br></br><br></br>Si tienes preguntas, comentarios o necesitas más información sobre nuestras excursiones en el Parque Nacional El Ávila, no dudes en ponerte en contacto con nosotros.
-          </p>
-          <p></p>
-          <p>Estamos aquí para ayudarte a planificar una experiencia inolvidable en la naturaleza.</p>
-        </div>
-      </div>
     </div>
-  );
+    )
 }

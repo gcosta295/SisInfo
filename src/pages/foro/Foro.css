@@ -1,6 +1,6 @@
-*{
+/*{
     color: #4B4949;
-}
+}*/
 
 .tituloForo{
     font-size: 50px;
@@ -8,6 +8,18 @@
     margin-left: 100px;
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .tituloForo {
+        align-items: center; 
+        gap:20px;
+        font-size: 30px;
+        font-weight: bold;
+        margin-left: 0;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
 }
 
 .contenedorForo{
@@ -57,7 +69,7 @@
 .contenedorComentarios{
     background-color: #f5f5f5;
     border-radius: 10px;
-    width: 1300px;
+    width: 100%;
     padding:15px; 
     display:flex;
     flex-direction: column;

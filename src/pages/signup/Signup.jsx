@@ -25,18 +25,17 @@ export default function Signup() {
     const [descrip, setDescrip] = useState("");
 
     const handleSignUp = async() => {
-        if ( !email || !name || !lastname || !password || !tipoUser) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
-            if (!(tipoUser == "guia" && !phoneNumber)){
-                const list1 = phoneNumber.split("-");
-                if (list1[0].length != 4 || list1[1].length != 7){
-                    setEmail("");   
-                }else{
-                    if(isNaN(parseInt(list1[0])) || isNaN(parseInt(list1[1]))){
-                        setEmail("");
-                    }
+        if ( !email || !name || !lastname || !password || !tipoUser || !phoneNumber) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
+            const list1 = phoneNumber.split("-");
+            if (list1[0].length != 4 || list1[1].length != 7){
+                setEmail("");   
+            }else{
+                if (typeof list1[0] !== 'string' || typeof list1[1] !== 'string') {
+                    setEmail("");
                 }
-                if (email.includes('@correo.unimet.edu.ve') || email.includes('@unimet.edu.ve')){
-                    const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
+        }
+            if (email.includes('@correo.unimet.edu.ve') || email.includes('@unimet.edu.ve')){
+                const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
                 const profilePicUrl = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=128`;
             
                 createUserWithEmailAndPassword(auth, email, password)
@@ -70,14 +69,10 @@ export default function Signup() {
                     const errorMessage = error.message;  //explicacion
                     console.log(errorCode, errorMessage); //si hay error, aparece mensaje automatico con el motivo y explicacion
                 });
-                }
+            }
                 else{
                     toast.error('Error iniciando sesión')
-                }
-            }else{
-                toast.error('Error iniciando sesión')
-            }
-        
+                }        
     };
 
     const handleSignIn = () => {
@@ -142,6 +137,15 @@ export default function Signup() {
           });
       };
 
+const handleClick1 = () => {
+    signInWithPopup(auth, provider)
+      .then((data) => {
+      const user = data.user;
+      const email = user.email;
+      setEmail(email);
+      setPassword(prompt("Por favor, ingresa tu contraseña:"));
+    handleSignIn;})}
+
     const [isGuide, setIsGuide] = useState(false); // Estado para controlar si el usuario es guía
 
     // useEffect para actualizar isGuide cuando cambia tipoUser
@@ -179,7 +183,7 @@ export default function Signup() {
                                 <p className="letraDivider"> o </p>
                                 <span className="linea"></span>
                             </div>
-                            <button className="google1" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
+                            <button className="google1" onClick={handleClick1}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
                         </div>
                     </TabPanel>
                     <TabPanel>
@@ -210,12 +214,10 @@ export default function Signup() {
                                         <option value="guia">Guía</option>
                                     </select>
                                 </div>
-                                {isGuide && (
-                                    <div className="formTelefono">
+                                <div className="formTelefono">
                                         <label>Número telefónico</label>
                                         <input value={phoneNumber}  className="numTelefonoS" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/>
                                     </div>
-                                )}
                             </form>
                             <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>
                             <button className="google2" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>

@@ -279,11 +279,11 @@ if (error) {
           <h1>Precio</h1>
           <label>
             <FontAwesomeIcon icon={faDollarSign} />
-            <input type="text" value={newCost} onChange={handleCostChange} />
+            <input className="textinput" type="text" value={newCost} onChange={handleCostChange} />
           </label>
           <h1>Dificultad</h1>
           <label>
-            <input type="text" value={newDif} onChange={handleDifChange} />
+            <input className="textinput" type="text" value={newDif} onChange={handleDifChange} />
           </label>
           <h1>Descripcion</h1>
           <label>
@@ -295,7 +295,7 @@ if (error) {
           </label>
           <h1>URL de Imagen</h1>
           <label className="L">
-            <input type="text" value={newImage} onChange={handleImageChange} />
+            <input className="textinput" type="text" value={newImage} onChange={handleImageChange} />
           </label>
           <h1>Tipo de Actividad</h1>
           <label>
@@ -330,7 +330,7 @@ if (error) {
           time
           <h1>Fecha y Hora</h1>
           <label>
-            <input
+            <input className="textinput"
               type="datetime-local"
               value={newDate}
               onChange={handleDateChange}

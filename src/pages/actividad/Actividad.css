@@ -1,61 +1,69 @@
-*   {
+* {
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-    font-size: 18px;
+    box-sizing: border-box; 
 }
 
+.tituloActividad{
+    font-size: 48px;
+    font-weight: bolder;
+    padding: 10px;
+}
 
-.rutapin{
+.tipoRuta{
+    font-size: 36px;
+    font-weight: bolder;
+    padding: 10px;
+}
+
+.rutapin {
     display: flex;
     flex-direction: row;
 }
 
-.pin{
+.pin {
     width: 100px;
 }
 
-.tiporuta2{
-    font-size: xx-large ;
+.tiporuta2 {
+    font-size: xx-large;
 }
 
-.LeftColumn2{
+.LeftColumn2 {
     padding-left: 5%;
     padding-right: 5%;
     padding-top: 2%;
-    margin-left: 100px;
-    
 }
 
-.RightColumn2{
-   margin-right: 8%;
-   margin-bottom: 5%;
+.RightColumn2 {
+    margin-right: 8%;
+    margin-bottom: 5%;
 }
 
-.columnas{
+.columnas {
     display: flex;
     flex-direction: row;
 }
 
-.rutapic{
-    /* width: 100%; */
+.rutapic {
+    width: 100%;
     margin-bottom: 5%;
 }
 
-.fecha{
+.fecha {
     display: flex;
     flex-direction: row;
     margin-top: 5%;
     align-items: center;
-
 }
 
-.simbolos2{
+.simbolos2 {
     display: flex;
     flex-direction: row;
     margin-left: 5%;
     margin-top: 2%;
 }
 
-.ac2{
+.ac2 {
     background-color: #F5F5F5;
     padding: 10px;
     border-radius: 5px;
@@ -69,6 +77,12 @@
     font-weight: bold;
     border: 2px solid green;
     border-radius: 10px;
+    width: 130px;
+    height: 40px;
+    margin-left: 50px;
+}
+
+.verInfo2:hover {
     width:200px;
     height:50px;
     margin-left: 50px;
@@ -87,7 +101,7 @@
     filter: drop-shadow(3px 5px 5px rgba(0, 0, 0, 0.45));
 }
 
-.ac2{
+.ac2 {
     background-color: #F5F5F5;
     padding: 10px;
     border-radius: 5px;
@@ -99,14 +113,13 @@
 .dataActInfo{
     width:550px;
 }
-.ac3{
+
+.ac3 {
     background-color: #F5F5F5;
     padding-left: 10%;
     padding-right: 10%;
-    width: 550px;
     padding-top: 5%;
     padding-bottom: 5%;
-
     border-radius: 5px;
     box-shadow: 0px 4px 10px rgba(46, 46, 46, 0.315);
     display: flex;
@@ -114,12 +127,9 @@
     margin-top: 5%;
 }
 
-
-.precio4{
+.precio4 {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-
 }
 
 .comentario2{
@@ -130,15 +140,80 @@
    
 }
 
-.rutaName{
-    margin-top: -30px;
+.rutaName {
+    margin-top: 0px;
 }
 
-.descc{
+.descc {
     margin-top: 10%;
 }
 
-.fechaD{
+.fechaD {
     margin-left: 10%;
     font-size: large;
+}
+
+@media (max-width: 768px) {
+    .rutapin {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .LeftColumn2, .RightColumn2 {
+        padding: 0; 
+        margin: 0; 
+        width: 100%; 
+    }
+
+    .columnas {
+        flex-direction: column; 
+    }
+
+    .rutapic {
+        width: 100%; 
+    }
+
+    .verInfo2 {
+        margin-left: 0; 
+        width: 100%; 
+        text-align: center; 
+    }
+
+    .ac3 {
+        padding-left: 5%; 
+        padding-right: 5%; 
+    }
+
+    .fechaD {
+        margin-left: 0; 
+        font-size: medium; 
+    }
+}
+
+@media (max-width: 480px) {
+    .tituloActividad{
+        font-size: 34px;
+    }
+    
+    .tiporuta2 {
+        font-size: 34px; 
+    }
+
+    .tipoRuta {
+        font-size: 24px; 
+    }
+
+    .comentario2 {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+
+    .simbolos2 {
+        margin-left: 0; 
+    }
+
+    .ac2 {
+        flex-direction: row; 
+        align-items: center; 
+    }
 }

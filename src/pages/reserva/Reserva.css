@@ -1,48 +1,45 @@
-*{
-    color:#4B4949;
-}
-p{
+p {
     margin-bottom: 0px;
 }
 
-.botonPaypal{
-    width:200px;
+.botonPaypal {
+    width: 200px;
     height: 30px;
 }
 
-.tituloActividad{
+.tituloReserva {
     font-size: 50px;
     font-weight: bold;
     margin-left: 100px;
 }
 
-.tipoRuta{
+.tipoRutaReserva {
     font-size: 38px;
     font-weight: bold;
     margin-left: 100px;
     margin-top: 20px;
 }
 
-.containerReserva{
+.containerReserva {
     display: flex;
-    margin-top: -50px;
+    margin-top: 10px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 100px;
 }
 
-.calendarioReserva{
-    margin-top:-100px;
+.calendarioReserva {
+    margin-top: 0;
 }
 
-.tituloDetalles{
+.tituloDetalles {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 15px;
 }
 
-.containerReservaDetalles1{
+.containerReservaDetalles1 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,7 +47,7 @@ p{
     margin-bottom: 40px;
 }
 
-.containerReservaDetalles2{
+.containerReservaDetalles2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,7 +64,7 @@ p{
     margin-bottom: 5px;
 }
 
-.primero{
+.primero {
     background-color: #ffffff;
     padding: 2%;
     border-color: #4B4949;
@@ -77,7 +74,7 @@ p{
     border-top-right-radius: 10px;
 }
 
-.segundo, .tercero{
+.segundo, .tercero {
     background-color: #ffffff;
     padding: 2%;
     border-color: #4B4949;
@@ -85,7 +82,7 @@ p{
     border-style: solid;
 }
 
-.cuarto{
+.cuarto {
     background-color: #ffffff;
     padding: 2%;
     border-color: #4B4949;
@@ -96,6 +93,49 @@ p{
     margin-bottom: 30px;
 }
 
+@media (max-width: 768px) {
+    .tituloReserva {
+        font-size: 36px;
+        margin-left: 20px;
+    }
 
+    .tipoRutaReserva {
+        font-size: 28px;
+        margin-left: 20px;
+    }
 
+    .containerReserva {
+        flex-direction: column;
+        gap: 50px;
+    }
 
+    .containerReservaDetalles2 {
+        width: 90%;
+    }
+
+    .botonPaypal {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .tituloReserva {
+        font-size: 28px;
+    }
+
+    .tipoRutaReserva {
+        font-size: 24px;
+    }
+
+    .tituloDetalles {
+        font-size: 20px;
+    }
+
+    .containerReservaDetalles2 {
+        padding: 10px;
+    }
+
+    .costo {
+        font-size: 20px;
+    }
+}

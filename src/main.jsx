@@ -1,3 +1,4 @@
+import './index.css';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Layout from "./components/ui/layout/Layout";

@@ -78,8 +78,8 @@ export default function Reserva() {
 
     return(
         <>
-        <p className="tituloActividad">{data.type} - {routeData.name}</p>
-        <p className="tipoRuta">📍Ruta {routeData.type}</p>
+        <p className="tituloReserva">{data.type} - {routeData.name}</p>
+        <p className="tipoRutaReserva">📍Ruta {routeData.type}</p>
 
         <div className="containerReserva">
             <div className="calendarioReserva">

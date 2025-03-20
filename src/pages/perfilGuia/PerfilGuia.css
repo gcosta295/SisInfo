@@ -1,21 +1,17 @@
-*{
-    color: #4B4949;
-}
-
-.contenedorCabecera{
-    display:flex;
+.contenedorCabecera {
+    display: flex;
     padding: 50px;
     padding-left: 300px;
     padding-right: 300px;
     justify-content: space-between;
 }
 
-.tituloPerfil{
+.tituloPerfil {
     font-size: 50px;
     font-weight: bold;
 }
 
-.botonVerReservaGuia{
+.botonVerReservaGuia {
     background-repeat: no-repeat;
     border: none;
     transition-duration: 0.4s;
@@ -26,16 +22,16 @@
     font-weight: bold;
     padding-left: 20px;
     padding-right: 20px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    display:flex;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
     align-items: center;  
     justify-content: center;
     width: 300px;
-    height:50px;
+    height: 50px;
     font-size: 24px;
 }
 
-.botonEditarGuia{
+.botonEditarGuia {
     background-repeat: no-repeat;
     border: none;
     transition-duration: 0.4s;
@@ -46,29 +42,29 @@
     font-weight: bold;
     padding-left: 20px;
     padding-right: 20px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    display:flex;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
     align-items: center;  
     justify-content: center;
     width: 200px;
-    height:50px;
+    height: 50px;
     font-size: 24px;
 }
 
-.botonVerReservaGuia:hover, .botonEditarGuia:hover{
+.botonVerReservaGuia:hover, .botonEditarGuia:hover {
     background-color: rgb(114, 194, 114); 
     color: white;
     cursor: pointer;
 }
 
-.contenedorPerfilPadre{
-    display:flex;
+.contenedorPerfilPadre {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.contenedorDatosPerfilGuia{
-    display:flex;
+.contenedorDatosPerfilGuia {
+    display: flex;
     width: 1000px;
     height: 500px;
     background-color: #f5f5f5;
@@ -77,72 +73,128 @@
     margin-bottom: 70px;
 }
 
-.izqContenedorPerfilGuia{
-    display:flex;
+.izqContenedorPerfilGuia {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 400px;
-    height:auto;
+    height: auto;
     background-color: #dbdbdb;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    gap:50px;
+    gap: 50px;
 }
 
-.imgPerfilGuia{
+.imgPerfilGuia {
     border-radius: 100%;
 }
 
-.nombrePerfilGuia{
+.nombrePerfilGuia {
     font-size: 30px;
     font-weight: bolder;
 }
 
-.contenedorNombrePerfilGuia{
-    display:flex;
+.contenedorNombrePerfilGuia {
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap:20px;
+    gap: 20px;
 }
 
-.derechaContenedorPerfilGuia{
-    padding:50px;
+.derechaContenedorPerfilGuia {
+    padding: 50px;
     display: flex;
     width: 600px;
     flex-direction: column;
-    gap:50px;
-    
+    gap: 50px;
 }
 
-.tituloDescripcion{
+.tituloDescripcion {
     font-weight: bold;
 }
 
-.contenedorBotonEditGuia{
+.contenedorBotonEditGuia {
     display: flex;
     justify-content: flex-end;
     padding-bottom: 50px;
     padding-right: 300px;
 }
 
-.actFavGuia{
+.actFavGuia {
     font-weight: bold;
 }
 
-.contenedorActFav{
-    display:flex;
+.contenedorActFav {
+    display: flex;
     gap: 20px;
 }
 
-.contenedorTelefGuia{
-    margin-top:-30px;
+.contenedorTelefGuia {
+    margin-top: -30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:10px
+    gap: 10px;
 }
 
-.tituloTelefonoPerfilGuia{
+.tituloTelefonoPerfilGuia {
     font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .contenedorCabecera {
+        padding-left: 20px;
+        padding-right: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tituloPerfil {
+        font-size: 36px;
+    }
+
+    .botonVerReservaGuia, .botonEditarGuia {
+        width: 100%;
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .contenedorDatosPerfilGuia {
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .izqContenedorPerfilGuia {
+        width: 100%;
+        gap: 20px;
+    }
+
+    .derechaContenedorPerfilGuia {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .contenedorBotonEditGuia {
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tituloPerfil {
+        font-size: 28px;
+    }
+
+    .botonVerReservaGuia, .botonEditarGuia {
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    .contenedorDatosPerfilGuia {
+        padding: 10px;
+    }
+    .tituloTelefonoPerfilGuia {
+        padding: 10px;
+    }
 }
