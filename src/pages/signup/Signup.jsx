@@ -25,16 +25,15 @@ export default function Signup() {
     const [descrip, setDescrip] = useState("");
 
     const handleSignUp = async() => {
-        if ( !email || !name || !lastname || !password || !tipoUser) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
-            if (!(tipoUser == "guia" && !phoneNumber)){
-                const list1 = phoneNumber.split("-");
-                if (list1[0].length != 4 || list1[1].length != 7){
-                    setEmail("");   
-                }else{
-                    if (typeof list1[0] !== 'string' || typeof list1[1] !== 'string') {
-                        setEmail("");
-                    }
-            }}
+        if ( !email || !name || !lastname || !password || !tipoUser || !phoneNumber) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
+            const list1 = phoneNumber.split("-");
+            if (list1[0].length != 4 || list1[1].length != 7){
+                setEmail("");   
+            }else{
+                if (typeof list1[0] !== 'string' || typeof list1[1] !== 'string') {
+                    setEmail("");
+                }
+        }
             if (email.includes('@correo.unimet.edu.ve') || email.includes('@unimet.edu.ve')){
                 const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
                 const profilePicUrl = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=128`;
@@ -110,9 +109,7 @@ export default function Signup() {
         setPassword(prompt("Por favor, ingresa tu contraseña:"));
         const uType = prompt("Por favor, ingresa tu tipo de usuario: (trekker, guia)")
         setTipoUser(uType);
-        if (uType == "guia") {
-            setPhoneNumber(prompt("Por favor, ingresa tu número de teléfono: (xxxx-xxxxxxx)"));
-        }
+        setPhoneNumber(prompt("Por favor, ingresa tu número de teléfono: (xxxx-xxxxxxx)"));
         const list = user.displayName.split(" ");
         setName(list[0]);
         setLastname(list[1]);
@@ -201,12 +198,10 @@ const handleClick1 = () => {
                                         <option value="guia">Guía</option>
                                     </select>
                                 </div>
-                                {isGuide && (
-                                    <div className="formTelefono">
+                                <div className="formTelefono">
                                         <label>Número telefónico</label>
                                         <input value={phoneNumber}  className="numTelefonoS" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/>
                                     </div>
-                                )}
                             </form>
                             <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>
                             <button className="google2" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
