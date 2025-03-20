@@ -1,0 +1,101 @@
+/*{
+    color: #4B4949;
+}*/
+
+.tituloForo{
+    font-size: 50px;
+    font-weight: bold;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.contenedorForo{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.botonPublicarForo{
+    margin-right:20px;
+    background-repeat: no-repeat;
+    border: none;
+    transition-duration: 0.4s;
+    color: white;
+    background-color: rgb(119, 119, 119);
+    border-radius: 8px;
+    outline: none;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    display:flex;
+    align-items: center;  
+    justify-content: center;
+    width: 120px;
+    height:40px;
+    font-size: 18px;
+}
+
+.botonPublicarForo:hover{
+    background-color: rgb(206, 206, 206); 
+    color: white;
+    cursor: pointer;
+}
+
+.publicarComentarioForo{
+    border-radius: 10px;
+    border-color: #D2D2D2;
+    color: #4E4E4E;
+    border: 1px solid #ccc;
+    outline: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    padding:10px;
+}
+
+.contenedorComentarios{
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    width: 100%;
+    padding:15px; 
+    display:flex;
+    flex-direction: column;
+    gap:15px;
+    margin-bottom: 50px;
+}
+
+.comentario{
+    display:flex;
+    gap:20px;
+    justify-content:left;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding:10px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nombreYComentario{
+    display:flex;
+    flex-direction: column;
+}
+
+.imgPerfilForo{
+    border-radius: 100%;
+}
+
+.nombreForo{
+    font-weight: bold;
+}
+
+.formComentarioForo{
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.contenedorBotonPublicarForo{
+    display:flex;
+    justify-content: flex-end;
+}

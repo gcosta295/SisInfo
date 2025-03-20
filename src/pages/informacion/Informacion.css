@@ -1,0 +1,215 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+  }
+  
+  /* Sección del Parque */
+  .parque {
+    padding: 20px;
+  }
+  
+  .parque-info {
+    display: flex;
+    align-items: center;
+    margin: 0 auto 20px; /* Centra el contenedor y añade margen inferior */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 1200px; /* Ancho máximo */
+    width: 95%; /* Ancho relativo */
+  }
+  
+  .parque-info img {
+    width: 450px; 
+    height: 350px; 
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    margin-right: 40px; /* Aumenta la separación entre la imagen y el texto */
+  }
+  
+  .news h2{
+     margin-top: 0;
+     font-size: 34px; /* Tamaño de la letra para los títulos */
+     text-align: center;
+   }
+
+  /* Sección de Noticias */
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Ajusta el ancho según sea necesario */
+    height: 300px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+  }
+  
+  .carousel-content {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 0 60px; /* Espacio para los botones */
+  }
+  
+  .carousel-item {
+    flex: 1;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: calc(33.33% - 20px); /* 3 elementos con espacio entre ellos */
+  }
+  
+  .carousel-item-background {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  .carousel-item-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6); /* Capa gris semi-transparente */
+    padding: 15px;
+    border-radius: 0 0 10px 10px; /* Bordes redondeados solo en la parte inferior */
+  }
+  
+  .carousel-item-text h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  .carousel-item-text h2 {
+    margin: 5px 0;
+    font-size: 18px;
+    color: #fff;
+  }
+  
+  .carousel-item-text p {
+    margin: 0;
+    font-size: 12px;
+    color: #fff;
+  }
+  
+  
+  .button:hover {
+    background: #45a049; 
+    cursor: pointer;
+  }
+  
+  .prev {
+    background: #4CAF50; 
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px 15px;
+    color: white;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%; /* Botones redondos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+    left: 10px;
+  }
+  
+  .next {
+    background: #4CAF50; /* Color verde para los botones */
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px 15px;
+    color: white;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%; /* Botones redondos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+    right: 10px;
+  }
+  
+  /*  Consejos */
+  .tips {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .tips h2{
+    margin-top: 0;
+    font-size: 34px; /* Tamaño de la letra para los títulos */
+    text-align: center;
+  }
+  .tips-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Ajusta el ancho según sea necesario */
+    margin: 0 auto; /* Centra el carrusel */
+    padding: 20px 0; /* Añade un padding vertical */
+  }
+  
+  .tips-carousel-content {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    padding: 0 60px; /* Espacio para los botones */
+  }
+
+  .tip-card {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    text-align: center;
+    width: 300px; /* Ancho fijo */
+    height: 200px; /* Alto fijo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+  }
+  
+  .tip-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .tip-card p {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    overflow: hidden; /* Evita que el texto desborde */
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita el texto a 3 líneas */
+    -webkit-box-orient: vertical;
+  }

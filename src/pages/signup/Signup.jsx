@@ -1,12 +1,12 @@
 import "./Signup.css";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { auth, provider, db } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'react-tabs/style/react-tabs.css';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { setDoc, doc } from "firebase/firestore";
 
 
@@ -14,24 +14,37 @@ export default function Signup() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [profilePic, setProfilePic] = useState("");
     const [name, setName] = useState("");
     const [lastname, setLastname] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [tipoUser, setTipoUser] = useState("");
+    const [nacionality, setNacionality] = useState("");
+    const [favAct, setFavAct] = useState("");
+    const [descrip, setDescrip] = useState("");
 
     const handleSignUp = async() => {
         if (!email || !password) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
+        
+        const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
+        const profilePicUrl = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=128`;
+        
         createUserWithEmailAndPassword(auth, email, password)
           .then(async(userCredential) => {
             const user = userCredential.user;
-            console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
+            //console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
             if (user) {
                 await setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
                   email: user.email,
                   firstName: name,
                   lastName: lastname,
+                  profilePicture: profilePicUrl,
                   phoneNumber: phoneNumber,
-                  tipoUsuario: tipoUser
+                  tipoUsuario: tipoUser,
+                  description: descrip,
+                  favActivity: favAct,
+                  nacionality: nacionality,
+
                 });
               }
             setEmail("");
@@ -84,10 +97,15 @@ export default function Signup() {
         })
     };
 
+    const [isGuide, setIsGuide] = useState(false); // Estado para controlar si el usuario es guía
+
+    // useEffect para actualizar isGuide cuando cambia tipoUser
+    useEffect(() => {
+        setIsGuide(tipoUser === "guia");
+    }, [tipoUser]);
 
     return(
         <>
-        <div><Toaster/></div>
         <div className="contenedor1">
             <div className="datos">
                 <p className="titulosignup">{tabIndex===0 ? "Bienvenido de vuelta" : "Comienza la aventura"}</p>
@@ -116,7 +134,7 @@ export default function Signup() {
                                 <p className="letraDivider"> o </p>
                                 <span className="linea"></span>
                             </div>
-                            <button className="google1" onClick={handleClick}><img src="./logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
+                            <button className="google1" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
                         </div>
                     </TabPanel>
                     <TabPanel>
@@ -124,11 +142,11 @@ export default function Signup() {
                             <form className="forms">
                                 <div className="formNombre">
                                     <label>Nombre</label>
-                                    <input value={name} type="text" className="name" placeholder="Nombre(s)" onChange={(e) => setName(e.target.value)} />
+                                    <input value={name}  className="nameS" placeholder="Nombre(s)" onChange={(e) => setName(e.target.value)} />
                                 </div>
                                 <div className="formApellido">
                                     <label>Apellido</label>
-                                    <input value={lastname} type="text" className="lastname" placeholder="Apellido(s)"  onChange={(e) => setLastname(e.target.value)}/>
+                                    <input value={lastname}  className="lastnameS" placeholder="Apellido(s)"  onChange={(e) => setLastname(e.target.value)}/>
                                 </div>
                                 <div className="formCorreo">
                                     <label>Correo electrónico</label>
@@ -139,10 +157,6 @@ export default function Signup() {
                                     <input value={password} type="password" className="contrasena" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)}  />
                                     <p className="instrucContrasena">*La contraseña debe tener mínimo 6 caracteres.</p>
                                 </div>
-                                <div className="formTelefono">
-                                    <label>Número telefónico</label>
-                                    <input value={phoneNumber} type="text" className="numTelefono" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/>
-                                </div>
                                 <div className="tipoUsuario">
                                     <label>Tipo de usuario</label>
                                     <select className="tipoUser" onChange={(e) => setTipoUser(e.target.value)}>
@@ -151,15 +165,21 @@ export default function Signup() {
                                         <option value="guia">Guía</option>
                                     </select>
                                 </div>
+                                {isGuide && (
+                                    <div className="formTelefono">
+                                        <label>Número telefónico</label>
+                                        <input value={phoneNumber}  className="numTelefonoS" placeholder="Número de teléfono" onChange={(e) => setPhoneNumber(e.target.value)}/>
+                                    </div>
+                                )}
                             </form>
                             <button className='botonIrHome' onClick={handleSignUp}>Registrarme</button>
-                            <button className="google2" onClick={handleClick}><img src="./logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
+                            <button className="google2" onClick={handleClick}><img src="\fotos\logoGoogle.png" className="imgGoogle"/>Iniciar sesión con Google</button>
                         </div>
                     </TabPanel>
                 </Tabs>
             </div>
             <div className="foto">
-                <img src="./fotologin.jpg" className="imglogin"/>
+                <img src="\fotos\fotologin.jpg" className="imglogin"/>
             </div>
         </div>
         <div className="copyright">

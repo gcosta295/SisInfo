@@ -9,7 +9,7 @@ return (
         <ContactoInfo />
         <div className="w-full h-fit shadow rounded-2xl overflow-clip">
             <div className="flex md:flex-row flex-col items-center h-fit">
-                <img src="./fotologin.jpg" className="md:w-1/2 w-full md:h-140 h-80 object-cover" align-middle alt="hiker" />
+                <img src="./fotos/fotologin.jpg" className="md:w-1/2 w-full md:h-140 h-80 object-cover" align-middle alt="hiker" />
                 <div className="flex flex-col gap-4 md:gap-8 p-8 md:p-12 lg:p-16 md:w-1/2 w-full">
                     <h1 className="text-2xl font-semibold">Contáctanos</h1>
                     <div className="flex flex-col gap-4 text-sm">

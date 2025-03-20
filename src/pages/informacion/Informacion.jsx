@@ -1,4 +1,4 @@
-import "./Informacion";
+//import "./Informacion";
 import { use } from 'react'
 import { UserContext } from '../../context/UserContext.jsx';
 import CardWithImage from "../../components/ui/card/CardWithImage.jsx";
@@ -14,7 +14,7 @@ export default function Informacion() {
 
     const contextProf = use(UserContext);
     const {profile, logged} = contextProf;
-    console.log(contextProf);
+    // console.log(profile);
 
 return(
     <div>

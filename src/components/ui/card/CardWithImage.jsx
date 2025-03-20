@@ -5,12 +5,12 @@ export default function CardWithImage({item}){
             backgroundImage: `url(${item.imagen})`
                     }
         }>
+            <div className="bg-black opacity-30 col-start-1 col-end-4 row-start-1 row-end-4 w-full h-full z-0"></div>
             <div className="text-white text-base mt-auto col-start-1 col-end-4 row-start-1 row-end-4 p-6 z-10">
                 <p>{item.fecha}</p>
                 <p className="md:text-3xl text-xl font-semibold">{item.titulo}</p>
                 <p>{item.descripcion}</p>
             </div>
-            <div className="bg-black opacity-30 col-start-1 col-end-4 row-start-1 row-end-4 w-full h-full z-0"></div>
         </div>
     )
 }

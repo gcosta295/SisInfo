@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import { useState } from 'react';
 import "./Navbar.css";  
 import { UserContext } from '../../../context/UserContext.jsx';
-import { use } from 'react'
+import { use } from 'react';
 import {app} from '../../../firebase/firebase.js';
 import { getAuth, signOut } from "firebase/auth";
 import { useEffect } from "react";
@@ -18,8 +18,8 @@ export default function Navbar(){
     const {logged, profile} = contextProfile; 
     
     useEffect(() => {
-        console.log("Estado del perfil:", profile);
-        console.log("Estado de logged:", logged);
+        // console.log("Estado del perfil:", profile);
+        // console.log("Estado de logged:", logged);
     }, [profile, logged]); 
 
     const handleLogout = async () => {
@@ -32,7 +32,7 @@ export default function Navbar(){
         <div className='navbar'> 
             <div className="inicioNavbar">
                 <div className='fotoTitulo'>
-                    <img src="./AvilaTreklogo.png" alt="Logo Avila Trek" className="logo"/>
+                    <img src="/fotos/AvilaTreklogo.png" alt="Logo Avila Trek" className="logo"/>
                 </div>
                 {profile.tipoUsuario !=="administrador" ? <NavLink className="inicio" to={"/"}>Inicio</NavLink>
                     :
@@ -48,7 +48,7 @@ export default function Navbar(){
                     onMouseEnter={() => {clearTimeout(window.dropdownTimeout); setIsOpen(true)}} 
                     onMouseLeave={() => {window.dropdownTimeout = setTimeout(() => setIsOpen(false), 500)}}>
 
-                    <img className="imgMiPerfil" src="./perfilLogo.png" alt="Mi perfil" onClick={() =>setIsOpen((prevState)=>!prevState)} />
+                    <img className="imgMiPerfil" src="/fotos/perfilLogo.png" alt="Mi perfil" onClick={() =>setIsOpen((prevState)=>!prevState)} />
                     {isOpen &&(
                         logged ?
                         <div className="dropdownMenu">
@@ -58,7 +58,7 @@ export default function Navbar(){
                         :
                         <div className="dropdownMenu">
                             <NavLink to={"/signup"} className="opcionInicioSes">Iniciar sesión</NavLink>
-                            <NavLink to={"/admin"} className="opcionInicioSes">Prueba admin</NavLink>
+                            {/* <NavLink to={"/admin"} className="opcionInicioSes">Prueba admin</NavLink> */}
 
                         </div>
                     )}

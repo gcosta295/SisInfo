@@ -1,0 +1,101 @@
+/*{
+    color: #4B4949;
+}*/
+p{
+    margin-bottom: 0px;
+}
+
+.botonPaypal{
+    width:200px;
+    height: 30px;
+}
+
+.tituloActividad{
+    font-size: 50px;
+    font-weight: bold;
+    margin-left: 100px;
+}
+
+.tipoRuta{
+    font-size: 38px;
+    font-weight: bold;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+.containerReserva{
+    display: flex;
+    margin-top: -50px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.calendarioReserva{
+    margin-top:-100px;
+}
+
+.tituloDetalles{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.containerReservaDetalles1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.containerReservaDetalles2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    padding: 20px; 
+    width: 400px;
+}
+
+.costo {
+    font-size: 24px;
+    font-weight: bold;
+    top: 50%; 
+    margin-bottom: 5px;
+}
+
+.primero{
+    background-color: #ffffff;
+    padding: 2%;
+    border-color: #4B4949;
+    border-width: 1px;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.segundo, .tercero{
+    background-color: #ffffff;
+    padding: 2%;
+    border-color: #4B4949;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.cuarto{
+    background-color: #ffffff;
+    padding: 2%;
+    border-color: #4B4949;
+    border-width: 1px;
+    border-style: solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;   
+    margin-bottom: 30px;
+}
+
+
+
+

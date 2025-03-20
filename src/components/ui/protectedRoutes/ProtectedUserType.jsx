@@ -10,13 +10,19 @@ export default function ProtectedUserType({roles}) { //logica aplidada: excluir 
 
     const contextProfi = use(UserContext);
     const {profile} = contextProfi;
-    console.log(profile.tipoUsuario);
-    console.log(roles);
+    // console.log(profile.tipoUsuario);
+    // console.log(roles);
 
     useEffect(() => {
-        if (roles.includes(profile.tipoUsuario)) {
+        if (roles.includes(profile.tipoUsuario) && !roles.includes('administrador')) {
             navigate('/')
         }
+        if (roles.includes(profile.tipoUsuario) && roles.includes('administrador')) {
+            navigate('/admin')
+        }
+        // if (roles.includes(profile.tipoUsuario) && roles.includes('administrador')) {
+        //     navigate('/admin')
+        // }
     }, [roles, profile, navigate])
 
 return(
