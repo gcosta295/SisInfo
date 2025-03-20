@@ -124,10 +124,8 @@
 
 .comentario2{
     display:flex;
-    gap:20px;
-    justify-content:left;
+    justify-content:space-around;
     align-items: center;
-   
     padding:10px; 
    
 }

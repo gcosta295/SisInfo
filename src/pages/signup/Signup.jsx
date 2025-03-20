@@ -106,27 +106,41 @@ export default function Signup() {
     const navigate = useNavigate();
 
     const handleClick = () => {
-  signInWithPopup(auth, provider)
-    .then((data) => {
-    const user = data.user;
-    const email = user.email;
-    if (email && (email.endsWith('@correo.unimet.edu.ve') || email.endsWith('@unimet.edu.ve'))) {
-        setPassword(prompt("Por favor, ingresa tu contraseña:"));
-        const uType = prompt("Por favor, ingresa tu tipo de usuario: (trekker, guia)")
-        setTipoUser(uType);
-        if (uType == "guia") {
-            setPhoneNumber(prompt("Por favor, ingresa tu número de teléfono: (xxxx-xxxxxxx)"));
-        }
-        const list = user.displayName.split(" ");
-        console.log(user.displayName);
-        setName(list[0]);
-        setLastname(list[1]);
-        handleSignUp;
-    }else{
-        toast.error('Error iniciando sesión')
-    }
-    })
-};
+        signInWithPopup(auth, provider)
+          .then((data) => {
+            const user = data.user;
+            const email = user.email;
+            const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
+      
+            // Verifica si el correo es válido (opcional)
+            if (email && (email.endsWith('@correo.unimet.edu.ve') || email.endsWith('@unimet.edu.ve'))) {
+              // Guarda la información básica del usuario en Firestore (opcional)
+              setDoc(doc(db, "Users", user.uid), {
+                email: user.email,
+                firstName: user.displayName.split(" ")[0], // Obtiene el nombre del displayName
+                lastName: user.displayName.split(" ")[1], // Obtiene el apellido del displayName
+                profilePicture: user.photoURL || `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=128`,
+                tipoUsuario: "trekker", // Asigna un valor por defecto
+              })
+                .then(() => {
+                  console.log("Usuario registrado en Firestore");
+                })
+                .catch((error) => {
+                  console.error("Error guardando usuario en Firestore:", error);
+                });
+      
+              // Redirige al home directamente
+              toast.success('Sesión iniciada con Google');
+              navigate("/");
+            } else {
+              toast.error('Correo no válido. Debe ser @correo.unimet.edu.ve o @unimet.edu.ve');
+            }
+          })
+          .catch((error) => {
+            console.error("Error durante el inicio de sesión con Google:", error);
+            toast.error('Error iniciando sesión con Google');
+          });
+      };
 
     const [isGuide, setIsGuide] = useState(false); // Estado para controlar si el usuario es guía
 

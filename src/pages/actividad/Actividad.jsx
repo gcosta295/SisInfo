@@ -164,7 +164,7 @@ export default function Actividad() {
           
           <div className="ac3">
     <h3>Guia Asignado</h3>
-    <div  className="comentario2">
+    < div className="comentario2">
               <img
                 className="imgPerfilForo"
                 src={guiaData.profilePicture}
@@ -172,6 +172,7 @@ export default function Actividad() {
                 height={70}
                 alt=""
               />
+              
               <div className="nombreYComentario">
                 <p className="nombreForo">
                 {guiaData.firstName} {guiaData.lastName}

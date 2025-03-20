@@ -67,17 +67,16 @@
     width: 600px;
     height:40px;
     border-radius: 6px;
-    border: 2px solid #D9D9D9;
+    border: 2px solid #828080;
 }
 
 .multi-button button{
     height: 40px;
     font-size: 1.2rem;
-    border: none;
     margin: -5px; 
     padding: 0;
     stroke: black;
-    border: 2px solid #D9D9D9;
+    border: 2px solid #545353;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
 }
