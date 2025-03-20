@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 import { setDoc, doc } from "firebase/firestore";
 
 
+
 export default function Signup() {
 
     const [email, setEmail] = useState("");
@@ -24,43 +25,59 @@ export default function Signup() {
     const [descrip, setDescrip] = useState("");
 
     const handleSignUp = async() => {
-        if (!email || !password) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
-        
-        const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
-        const profilePicUrl = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=128`;
-        
-        createUserWithEmailAndPassword(auth, email, password)
-          .then(async(userCredential) => {
-            const user = userCredential.user;
-            //console.log(user);  //que se impriman las credenciales (datos) del user que se registro cuando se registre
-            if (user) {
-                await setDoc(doc(db, "Users", user.uid), {  //se crea tabla users la primera vez que alguien se registre y se guarde, de resto solo se guardan los demas
-                  email: user.email,
-                  firstName: name,
-                  lastName: lastname,
-                  profilePicture: profilePicUrl,
-                  phoneNumber: phoneNumber,
-                  tipoUsuario: tipoUser,
-                  description: descrip,
-                  favActivity: favAct,
-                  nacionality: nacionality,
+        if ( !email || !name || !lastname || !password || !tipoUser) return; //validacion breve de que si campos vacios, no guarde nada vacio en la base de datos (firebase)
+            if (!(tipoUser == "guia" && !phoneNumber)){
+                const list1 = phoneNumber.split("-");
+                if (list1[0].length != 4 || list1[1].length != 7){
+                    setEmail("");   
+                }else{
+                    if(isNaN(parseInt(list1[0])) || isNaN(parseInt(list1[1]))){
+                        setEmail("");
+                    }
+                }
+                if (email.includes('@correo.unimet.edu.ve') || email.includes('@unimet.edu.ve')){
+                    const initials = `${name.charAt(0)}${lastname.charAt(0)}`.toUpperCase();
+                const profilePicUrl = `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=128`;
+            
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then(async(userCredential) => {
+                    const user = userCredential.user;
+                    if (user) {
+                        await setDoc(doc(db, "Users", user.uid), {  
+                          email: user.email,
+                          firstName: name,
+                          lastName: lastname,
+                          profilePicture: profilePicUrl,
+                          phoneNumber: phoneNumber,
+                          tipoUsuario: tipoUser,
+                          description: descrip,
+                          favActivity: favAct,
+                          nacionality: nacionality,
 
+                        });
+                      }
+                    setEmail("");
+                    setPassword("");
+                    setName("");
+                    setLastname("");
+                    setPhoneNumber("");
+                    setTipoUser("");
+                    toast.success('Registro exitoso')
+                    navigate("/");
+                })
+                .catch((error) => {
+                    const errorCode = error.code; //motivo
+                    const errorMessage = error.message;  //explicacion
+                    console.log(errorCode, errorMessage); //si hay error, aparece mensaje automatico con el motivo y explicacion
                 });
-              }
-            setEmail("");
-            setPassword("");
-            setName("");
-            setLastname("");
-            setPhoneNumber("");
-            setTipoUser("");
-            toast.success('Registro exitoso')
-            navigate("/");
-          })
-          .catch((error) => {
-            const errorCode = error.code; //motivo
-            const errorMessage = error.message;  //explicacion
-            console.log(errorCode, errorMessage); //si hay error, aparece mensaje automatico con el motivo y explicacion
-          });
+                }
+                else{
+                    toast.error('Error iniciando sesión')
+                }
+            }else{
+                toast.error('Error iniciando sesión')
+            }
+        
     };
 
     const handleSignIn = () => {
@@ -82,20 +99,34 @@ export default function Signup() {
         setPassword("");
         toast.error('Error iniciando sesión')
     });
-};
+    }
 
     const [tabIndex, setTabIndex] = useState(0);
 
     const navigate = useNavigate();
 
-    // const [value,setValue] = useState('')
-    const handleClick =()=>{
-        signInWithPopup(auth,provider).then((data)=>{
-            // setValue(data.user.email)
-            navigate("/");
-            console.log(data.user);
-        })
-    };
+    const handleClick = () => {
+  signInWithPopup(auth, provider)
+    .then((data) => {
+    const user = data.user;
+    const email = user.email;
+    if (email && (email.endsWith('@correo.unimet.edu.ve') || email.endsWith('@unimet.edu.ve'))) {
+        setPassword(prompt("Por favor, ingresa tu contraseña:"));
+        const uType = prompt("Por favor, ingresa tu tipo de usuario: (trekker, guia)")
+        setTipoUser(uType);
+        if (uType == "guia") {
+            setPhoneNumber(prompt("Por favor, ingresa tu número de teléfono: (xxxx-xxxxxxx)"));
+        }
+        const list = user.displayName.split(" ");
+        console.log(user.displayName);
+        setName(list[0]);
+        setLastname(list[1]);
+        handleSignUp;
+    }else{
+        toast.error('Error iniciando sesión')
+    }
+    })
+};
 
     const [isGuide, setIsGuide] = useState(false); // Estado para controlar si el usuario es guía
 
