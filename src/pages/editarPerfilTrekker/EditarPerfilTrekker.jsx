@@ -24,6 +24,7 @@ export default function EditarPerfilTrekker() {
     const [favActivity, setFavActivity] = useState(profile.favActivity||"");
     const [loading, setLoading] = useState(false);
     const [profilePicture, setProfilePicture] = useState(profile.profilePicture);
+    const [phoneNumber, setPhoneNumber] = useState(profile.phoneNumber || "");
 
     const navigate = useNavigate();
 
@@ -33,6 +34,11 @@ export default function EditarPerfilTrekker() {
             const user = auth.currentUser;
             if (!profile.uid || !user) {
                 console.error("No se encontró UID del usuario.");
+                return;
+            }
+            const phoneNumberRegex = /^\d{11}$/; // Expresión regular para 11 dígitos
+                if (phoneNumber && !phoneNumberRegex.test(phoneNumber)) {
+                toast.error('Número de teléfono inválido. Debe tener exactamente 11 dígitos y solo contener números');
                 return;
             }
     
@@ -62,13 +68,14 @@ export default function EditarPerfilTrekker() {
             const userRef = doc(db, "Users", profile.uid);
             console.log({ description, favActivity, profilePicture });
             
-            await setDoc(userRef, { description, favActivity, profilePicture }, { merge: true });
+            await setDoc(userRef, { description, favActivity, profilePicture, phoneNumber }, { merge: true });
     
             setProfile(prevProfile => ({
                 ...prevProfile,
                 description,
                 favActivity,
                 profilePicture,
+                phoneNumber,
             }));
             toast.success("Datos actualizados correctamente");
             navigate("/mi-perfil-trekker");
@@ -91,6 +98,11 @@ export default function EditarPerfilTrekker() {
             }
     
             let newEmail = email;
+
+            if (!newEmail.endsWith('@unimet.edu.ve') && !newEmail.endsWith('@correo.unimet.edu.ve')) {
+                toast.error('El correo debe ser @unimet.edu.ve o @correo.unimet.edu.ve');
+                return;
+              }
     
             if (email !== user.email) {
                 const { value: confirmedEmail } = await Swal.fire({
@@ -184,6 +196,21 @@ export default function EditarPerfilTrekker() {
                             <p className="labelCorreoGuia">Foto de perfil</p>
                             <input value={profilePicture} className="nuevoTdeguia" placeholder="URL de imagen" onChange={(e) => setProfilePicture(e.target.value)} />
                         </div>
+                        <div className="formModificarTelefTrekker">
+                            <p className="labelCorreoGuia">Teléfono</p>
+                            <input
+                                value={phoneNumber}
+                                className="nuevoTdeguia"
+                                placeholder="Nuevo número telefónico"
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    if (/^\d*$/.test(value)) { // Solo permite números
+                                    setPhoneNumber(value);
+                                    }
+                                }}
+                                maxLength={11} // Limita a 11 caracteres
+                                />                        
+                    </div>
                     </div>
                 </div>
             </div>

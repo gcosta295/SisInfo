@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div className="mainContainer2">
       <div className="botondiv">
-      <button className="guardar right-side" onClick={gotocontact5}>Nueva Actividad</button>
+      <button className="guardar right-side" onClick={gotocontact5}>Nueva actividad</button>
 
       </div>
       <div className="firstRow">
@@ -106,7 +106,7 @@ function RenderA({ route, price, num, id, type}) {
         <h2 className="n">{price}</h2>
       </div>
       <div className="empt2">
-        <button className="edit" onClick={gotocontact4}>Edit</button>
+        <button className="edit" onClick={gotocontact4}>Editar</button>
       </div>
       
     </div>

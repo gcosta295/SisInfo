@@ -1,5 +1,6 @@
 import "./NewAc";
 import "./NewAc.css";
+import toast from 'react-hot-toast';
 
 import { db } from "../../firebase/firebase";
 import {
@@ -119,6 +120,11 @@ export default function CreateActivity() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (newDif < 1 || newDif > 5) {
+          toast.error("Error: La dificultad debe estar entre 1 y 5.");
+          return;
+        }
+
     if (!newRoute || !newDesc || !newCost || !newImage || !newType || !newGuide)
       return;
     try {
@@ -138,10 +144,10 @@ export default function CreateActivity() {
         date: dateTimestamp, // Save Timestamp
         rating: newDif,
       });
-      setUpdateStatus("Actividad Creada!");
+      toast.success("Actividad creada con éxito");
     } catch (error) {
       console.error("Error creating document:", error);
-      setUpdateStatus("Error creating activity: " + error.message);
+      // setUpdateStatus("Error creating activity: " + error.message);
     }
   };
 
@@ -152,12 +158,16 @@ export default function CreateActivity() {
     navigate(`/admin`);
   };
   return (
-    <div className="mainContainer3">
-      <div className="LeftColumn">
-        <button type="button" className="return2" onClick={gotoAdmin}>
-          Regresar
-        </button>
-        <form onSubmit={handleSubmit}>
+    <>
+    
+    <button type="button" className="returnNewAct" onClick={gotoAdmin}>
+    Regresar
+  </button>
+    <div className="mainContainerNewAct">
+      
+       
+        <form className="formNuevaAct" onSubmit={handleSubmit}>
+    
           <h1>Tipo de Ruta</h1>
           <label>
             <select
@@ -178,19 +188,21 @@ export default function CreateActivity() {
             <FontAwesomeIcon icon={faDollarSign} />
             <input
               type="text"
+              className="textinput"
               value={newCost}
               onChange={handleCostChange}
-              className="aCost"
+              
             />
           </label>
           <h1>Dificultad</h1>
           <label>
-            <input type="text" value={newDif} onChange={handleDifChange} />
+            <input type="text" className="textinput" value={newDif} onChange={handleDifChange} min="1"
+    maxLength={1}/>
           </label>
-          <h1>Descripcion</h1>
+          <h1>Descripción</h1>
           <label>
             <textarea
-              className="large-textarea"
+              className="descripNueva"
               value={newDesc}
               onChange={handleDescChange}
             ></textarea>
@@ -199,15 +211,15 @@ export default function CreateActivity() {
           <label className="L">
             <input
               type="text"
+              className="textinput"
               value={newImage}
-              className="url"
               onChange={handleImageChange}
             />
           </label>
           <h1>Tipo de Actividad</h1>
           <label>
             <select
-              className="drop1"
+              className="drop"
               value={newType}
               onChange={handleTypeChange}
             >
@@ -222,7 +234,7 @@ export default function CreateActivity() {
           <h1>Asignar Guia</h1>
           <label>
             <select
-              className="drop2"
+              className="drop"
               value={newGuide}
               onChange={handleGuideChange}
             >
@@ -237,6 +249,7 @@ export default function CreateActivity() {
           <h1>Fecha y Hora</h1>
           <label>
             <input
+            className="drop"
               type="datetime-local"
               value={newDate}
               onChange={handleDateChange}
@@ -250,6 +263,6 @@ export default function CreateActivity() {
         </form>
         {updateStatus && <p>{updateStatus}</p>}
       </div>
-    </div>
+  </>
   );
 }

@@ -2,7 +2,7 @@ import "./EditarPerfilGuia.css";
 import { use, useState } from 'react'
 import { UserContext } from '../../context/UserContext.jsx';
 import { useNavigate } from "react-router";
-import { getAuth, updatePassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, updatePassword } from "firebase/auth";
 import { db } from "../../firebase/firebase";
 import { setDoc, doc } from "firebase/firestore";
 import toast from 'react-hot-toast';
@@ -123,6 +123,12 @@ export default function EditarPerfilGuia() {
     
             //     return;
             // }
+            const phoneNumberRegex = /^\d{11}$/; // Expresión regular para 11 dígitos
+                if (phoneNumber && !phoneNumberRegex.test(phoneNumber)) {
+                toast.error('Número de teléfono inválido. Debe tener exactamente 11 dígitos y solo contener números');
+                return;
+            }
+
             if (password && user) {
                 const { value: currentPassword } = await Swal.fire({
                     title: "Verificación requerida",
@@ -157,7 +163,7 @@ export default function EditarPerfilGuia() {
                 profilePicture,
             }));
             toast.success("Datos actualizados correctamente");
-            navigate("/mi-perfil-guia");
+            navigate("/mi-perfil-trekker");
     
         } catch (error) {
             console.error("Error actualizando los datos:", error);
@@ -177,6 +183,11 @@ export default function EditarPerfilGuia() {
             }
     
             let newEmail = email;
+
+            if (!newEmail.endsWith('@unimet.edu.ve') && !newEmail.endsWith('@correo.unimet.edu.ve')) {
+                toast.error('El correo debe ser @unimet.edu.ve o @correo.unimet.edu.ve');
+                return;
+                }
     
             if (email !== user.email) {
                 const { value: confirmedEmail } = await Swal.fire({
@@ -274,7 +285,18 @@ export default function EditarPerfilGuia() {
                         </div>
                         <div className="formModificarTelefTrekker">
                             <p className="labelCorreoGuia">Teléfono</p>
-                            <input value={phoneNumber}  className="nuevoTdeguia" placeholder="Nuevo número telefónico" onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <input
+                                value={phoneNumber}
+                                className="nuevoTdeguia"
+                                placeholder="Nuevo número telefónico"
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    if (/^\d*$/.test(value)) { 
+                                    setPhoneNumber(value);
+                                    }
+                                }}
+                                maxLength={11} 
+                            />                         
                         </div>
                     </div>
                 </div>

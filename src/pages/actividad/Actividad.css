@@ -9,10 +9,11 @@
     padding: 10px;
 }
 
-.tipoRuta{
+.tipoRutaAct{
     font-size: 36px;
     font-weight: bolder;
     padding: 10px;
+    margin-bottom:10px;
 }
 
 .rutapin {
@@ -26,6 +27,7 @@
 
 .tiporuta2 {
     font-size: xx-large;
+    font-weight: bolder;
 }
 
 .LeftColumn2 {
@@ -66,6 +68,7 @@
 .ac2 {
     background-color: #F5F5F5;
     padding: 10px;
+    height: 50px;
     border-radius: 5px;
     box-shadow: 0px 4px 10px rgba(46, 46, 46, 0.315);
     display: flex;
@@ -77,24 +80,35 @@
     font-weight: bold;
     border: 2px solid green;
     border-radius: 10px;
-    width: 130px;
-    height: 40px;
+    width: 180px;
+    height: 50px;
     margin-left: 50px;
+    font-size: 24px;
 }
 
 .verInfo2:hover {
-    width:200px;
-    height:50px;
+    width: 180px;
+    height: 50px;
     margin-left: 50px;
-    font-size: 25px;
+    font-size: 24px;
    
 
 }
+.guiaAsigAct{
+    font-weight: bolder;
+    font-size: 28px;
+}
+
+.price3{
+    font-weight: bolder;
+    font-size: 27px;
+}
 
 .titPrecio{
-
-    font-family: 50px;
-    margin-bottom: 40px;
+    font-weight: bolder;
+    font-size: 34px;
+    margin-bottom: 20px;
+    margin-left:20px;
 }
 .verInfo2:hover{
     cursor: pointer;
@@ -141,7 +155,10 @@
 }
 
 .rutaName {
-    margin-top: 0px;
+    margin-top: 10px;
+    font-weight: bolder;
+    font-size: 34px;
+    margin-bottom: 10px;
 }
 
 .descc {
@@ -150,7 +167,7 @@
 
 .fechaD {
     margin-left: 10%;
-    font-size: large;
+    font-size: 24px;
 }
 
 @media (max-width: 768px) {
@@ -197,10 +214,12 @@
     
     .tiporuta2 {
         font-size: 34px; 
+        font-weight: bolder;
     }
 
-    .tipoRuta {
-        font-size: 24px; 
+    .tipoRutaAct {
+        font-size: 34px; 
+        font-weight: bolder;
     }
 
     .comentario2 {

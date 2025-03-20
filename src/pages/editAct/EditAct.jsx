@@ -1,5 +1,7 @@
 import "./EditAct";
 import "./EditAct.css";
+import toast from 'react-hot-toast';
+
 
 import { db } from "../../firebase/firebase";
 import {
@@ -190,12 +192,12 @@ export default function EditActivity() {
     e.preventDefault();
 
     if (!params.actividadId) {
-      setUpdateStatus("Error: documentId is missing.");
+      toast.error("Error: documentId is missing.");
       return;
     }
 
     if (newDif < 1 || newDif > 5) {
-      setUpdateStatus("Error: La dificultad debe estar entre 1 y 5.");
+      toast.error("Error: La dificultad debe estar entre 1 y 5.");
       return;
     }
     try {
@@ -215,10 +217,10 @@ export default function EditActivity() {
         date: dateTimestamp, // Save Timestamp
         rating: newDif,
       });
-      setUpdateStatus("Actividad Actualizada!");
+      toast.success("Actividad actualizada con éxito");
     } catch (error) {
       console.error("Error updating document:", error);
-      setUpdateStatus("Error " + error.message); // Mensaje de error
+      // toast.error("Error " + error.message); // Mensaje de error
     }
   };
 
@@ -229,17 +231,17 @@ export default function EditActivity() {
     if (!confirmDelete) return;
 
     if (!params.actividadId) {
-      setUpdateStatus("Error: documentId is missing.");
+      toast.error("Error: documentId is missing.");
       return;
     }
     try {
       const docRef = doc(db, "Activities", params.actividadId);
       await deleteDoc(docRef);
-      setUpdateStatus("Activity deleted successfully!");
+      toast.success("Actividad eliminada con éxito");
       navigate("/admin"); // Te devuelve a la pagina anterior al borrar
     } catch (error) {
       console.error("Error deleting document:", error);
-      setUpdateStatus("Error deleting activity: " + error.message);
+      toast.error("Error deleting activity: " + error.message);
     }
   };
 
@@ -279,16 +281,20 @@ if (error) {
           <h1>Precio</h1>
           <label>
             <FontAwesomeIcon icon={faDollarSign} />
-            <input className="textinput" type="text" value={newCost} onChange={handleCostChange} />
+            <input className="textinput" type="text" value={newCost} onChange={handleCostChange} min="0"  
+    step="0.01"  
+  />
           </label>
           <h1>Dificultad</h1>
           <label>
-            <input className="textinput" type="text" value={newDif} onChange={handleDifChange} />
+            <input className="textinput" type="text" value={newDif} onChange={handleDifChange} min="1"
+    maxLength={1}
+    />
           </label>
-          <h1>Descripcion</h1>
+          <h1>Descripción</h1>
           <label>
             <textarea
-              className="large-textarea"
+              className="descripNueva"
               value={newDesc}
               onChange={handleDescChange}
             ></textarea>
@@ -312,7 +318,7 @@ if (error) {
               ))}
             </select>
           </label>
-          <h1>Asignar Guia</h1>
+          <h1>Asignar guía</h1>
           <label>
             <select
               className="drop"
@@ -327,7 +333,7 @@ if (error) {
               ))}
             </select>
           </label>
-          time
+          
           <h1>Fecha y Hora</h1>
           <label>
             <input className="textinput"

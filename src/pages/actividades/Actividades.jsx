@@ -123,7 +123,7 @@ export default function Actividades() {
             <input
               className="box-text"
               
-              placeholder="     Tipo Ruta / Fecha (MM/DD/YY) / Nombre"
+              placeholder="Tipo Ruta / Fecha (MM/DD/YY) / Nombre"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />

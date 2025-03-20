@@ -21,7 +21,7 @@ import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 const db = getFirestore(app);
 
 export default function Actividad() {
-  const contextProfile = useContext(UserContext); // Use useContext here
+  const contextProfile = useContext(UserContext); 
   const { profile } = contextProfile;
 
   const params = useParams();
@@ -127,11 +127,11 @@ export default function Actividad() {
           userFirstName: profile.firstName,
           userLastName: profile.lastName,
           userProfilePic: profile.profilePicture,
-          date: Timestamp.fromDate(new Date()), // Use Timestamp here
+          date: Timestamp.fromDate(new Date()), 
         }
       );
-      setNewComment(""); // Clear the input after adding comment
-      getData(); // Refresh reviews
+      setNewComment(""); 
+      getData(); 
       toast.success("Comentario agregado con éxito");
     } catch (e) {
       console.error(e);
@@ -142,7 +142,7 @@ export default function Actividad() {
   const mountainImages = [1, 2, 3, 4, 5];
 
   const formatDate = (timestamp) => {
-    if (!timestamp) return ""; // Handle cases where timestamp is undefined
+    if (!timestamp) return ""; 
     const date = timestamp.toDate();
     const day = String(date.getDate()).padStart(2, "0");
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -154,7 +154,7 @@ export default function Actividad() {
       <p className="tituloActividad">
         {dataAct.type} - {routeData.name}
       </p>
-      <p className="tipoRuta">📍Ruta {routeData.type}</p>
+      <p className="tipoRutaAct">📍Ruta {routeData.type}</p>
       <div className="columnas">
         <div className="LeftColumn2">
           <img src={dataAct.image} className="rutapic" alt="" width={470} height={370} />
@@ -163,7 +163,7 @@ export default function Actividad() {
           </div>
           
           <div className="ac3">
-    <h3>Guia Asignado</h3>
+    <div className="guiaAsigAct">Guía Asignado</div>
     < div className="comentario2">
               <img
                 className="imgPerfilForo"
@@ -184,11 +184,11 @@ export default function Actividad() {
             </div>
           </div>
           <div className="fecha">
-            <h3>Fecha</h3>
+            <div className="guiaAsigAct">Fecha</div>
             <h3 className="fechaD">{dataAct.date && formatDate(dataAct.date)}</h3> 
           </div>
           <div className="fecha">
-            <h3>Dificultad</h3>
+            <div className="guiaAsigAct">Dificultad</div>
             <RenderA key={dataAct.id} rating={dataAct.rating} />
           </div>
           
@@ -197,11 +197,10 @@ export default function Actividad() {
         <div className="RightColumn2">
           <div className="rutapin">
             <div className="precio2">
-              <h3 className="titPrecio">Precio</h3>
+              <div className="titPrecio">Precio</div>
               <div className="precio4">
                 <div className="ac2">
-                  <FontAwesomeIcon icon={faDollarSign} />
-                  <h1 className="price3">{dataAct.cost}</h1>
+                  <div className="price3">${dataAct.cost}</div>
                 </div>
                 <button className="verInfo2" onClick={goto1}>
                   Reserva  ya

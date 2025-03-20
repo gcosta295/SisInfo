@@ -68,15 +68,15 @@
     font-size: x-large;
 }
 .edit{
-    background-color: #83A846;
+    background-color: green;
     color: white;
     font-weight: bold;
-    border: 2px solid #83A846;
+    border: 2px solid green;
     border-radius: 20px;
     width:130px;
     height:40px;
     margin-top: 20px;
-    
+    cursor:pointer;
 
 }
 
